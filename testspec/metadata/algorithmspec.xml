@@ -6568,7 +6568,81 @@
 
       </algorithm>               
 
+      <algorithm>
+        <name>elastic_net</name>
+        <method>
+          <name>elastic_net_train</name>
+          
+          <template>
+            SELECT {madlib_schema}.elastic_net_train(
+                {tbl_source},      -- input table
+                {col_ind_var},     -- independent variable column
+	        {col_dep_var},     -- dependent variable column
+	        {tbl_result},      -- output table
+	        {lambda_value},    -- regulation parameter
+	        {alpha},           -- elastic net parameter
+	        {normalization},   -- whether to normalize independent variables
+	        {regress_family},  -- response family
+	        {optimizer},       -- optimization method
+	        {optimizer_params} -- parameters that are needed by optimizer
+            );
+          </template>
+        
+          <input_parameter>
+            <name>tbl_source</name>
+            <type>VARCHAR</type>
+          </input_parameter>
+          
+          <input_parameter>
+            <name>col_ind_var</name>
+            <type>VARCHAR</type>
+          </input_parameter>
+          
+          <input_parameter>
+            <name>col_dep_var</name>
+            <type>VARCHAR</type>
+          </input_parameter>
+          
+          <input_parameter>
+            <name>tbl_result</name>
+            <type>VARCHAR</type>
+          </input_parameter>
+          
+          <input_parameter>
+            <name>lambda_value</name>
+            <type>DOUBLE PRECISION</type>
+            <quote>false</quote>
+          </input_parameter>
 
+          <input_parameter>
+            <name>alpha</name>
+            <type>DOUBLE PRECISION</type>
+            <quote>false</quote>
+          </input_parameter>
+          
+          <input_parameter>
+            <name>normalization</name>
+            <type>BOOLEAN</type>
+            <quote>false</quote>
+          </input_parameter>
+          
+          <input_parameter>
+            <name>regress_family</name>
+            <type>VARCHAR</type>
+          </input_parameter>
+          
+          <input_parameter>
+            <name>optimizer</name>
+            <type>VARCHAR</type>
+          </input_parameter>
+          
+          <input_parameter>
+            <name>optimizer_params</name>
+            <type>VARCHAR[]</type>
+          </input_parameter>
+
+        </method>
+      </algorithm>
 
 
 </algorithms>

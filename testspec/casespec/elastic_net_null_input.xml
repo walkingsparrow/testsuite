@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<test_suites>
+  <test_type>feature</test_type>
+  <multi_test_suites>
+
+    <algorithm>elastic_net</algorithm>
+    <methods>
+      <method>
+        <name>elastic_net_train</name>
+        <parameter>
+          <name>benchmark</name>
+          <value>TemplateExecutor</value>
+        </parameter>
+      </method>
+    </methods>
+
+    <test_suite>
+      <name>test_elastic_net_null_input</name>
+      <comments>
+        To test the case where we have null inputs
+      </comments>
+      <execute_rate>1</execute_rate>
+      <method>
+        <name>elastic_net_train</name>
+
+        <!-- parameters -->
+        <parameter>
+          <name>tbl_source</name>
+          <value>madlibtestdata.elastic_net_test</value>
+        </parameter>
+
+        <parameter>
+          <name>col_ind_var</name>
+          <value>val</value>
+        </parameter>
+
+        <parameter>
+          <name>col_dep_var</name>
+          <value>dep</value>
+        </parameter>
+
+        <parameter>
+          <name>tbl_result</name>
+          <value>madlibtestdata.elastic_result</value>
+        </parameter>
+
+        <parameter>
+          <name>lambda_value</name>
+          <value>0.1</value>
+        </parameter>
+
+        <parameter>
+          <name>alpha</name>
+          <value>0.2</value>
+        </parameter>
+
+        <parameter>
+          <name>normalization</name>
+          <value>False</value>
+        </parameter>
+
+        <parameter>
+          <name>regress_family</name>
+          <value>gaussian</value>
+        </parameter>
+
+        <parameter>
+          <name>optimizer</name>
+          <value>igd</value>
+        </parameter>
+
+        <parameter>
+          <name>optimizer_params</name>
+          <value>
+              '{tolerance=0.00001, num_iterations=1000, stepsize=0.01}'
+          </value>
+        </parameter>
+        
+      </method>
+    </test_suite>
+
+  </multi_test_suites>
+</test_suites>

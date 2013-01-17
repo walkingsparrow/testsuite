@@ -1,2 +1,2 @@
 - cases : case_example
-  platform : GPDB_4.2.0.0
+  platform : PG92

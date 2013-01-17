@@ -1,0 +1,2 @@
+dataset/sql/*.sql.gz
+*.pyc

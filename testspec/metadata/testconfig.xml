@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<configuration>
+	<metadatadb>
+            <user>qianh1</user>    
+	    <host>localhost</host>
+	    <port>5433</port>
+	    <database>testing_result</database>
+	    <schema>benchmark</schema>
+	</metadatadb>
+</configuration>
