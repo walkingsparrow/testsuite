@@ -1,0 +1,3 @@
+#file:gp_pg_full_regression.yaml
+- cases : case_elastic_null_values   # refer to a case file
+  platform : PG92                        # must mapping the name in analyticstool.xml
