@@ -75,6 +75,7 @@ def main():
             version = run_case.runCases(filename, plan['skip'], isList, isUnique, plan['platform'], analyticsTools, testConfiger, run_id)
             if plan['skip']:
                 run_sql.runSQL(Path.BootstrapDir + 'skipsqlfile.sql', psqlArgs = psql_args, isFile = True)
+                   
             run_sql.runSQL(Path.BootstrapDir + 'post.sql', psqlArgs = psql_args, onErrorStop = False, isFile = True)
             
             gen_report.generate_report(psql_args, schema, run_id, plan['platform'], Path.ReportDir)

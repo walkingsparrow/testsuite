@@ -6748,5 +6748,107 @@
         </method>
       </algorithm>
 
+      <algorithm>
+        <name>ridge_regression</name>
+        <method>
+            <name>ridge_newton_train</name>
+            <create>true</create>
+            <template>
+            SELECT {madlib_schema}.ridge_newton_train(
+            {tbl_source},  -- input table
+            {col_ind_var},  -- independent variable name
+            {col_dep_var}, -- dependent variable name
+            {tbl_output}, -- output table
+            {lambda_value}, -- regularization parameter
+            {normalization} -- whether to normalize independent variables
+            );
+          </template>
 
+          <input_parameter>
+            <name>tbl_source</name>
+            <type>VARCHAR</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>col_ind_var</name>
+            <type>VARCHAR</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>col_dep_var</name>
+            <type>VARCHAR</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>tbl_output</name>
+            <type>VARCHAR</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>lambda_value</name>
+            <type>DOUBLE PRECISION</type>
+            <quote>false</quote>
+          </input_parameter>
+
+          <input_parameter>
+            <name>normalization</name>
+            <type>BOOLEAN</type>
+            <quote>false</quote>
+          </input_parameter>
+
+        </method>
+
+        <method>
+          <name>ridge_precision</name>
+          <create>true</create>
+          <template>
+            select * from madlibtestdata.ridge_precision(
+            {tbl_source}, -- data table
+            {col_ind_var}, -- independent variable
+            {col_dep_var}, -- dependent variable
+            {lambda_value}, -- regularization parameter
+            {normalization}, -- whether to normalize
+            {tbl_r_result} -- results from R
+            ) as ridge_pre_score;
+          </template>
+
+          <input_parameter>
+            <name>tbl_source</name>
+            <type>varchar</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>col_ind_var</name>
+            <type>varchar</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>col_dep_var</name>
+            <type>varchar</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>lambda_value</name>
+            <type>double precision</type>
+            <quote>false</quote>
+          </input_parameter>
+
+          <input_parameter>
+            <name>normalization</name>
+            <type>boolean</type>
+            <quote>false</quote>
+          </input_parameter>
+          
+          <input_parameter>
+            <name>tbl_r_result</name>
+            <type>varchar</type>
+          </input_parameter>
+
+          <output_parameter>
+            <name>ridge_pre_score</name>
+            <type>double precision</type>
+          </output_parameter>
+        </method>
+        
+      </algorithm>
 </algorithms>

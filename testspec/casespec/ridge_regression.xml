@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<test_suites>
+  <test_type>feature</test_type>
+  <multi_test_suites>
+
+    <algorithm>ridge_regression</algorithm>
+    <methods>
+      <method>
+        <name>ridge_precision</name>
+        <parameter>
+          <name>benchmark</name>
+          <value>TemplateExecutor</value>
+        </parameter>
+      </method>
+    </methods>
+
+    <test_suite>
+      <name>ridge_regression_output_test</name>
+      <comments>
+        To compare the output of Ridge regression with R
+      </comments>
+      <execute_rate>1</execute_rate>
+
+      <method>
+        <name>ridge_precision</name>
+        <!-- parameters -->
+        <parameter>
+          <name>tbl_source</name>
+          <value>madlibtestdata.lin_auto_mpg_wi</value>
+        </parameter>
+
+        <parameter>
+          <name>col_ind_var</name>
+          <value>x</value>
+        </parameter>
+
+        <parameter>
+          <name>col_dep_var</name>
+          <value>y</value>
+        </parameter>
+
+        <parameter>
+          <name>lambda_value</name>
+          <value>0.1</value>
+        </parameter>
+
+        <list_parameter>
+          <name>normalization</name>
+          <value>False</value>
+        </list_parameter>
+
+        <parameter>
+          <name>tbl_r_result</name>
+          <value>madlibtestdata.evaluation_ridge_regression</value>
+        </parameter>
+      </method>
+    </test_suite>
+  </multi_test_suites>
+</test_suites>

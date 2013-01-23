@@ -78,9 +78,6 @@ CREATE TABLE evaluation_logistic_regression (
 	coef double precision[]);
 
 
-
-
-
 ----kmeans:
 INSERT INTO evaluation_kmeans 
 (test_table,test_size,source,k_value,gof) 
