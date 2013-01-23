@@ -74,6 +74,13 @@ CREATE OR REPLACE VIEW testresultreport AS
       WHEN  trb.evaluation_function = 0 AND tr.evaluation_function = 0 
       THEN 'PASSED'
 
+     when tr.itemname = 'ridge_regression_output_test_0_0_ridge_precision_0'
+     then
+        case when tr.issuccessful = true and tr.evaluation_function < 1e-6 
+        then 'PASSED'
+        else 'FAILED'
+        end
+
       WHEN tr.itemname in ('km_pp_seeding_negative_relsource_0_0_km_pp_seeding_default_fndist_initialcentroids_0',
                            'km_random_seeding_negative_relsource_0_0_km_random_seeding_default_initialcentroids_0', 
                            'km_pp_seeding_negative_relsource_0_1_km_pp_seeding_default_fndist_initialcentroids_0', 
