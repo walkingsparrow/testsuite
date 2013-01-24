@@ -2,7 +2,7 @@ DataModeling :
     SupervisedLearning :
         Convex :
         DecisionTree : False
-        LinearRegression : False
+        LinearRegression : 
         LogisticRegression : False
         MultinomialLogisticRegression : False
         NaiveBayesClassification : False
