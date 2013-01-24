@@ -35,3 +35,5 @@ end;
 $$ language plpgsql;
 
 alter function madlibtestdata.ridge_precision(varchar, varchar, varchar, double precision, boolean, varchar) owner to madlibtester;
+
+-- \i ./evaluation_ridge_regression.sql

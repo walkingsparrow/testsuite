@@ -1,1 +1,8 @@
+cmd : "./conv_linregr.py -s -t <table> -o <sql> -d <data> -D <desc>"
 sql : "./ridge_init.sql"
+tables :
+    - id : rr_baseline_evaluation
+      args :
+          data : "http://jkhsdhs.com/y.gz"
+          desc : "./desc/no.desc"
+
