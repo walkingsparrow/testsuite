@@ -2,7 +2,7 @@
 <configuration>
 	<metadatadb>
             <user>gpdbchina</user>    
-	    <host>gpdb2.delta.sm.greenplum.com</host>
+	    <host>gpdb3.delta.sm.greenplum.com</host>
 	    <port>55000</port>
 	    <database>testing_result</database>
 	    <schema>benchmark</schema>

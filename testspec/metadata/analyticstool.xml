@@ -42,7 +42,7 @@
         <analytics_tool>
           <name>GPDB_4.2.3.0</name>
           <kind>greenplum</kind>
-          <host>gpdb2.delta.sm.greenplum.com</host>
+          <host>gpdb3.delta.sm.greenplum.com</host>
           <port>55000</port>
           <database>testing</database>
           <user>madlibtester</user>
