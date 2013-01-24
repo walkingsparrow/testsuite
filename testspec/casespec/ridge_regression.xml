@@ -24,10 +24,41 @@
       <method>
         <name>ridge_precision</name>
         <!-- parameters -->
-        <parameter>
+        <list_parameter>
           <name>tbl_source</name>
-          <value>madlibtestdata.lin_auto_mpg_wi</value>
-        </parameter>
+          <value>lin_concrete_oi</value>
+          <value>lin_concrete_wi</value>
+          <value>lin_auto_mpg_oi</value>
+          <value>lin_auto_mpg_wi</value>
+          <value>lin_communities_unnormalized_oi</value>
+          <value>lin_communities_unnormalized_wi</value>
+          <value>lin_communities_oi</value>
+          <value>lin_communities_wi</value>
+          <value>lin_flare_oi</value>
+          <value>lin_flare_wi</value>
+          <value>lin_forestfires_oi</value>
+          <value>lin_forestfires_wi</value>
+          <value>lin_housing_oi</value>
+          <value>lin_housing_wi</value>
+          <value>lin_imports_85_oi</value>
+          <value>lin_imports_85_wi</value>
+          <value>lin_machine_oi</value>
+          <value>lin_machine_wi</value>
+          <value>lin_o_ring_erosion_only_oi</value>
+          <value>lin_o_ring_erosion_only_wi</value>
+          <value>lin_o_ring_erosion_or_blowby_oi</value>
+          <value>lin_o_ring_erosion_or_blowby_wi</value>
+          <value>lin_parkinsons_updrs_oi</value>
+          <value>lin_parkinsons_updrs_wi</value>
+          <value>lin_servo_oi</value>
+          <value>lin_servo_wi</value>
+          <value>lin_slump_oi</value>
+          <value>lin_slump_wi</value>
+          <value>lin_winequality_red_oi</value>
+          <value>lin_winequality_red_wi</value>
+          <value>lin_winequality_white_oi</value>
+          <value>lin_winequality_white_wi</value>
+        </list_parameter>
 
         <parameter>
           <name>col_ind_var</name>
@@ -39,13 +70,17 @@
           <value>y</value>
         </parameter>
 
-        <parameter>
+        <list_parameter>
           <name>lambda_value</name>
+          <value>0</value>
           <value>0.1</value>
-        </parameter>
+          <value>0.6</value>
+          <value>1</value>
+        </list_parameter>
 
         <list_parameter>
           <name>normalization</name>
+          <value>True</value>
           <value>False</value>
         </list_parameter>
 
