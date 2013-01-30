@@ -1,0 +1,4 @@
+- lists : list_dev_regression_pg
+  skip : skip_knownissues_pg92
+  platform : PGDB_9.2
+  unique : true
