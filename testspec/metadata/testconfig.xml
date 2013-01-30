@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <configuration>
 	<metadatadb>
-            <user>gpdbchina</user>    
-	    <host>gpdb3.delta.sm.greenplum.com</host>
-	    <port>55000</port>
-	    <database>testing_result</database>
-	    <schema>benchmark</schema>
+      <user>qianh1</user>    
+	  <host>localhost</host>
+	  <port>5433</port>
+	  <database>testing_result</database>
+	  <schema>benchmark</schema>
 	</metadatadb>
 </configuration>

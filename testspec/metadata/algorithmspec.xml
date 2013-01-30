@@ -6851,4 +6851,99 @@
         </method>
         
       </algorithm>
+
+      <algorithm>
+        <name>general_cv</name>
+        
+        <method>
+          <name>generalcv_linregr</name>
+          <create>true</create>
+          <template>
+            SELECT * FROM madlibtestdata.generalcv_linregr(
+            {dataset_name}, -- data set name
+            {col_ind_var}, -- independent variable
+            {col_dep_var}, -- dependent variable
+            {fold}, -- fold number
+            {tbl_r_rst} -- R result table
+            ) AS cv_consistent;
+          </template>
+
+          <input_parameter>
+            <name>dataset_name</name>
+            <type>varchar</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>col_ind_var</name>
+            <type>varchar</type>
+          </input_parameter>
+          
+          <input_parameter>
+            <name>col_dep_var</name>
+            <type>varchar</type>
+          </input_parameter>
+          
+          <input_parameter>
+            <name>fold</name>
+            <type>integer</type>
+            <quote>false</quote>
+          </input_parameter>
+          
+          <input_parameter>
+            <name>tbl_r_rst</name>
+            <type>varchar</type>
+          </input_parameter>
+
+          <output_parameter>
+            <name>cv_consistent</name>
+            <type>double precision</type>
+          </output_parameter>
+        </method>
+
+        <method>
+          <name>generalcv_logregr</name>
+          <create>true</create>
+          <template>
+            SELECT * FROM madlibtestdata.generalcv_logregr(
+            {dataset_name}, -- data set name
+            {col_ind_var}, -- independent variable
+            {col_dep_var}, -- dependent variable
+            {fold}, -- fold number
+            {tbl_r_rst} -- R result table
+            ) AS cv_consistent;
+          </template>
+
+          <input_parameter>
+            <name>dataset_name</name>
+            <type>varchar</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>col_ind_var</name>
+            <type>varchar</type>
+          </input_parameter>
+          
+          <input_parameter>
+            <name>col_dep_var</name>
+            <type>varchar</type>
+          </input_parameter>
+          
+          <input_parameter>
+            <name>fold</name>
+            <type>integer</type>
+            <quote>false</quote>
+          </input_parameter>
+          
+          <input_parameter>
+            <name>tbl_r_rst</name>
+            <type>varchar</type>
+          </input_parameter>
+
+          <output_parameter>
+            <name>cv_consistent</name>
+            <type>double precision</type>
+          </output_parameter>
+        </method>
+        
+      </algorithm>
 </algorithms>

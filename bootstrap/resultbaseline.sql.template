@@ -21,6 +21,46 @@ SET default_with_oids = false;
 --
 
 COPY testitemresultbaseline (itemname, algorithmic, method, elapsedtime, evaluation_function, issuccessful, result_info, analysis_tool) FROM stdin;
+generalcv_linregr_output_test_0_5_generalcv_linregr_0	general_cv	generalcv_linregr	752	0	t	-[ RECORD 1 ]-+--\ncv_consistent | 0	\N
+generalcv_linregr_output_test_0_1_generalcv_linregr_0	general_cv	generalcv_linregr	1042	0	t	-[ RECORD 1 ]-+--\ncv_consistent | 0	\N
+generalcv_linregr_output_test_0_0_generalcv_linregr_0	general_cv	generalcv_linregr	1025	0	t	-[ RECORD 1 ]-+--\ncv_consistent | 0	\N
+generalcv_linregr_output_test_0_2_generalcv_linregr_0	general_cv	generalcv_linregr	583	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_4_generalcv_linregr_0	general_cv	generalcv_linregr	551	0	t	-[ RECORD 1 ]-+--\ncv_consistent | 0	\N
+generalcv_linregr_output_test_0_3_generalcv_linregr_0	general_cv	generalcv_linregr	587	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_logregr_output_test_0_0_generalcv_logregr_0	general_cv	generalcv_logregr	1265	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_16_generalcv_linregr_0	general_cv	generalcv_linregr	388	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_18_generalcv_linregr_0	general_cv	generalcv_linregr	280	0	t	-[ RECORD 1 ]-+--\ncv_consistent | 0	\N
+generalcv_linregr_output_test_0_25_generalcv_linregr_0	general_cv	generalcv_linregr	487	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_26_generalcv_linregr_0	general_cv	generalcv_linregr	330	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_14_generalcv_linregr_0	general_cv	generalcv_linregr	387	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_15_generalcv_linregr_0	general_cv	generalcv_linregr	544	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_21_generalcv_linregr_0	general_cv	generalcv_linregr	411	0	t	-[ RECORD 1 ]-+--\ncv_consistent | 0	\N
+generalcv_linregr_output_test_0_27_generalcv_linregr_0	general_cv	generalcv_linregr	558	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_20_generalcv_linregr_0	general_cv	generalcv_linregr	277	0	t	-[ RECORD 1 ]-+--\ncv_consistent | 0	\N
+generalcv_linregr_output_test_0_10_generalcv_linregr_0	general_cv	generalcv_linregr	555	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_29_generalcv_linregr_0	general_cv	generalcv_linregr	1784	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_22_generalcv_linregr_0	general_cv	generalcv_linregr	4413	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_9_generalcv_linregr_0	general_cv	generalcv_linregr	1353	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_30_generalcv_linregr_0	general_cv	generalcv_linregr	4168	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_13_generalcv_linregr_0	general_cv	generalcv_linregr	946	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_12_generalcv_linregr_0	general_cv	generalcv_linregr	600	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_31_generalcv_linregr_0	general_cv	generalcv_linregr	4891	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_24_generalcv_linregr_0	general_cv	generalcv_linregr	387	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_11_generalcv_linregr_0	general_cv	generalcv_linregr	739	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_19_generalcv_linregr_0	general_cv	generalcv_linregr	432	0	t	-[ RECORD 1 ]-+--\ncv_consistent | 0	\N
+generalcv_linregr_output_test_0_7_generalcv_linregr_0	general_cv	generalcv_linregr	764	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_28_generalcv_linregr_0	general_cv	generalcv_linregr	1221	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_23_generalcv_linregr_0	general_cv	generalcv_linregr	4560	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_6_generalcv_linregr_0	general_cv	generalcv_linregr	535	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_8_generalcv_linregr_0	general_cv	generalcv_linregr	1038	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_linregr_output_test_0_17_generalcv_linregr_0	general_cv	generalcv_linregr	562	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_logregr_output_test_0_2_generalcv_logregr_0	general_cv	generalcv_logregr	60142	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_logregr_output_test_0_3_generalcv_logregr_0	general_cv	generalcv_logregr	116323	0	t	-[ RECORD 1 ]-+--\ncv_consistent | 0	\N
+generalcv_logregr_output_test_0_6_generalcv_logregr_0	general_cv	generalcv_logregr	804	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_logregr_output_test_0_4_generalcv_logregr_0	general_cv	generalcv_logregr	1776	0	t	-[ RECORD 1 ]-+--\ncv_consistent | 0	\N
+generalcv_logregr_output_test_0_5_generalcv_logregr_0	general_cv	generalcv_logregr	2723	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
+generalcv_logregr_output_test_0_7_generalcv_logregr_0	general_cv	generalcv_logregr	1451	0	t	-[ RECORD 1 ]-+--\ncv_consistent | 0	\N
+generalcv_logregr_output_test_0_1_generalcv_logregr_0	general_cv	generalcv_logregr	2026	1	t	-[ RECORD 1 ]-+--\ncv_consistent | 1	\N
 ridge_regression_output_test_0_0_ridge_precision_0	ridge_regression	ridge_precision	140	\N	t	-[ RECORD 1 ]---+-\nridge_pre_score | 	\N
 ridge_regression_output_test_0_1_ridge_precision_0	ridge_regression	ridge_precision	127	\N	t	-[ RECORD 1 ]---+-\nridge_pre_score | 	\N
 ridge_regression_output_test_0_2_ridge_precision_0	ridge_regression	ridge_precision	124	\N	t	-[ RECORD 1 ]---+-\nridge_pre_score | 	\N

@@ -3,11 +3,12 @@ DataModeling :
         Convex :
         DecisionTree : False
         LinearRegression : 
-        LogisticRegression : False
+        LogisticRegression : 
         MultinomialLogisticRegression : False
         NaiveBayesClassification : False
         RandomForest : False
         SupportVectorMachines : False
+        GeneralCV : 
     UnsupervisedLearning : 
         kMeansClustering : False
         AssociationRules : False

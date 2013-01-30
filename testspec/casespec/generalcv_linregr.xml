@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<test_suites>
+  <test_type>feature</test_type>
+  <multi_test_suites>
+
+    <algorithm>general_cv</algorithm>
+
+    <methods>
+      <method>
+        <name>generalcv_linregr</name>
+        <parameter>
+          <name>benchmark</name>
+          <value>TemplateExecutor</value>
+        </parameter>
+      </method>
+    </methods>
+
+    <test_suite>
+      <name>generalcv_linregr_output_test</name>
+      <comments>
+        To compare the output of linear regression CV with R
+      </comments>
+      <execute_rate>1</execute_rate>
+
+      <method>
+        <name>generalcv_linregr</name>
+
+        <list_parameter>
+          <name>dataset_name</name>
+          <value>lin_concrete_wi</value>
+          <value>lin_auto_mpg_wi</value>
+          <value>lin_communities_unnormalized_wi</value>
+          <value>lin_communities_wi</value>
+          <value>lin_flare_wi</value>
+          <value>lin_forestfires_wi</value>
+          <value>lin_housing_wi</value>
+          <value>lin_imports_85_wi</value>
+          <value>lin_machine_wi</value>
+          <value>lin_o_ring_erosion_only_wi</value>
+          <value>lin_o_ring_erosion_or_blowby_wi</value>
+          <value>lin_parkinsons_updrs_wi</value>
+          <value>lin_servo_wi</value>
+          <value>lin_slump_wi</value>
+          <value>lin_winequality_red_wi</value>
+          <value>lin_winequality_white_wi</value>
+        </list_parameter>
+
+        <parameter>
+          <name>col_ind_var</name>
+          <value>x</value>
+        </parameter>
+
+        <parameter>
+          <name>col_dep_var</name>
+          <value>y</value>
+        </parameter>
+
+        <list_parameter>
+          <name>fold</name>
+          <value>10</value>
+          <value>20</value>
+        </list_parameter>
+
+        <parameter>
+          <name>tbl_r_rst</name>
+          <value>madlibtestdata.evaluation_general_cv_lin</value>
+        </parameter>
+      </method>
+    </test_suite>
+  </multi_test_suites>
+</test_suites>

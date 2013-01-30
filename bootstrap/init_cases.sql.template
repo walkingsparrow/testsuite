@@ -74,6 +74,60 @@ CREATE OR REPLACE VIEW testresultreport AS
       WHEN  trb.evaluation_function = 0 AND tr.evaluation_function = 0 
       THEN 'PASSED'
 
+    when tr.itemname in (
+            'generalcv_linregr_output_test_0_0_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_1_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_2_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_3_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_4_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_5_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_6_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_7_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_8_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_9_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_10_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_11_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_12_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_13_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_14_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_15_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_16_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_17_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_18_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_19_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_20_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_21_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_22_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_23_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_24_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_25_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_26_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_27_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_28_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_29_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_30_generalcv_linregr_0',
+'generalcv_linregr_output_test_0_31_generalcv_linregr_0'
+            )     then
+        case when tr.issuccessful = true and tr.evaluation_function > 0
+        then 'PASSED'
+        else 'FAILED'
+        end
+
+    when tr.itemname in (
+'generalcv_logregr_output_test_0_0_generalcv_logregr_0',
+'generalcv_logregr_output_test_0_1_generalcv_logregr_0',
+'generalcv_logregr_output_test_0_2_generalcv_logregr_0',
+'generalcv_logregr_output_test_0_3_generalcv_logregr_0',
+'generalcv_logregr_output_test_0_4_generalcv_logregr_0',
+'generalcv_logregr_output_test_0_5_generalcv_logregr_0',
+'generalcv_logregr_output_test_0_6_generalcv_logregr_0',
+'generalcv_logregr_output_test_0_7_generalcv_logregr_0'
+)     then
+        case when tr.issuccessful = true and tr.evaluation_function > 0
+        then 'PASSED'
+        else 'FAILED'
+        end
+
      when tr.itemname in (
      'ridge_regression_output_test_0_0_ridge_precision_0',
 'ridge_regression_output_test_0_1_ridge_precision_0',

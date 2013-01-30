@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<test_suites>
+  <test_type>feature</test_type>
+  <multi_test_suites>
+
+    <algorithm>general_cv</algorithm>
+
+    <methods>
+      <method>
+        <name>generalcv_logregr</name>
+        <parameter>
+          <name>benchmark</name>
+          <value>TemplateExecutor</value>
+        </parameter>
+      </method>
+    </methods>
+
+    <test_suite>
+      <name>generalcv_logregr_output_test</name>
+      <comments>
+        To compare the output of logistic regression CV with R
+      </comments>
+      <execute_rate>1</execute_rate>
+
+      <method>
+        <name>generalcv_logregr</name>
+        
+        <list_parameter>
+          <name>dataset_name</name>
+          <value>log_breast_cancer_wisconsin</value>
+          <value>log_ticdata2000</value>
+          <value>log_wdbc</value>
+          <value>log_wpbc</value>
+        </list_parameter>
+
+        <parameter>
+          <name>col_ind_var</name>
+          <value>x</value>
+        </parameter>
+
+        <parameter>
+          <name>col_dep_var</name>
+          <value>y</value>
+        </parameter>
+
+        <list_parameter>
+          <name>fold</name>
+          <value>10</value>
+          <value>20</value>
+        </list_parameter>
+
+        <parameter>
+          <name>tbl_r_rst</name>
+          <value>madlibtestdata.evaluation_general_cv_log</value>
+        </parameter>
+      </method>
+    </test_suite>
+  </multi_test_suites>
+</test_suites>

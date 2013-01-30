@@ -40,15 +40,15 @@
 	</metadata>
 
         <analytics_tool>
-          <name>GPDB_4.2.3.0</name>
-          <kind>greenplum</kind>
-          <host>gpdb3.delta.sm.greenplum.com</host>
-          <port>55000</port>
+          <name>PG92</name>
+          <kind>postgres</kind>
+          <host>localhost</host>
+          <port>5433</port>
           <database>testing</database>
           <user>madlibtester</user>
-          <superuser>gpdbchina</superuser>
-          <master_dir>/data/gpdbchina/4230-build-1/gpdb-data/master/gpdbqa-1</master_dir>
-          <env>/data/gpdbchina/4230-build-1/gpdb/greenplum_path.sh</env>
+          <superuser>qianh1</superuser>
+          <master_dir>/Users/qianh1/qianh1_usenqianh1mbp2_3629/qianh1_usenqianh1mbp2_3629/pg_data/pg92_data</master_dir>
+          <env>/Users/qianh1/.local/bin/pg</env>
         </analytics_tool>
 
 </analytics_tools>
