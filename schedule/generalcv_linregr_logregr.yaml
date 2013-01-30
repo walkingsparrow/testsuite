@@ -1,6 +1,6 @@
 
 - cases : case_generalcv_linregr
-  platform : PG92
+  platform : GPDB_4.2.3.0
 
 - cases : case_generalcv_logregr
-  platform : PG92
+  platform : GPDB_4.2.3.0
