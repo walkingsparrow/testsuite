@@ -34,9 +34,8 @@ begin
             False,
             --
             $_valString$madlibtestdata.'|| tbl_output ||'$_valString$,
-            '|| fold ||',
-            '|| fold ||',
-            $_valString${'|| col_ind_var ||', '|| col_dep_var ||'}$_valString$::varchar[]
+            $_valString${'|| col_ind_var ||', '|| col_dep_var ||'}$_valString$::varchar[],
+            '|| fold ||'            
         )';
 
     execute 'select mean_squared_error_avg from madlibtestdata.'|| tbl_output into cv_error;
@@ -94,9 +93,8 @@ begin
             False,
             --
             $_valString$madlibtestdata.'|| tbl_output ||'$_valString$,
-            '|| fold ||',
-            '|| fold ||',
-            $_valString${'|| col_ind_var ||', '|| col_dep_var ||'}$_valString$::varchar[]
+            $_valString${'|| col_ind_var ||', '|| col_dep_var ||'}$_valString$::varchar[],
+            '|| fold ||'
         )';
 
     execute 'select accuracy_avg from madlibtestdata.'|| tbl_output into cv_error;
