@@ -12,7 +12,6 @@
                     </parameter>
                 </method>
         </methods>
-
         <test_suite>
             <name>cross_validation_null_input_linregr</name>
             <comments>
@@ -25,82 +24,212 @@
                 <list_parameter>
                     <name>modelling_func</name>
                     <value>NULL</value>
-                    <value>madlib.linregr</value>
-                    <value>madlib.logregr</value>
+                    <value>madlib.cv_linregr_train</value>
                 </list_parameter>
                 <list_parameter>
                     <name>modelling_params</name>
                     <value>NULL</value>
                     <value>{NULL}</value>
-                    <value>{}</value>
+                    <value>'{%data%, x, y, %model%}'</value>
                 </list_parameter>
-                <input_parameter>
+                <list_parameter>
                     <name>modelling_params_type</name>
-                    <value>TEXT[]</value>
-                </input_parameter>
-                <input_parameter>
+                    <value>NULL</value>
+                    <value>{NULL}</value>
+                    <value>'{varchar, varchar, varchar, varchar}'</value>
+                </list_parameter>
+                <list_parameter>
                     <name>param_explored</name>
-                    <value>TEXT</value>
-                </input_parameter>
-                <input_parameter>
+                    <value>NULL</value>
+                    <value>NULL::varchar</value>
+                </list_parameter>
+                <list_parameter>
                     <name>explore_values</name>
-                    <value>TEXT[]</value>
-                </input_parameter>
-                <input_parameter>
+                    <value>NULL</value>
+                    <value>{NULL}</value>
+                </list_parameter>
+                <list_parameter>
                     <name>predict_func</name>
-                    <value>TEXT</value>
-                </input_parameter>
-                <input_parameter>
+                    <value>NULL</value>
+                    <value>'madlib.cv_linregr_predict'</value>
+                </list_parameter>
+                <list_parameter>
                     <name>predict_params</name>
-                    <value>TEXT[]</value>
-                </input_parameter>
-                <input_parameter>
+                    <value>NULL</value>
+                    <value>NULL</value>
+                    <value>{NULL}</value>
+                    <value>'{%model%, %data%, x, %id%, %prediction%}'</value>
+                </list_parameter>
+                <list_parameter>
                     <name>predict_params_type</name>
-                    <value>TEXT[]</value>
-                </input_parameter>
-                <input_parameter>
+                    <value>NULL</value>
+                    <value>'{varchar, varchar, varchar, varchar, varchar}'
+                        </value>
+                </list_parameter>
+                <list_parameter>
                     <name>metric_func</name>
-                    <value>TEXT</value>
-                </input_parameter>
-                <input_parameter>
+                    <value>NULL</value>
+                   <value>'madlib.mse_error'</value>
+                </list_parameter>
+                <list_parameter>
                     <name>metric_params</name>
-                    <value>TEXT[]</value>
-                </input_parameter>
-                <input_parameter>
-                    <name>metric_params_value</name>
-                    <value>TEXT[]</value>
-                </input_parameter>
-                <input_parameter>
+                    <value>NULL</value>
+                     <value>{NULL}</value>
+                     <value>'{%prediction%, %data%, %id%, y, %error%}'</value>
+                </list_parameter>
+                <list_parameter>
+                    <name>metric_params_type</name>
+                    <value>'{varchar, varchar, varchar, varchar, varchar}'
+                    </value>
+                    <value>NULL</value>
+                    <value>{NULL}</value>
+                </list_parameter>
+                <list_parameter>
                     <name>data_tbl</name>
-                    <value>TEXT</value>
-                </input_parameter>
-                <input_parameter>
+                    <value>NULL</value>
+                    <value>'madlibtestdata.lin_slump_oi'</value>
+                </list_parameter>
+                <list_parameter>
                     <name>data_id</name>
-                    <value>TEXT</value>
-                </input_parameter>
-                <input_parameter>
+                    <value>NULL</value>
+                    <value>unkown</value>
+                </list_parameter>
+                <list_parameter>
                     <name>id_is_random</name>
-                    <value>BOOLEAN</value>
-                    <quote>false</quote>
-                </input_parameter>
-                <input_parameter>
+                    <value>False</value>
+                    <value>True</value>
+                    <value>NULL</value>
+                </list_parameter>
+                <list_parameter>
                     <name>validation_result</name>
-                    <value>TEXT</value>
-                </input_parameter>
-                <input_parameter>
-                    <name>fold_num</name>
-                    <value>DOUBLE PRECISION</value>
-                    <quote>false</quote>
-                </input_parameter>
-                <input_parameter>
-                    <name>upto_fold</name>
-                    <value>INTEGER</value>
-                    <quote>false</quote>
-                </input_parameter>
-                <input_parameter>
+                    <value>'linregr_result'</value>
+                    <value>NULL</value>
+                </list_parameter>
+                <list_parameter>
                     <name>data_cols</name>
-                    <value>TEXT[]</value>
-                </input_parameter>
+                    <value>NULL</value>
+                    <value>{NULL}</value>
+                    <value>'{x, y}'</value>
+                </list_parameter>
+                <list_parameter>
+                    <name>fold_num</name>
+                    <value>NULL</value>
+                    <value>0</value>
+                    <value>-1</value>
+                    <value>1</value>
+                    <value>10</value>
+                    <value>1000000</value>
+                </list_parameter>
+            </method>
+        </test_suite>
+        <test_suite>
+            <name>cross_validation_null_input_logregr</name>
+            <comments>
+                Testing invalid values of input for cross validation function
+            </comments>
+            <!-- It indicate max execution times-->
+            <execute_rate>1</execute_rate>
+            <method>
+                <name>cross_validation_general</name>
+                <list_parameter>
+                    <name>modelling_func</name>
+                    <value>NULL</value>
+                    <value>madlib.cv_logregr_train</value>
+                </list_parameter>
+                <list_parameter>
+                    <name>modelling_params</name>
+                    <value>NULL</value>
+                    <value>{NULL}</value>
+                    <value>'{%data%, x, y, %model%, 100, igd, 1e-7}'</value>
+                </list_parameter>
+                <list_parameter>
+                    <name>modelling_params_type</name>
+                    <value>NULL</value>
+                    <value>{NULL}</value>
+                    <value>'{varchar, varchar, varchar, varchar, integer, varchar, double precision}'</value>
+                </list_parameter>
+                <list_parameter>
+                    <name>param_explored</name>
+                    <value>NULL</value>
+                    <value>NULL::varchar</value>
+                </list_parameter>
+                <list_parameter>
+                    <name>explore_values</name>
+                    <value>NULL</value>
+                    <value>{NULL}</value>
+                </list_parameter>
+                <list_parameter>
+                    <name>predict_func</name>
+                    <value>NULL</value>
+                    <value>'madlib.cv_logregr_predict'</value>
+                </list_parameter>
+                <list_parameter>
+                    <name>predict_params</name>
+                    <value>NULL</value>
+                    <value>NULL</value>
+                    <value>{NULL}</value>
+                    <value>'{%model%, %data%, x, %id%, %prediction%}'</value>
+                </list_parameter>
+                <list_parameter>
+                    <name>predict_params_type</name>
+                    <value>NULL</value>
+                    <value>'{varchar, varchar, varchar, varchar, varchar}'
+                        </value>
+                </list_parameter>
+                <list_parameter>
+                    <name>metric_func</name>
+                    <value>NULL</value>
+                   <value>'madlib.cv_logregr_accuracy'</value>
+                </list_parameter>
+                <list_parameter>
+                    <name>metric_params</name>
+                    <value>NULL</value>
+                     <value>{NULL}</value>
+                     <value>'{%prediction%, %data%, %id%, y, %error%}'</value>
+                </list_parameter>
+                <list_parameter>
+                    <name>metric_params_type</name>
+                    <value>'{varchar, varchar, varchar, varchar, varchar}'
+                    </value>
+                    <value>NULL</value>
+                    <value>{NULL}</value>
+                </list_parameter>
+                <list_parameter>
+                    <name>data_tbl</name>
+                    <value>NULL</value>
+                    <value>'madlibtestdata.log_breast_cancer_wisconsin'</value>
+                </list_parameter>
+                <list_parameter>
+                    <name>data_id</name>
+                    <value>NULL</value>
+                    <value>unkown</value>
+                </list_parameter>
+                <list_parameter>
+                    <name>id_is_random</name>
+                    <value>False</value>
+                    <value>True</value>
+                    <value>NULL</value>
+                </list_parameter>
+                <list_parameter>
+                    <name>validation_result</name>
+                    <value>'logregr_result'</value>
+                    <value>NULL</value>
+                </list_parameter>
+                <list_parameter>
+                <list_parameter>
+                    <name>data_cols</name>
+                    <value>NULL</value>
+                    <value>{NULL}</value>
+                    <value>'{x, y}'</value>
+                </list_parameter>
+                    <name>fold_num</name>
+                    <value>NULL</value>
+                    <value>0</value>
+                    <value>-1</value>
+                    <value>1</value>
+                    <value>10</value>
+                    <value>1000000</value>
+                </list_parameter>
             </method>
         </test_suite>
     </multi_test_suites>

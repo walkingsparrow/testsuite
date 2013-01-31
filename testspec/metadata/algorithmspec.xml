@@ -89,24 +89,19 @@
                 <type>TEXT</type>
             </input_parameter>
             <input_parameter>
-                <name>fold_num</name>
-                <type>DOUBLE PRECISION</type>
-                <quote>false</quote>
-            </input_parameter>
-            <input_parameter>
-                <name>upto_fold</name>
-                <type>INTEGER</type>
-                <quote>false</quote>
-            </input_parameter>
-            <input_parameter>
                 <name>data_cols</name>
                 <type>TEXT[]</type>
             </input_parameter>
+            <input_parameter>
+                <name>fold_num</name>
+                <type>INTEGER</type>
+                <quote>false</quote>
+            </input_parameter>
         </method>
     </algorithm>
+
     <algorithm>
         <name>kmeans_rewrite</name>
-
         <method>
             <name>km_pp_seeding_default</name>
             <create>true</create>
@@ -6676,7 +6671,7 @@
         <name>elastic_net</name>
         <method>
           <name>elastic_net_train</name>
-          
+
           <template>
             SELECT {madlib_schema}.elastic_net_train(
                 {tbl_source},      -- input table
@@ -6691,27 +6686,27 @@
 	        {optimizer_params} -- parameters that are needed by optimizer
             );
           </template>
-        
+
           <input_parameter>
             <name>tbl_source</name>
             <type>VARCHAR</type>
           </input_parameter>
-          
+
           <input_parameter>
             <name>col_ind_var</name>
             <type>VARCHAR</type>
           </input_parameter>
-          
+
           <input_parameter>
             <name>col_dep_var</name>
             <type>VARCHAR</type>
           </input_parameter>
-          
+
           <input_parameter>
             <name>tbl_result</name>
             <type>VARCHAR</type>
           </input_parameter>
-          
+
           <input_parameter>
             <name>lambda_value</name>
             <type>DOUBLE PRECISION</type>
@@ -6723,23 +6718,23 @@
             <type>DOUBLE PRECISION</type>
             <quote>false</quote>
           </input_parameter>
-          
+
           <input_parameter>
             <name>normalization</name>
             <type>BOOLEAN</type>
             <quote>false</quote>
           </input_parameter>
-          
+
           <input_parameter>
             <name>regress_family</name>
             <type>VARCHAR</type>
           </input_parameter>
-          
+
           <input_parameter>
             <name>optimizer</name>
             <type>VARCHAR</type>
           </input_parameter>
-          
+
           <input_parameter>
             <name>optimizer_params</name>
             <type>VARCHAR[]</type>
@@ -6838,7 +6833,7 @@
             <type>boolean</type>
             <quote>false</quote>
           </input_parameter>
-          
+
           <input_parameter>
             <name>tbl_r_result</name>
             <type>varchar</type>
@@ -6849,12 +6844,12 @@
             <type>double precision</type>
           </output_parameter>
         </method>
-        
+
       </algorithm>
 
       <algorithm>
         <name>general_cv</name>
-        
+
         <method>
           <name>generalcv_linregr</name>
           <create>true</create>
@@ -6877,18 +6872,18 @@
             <name>col_ind_var</name>
             <type>varchar</type>
           </input_parameter>
-          
+
           <input_parameter>
             <name>col_dep_var</name>
             <type>varchar</type>
           </input_parameter>
-          
+
           <input_parameter>
             <name>fold</name>
             <type>integer</type>
             <quote>false</quote>
           </input_parameter>
-          
+
           <input_parameter>
             <name>tbl_r_rst</name>
             <type>varchar</type>
@@ -6922,18 +6917,18 @@
             <name>col_ind_var</name>
             <type>varchar</type>
           </input_parameter>
-          
+
           <input_parameter>
             <name>col_dep_var</name>
             <type>varchar</type>
           </input_parameter>
-          
+
           <input_parameter>
             <name>fold</name>
             <type>integer</type>
             <quote>false</quote>
           </input_parameter>
-          
+
           <input_parameter>
             <name>tbl_r_rst</name>
             <type>varchar</type>
@@ -6944,6 +6939,6 @@
             <type>double precision</type>
           </output_parameter>
         </method>
-        
+
       </algorithm>
 </algorithms>
