@@ -8,16 +8,23 @@ create or replace function madlibtestdata.ridge_precision (
     tbl_r_result    varchar
 ) returns double precision as $$
 declare
-    rst double precision;
-    tbl_output varchar := madlib.__cv_unique_string();
+    rst             double precision;
+    norm_flag       text;
+    tbl_output      varchar := madlib.__cv_unique_string();
 begin
+    if normalization then
+        norm_flag := 'True';
+    else
+        norm_flag := 'False';
+    end if;
+
     execute 'select madlib.ridge_newton_train(
         $_valString$madlibtestdata.'|| tbl_source ||'$_valString$,
         $_valString$'|| col_ind_var ||'$_valString$,
         $_valString$'|| col_dep_var ||'$_valString$,
         $_valString$madlibtestdata.'|| tbl_output ||'$_valString$,
         '|| lambda_value ||',
-        '|| normalization ||'
+        '|| norm_flag ||'
     )';
 
     execute 'select abs(t1.log_likelihood - t2.log_likelihood)
