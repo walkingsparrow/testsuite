@@ -50,6 +50,8 @@ begin
         compare_rst := 0;
     end if;
 
+    execute 'drop table if exists madlibtestdata.'|| tbl_output;
+
     return compare_rst;
 end;
 $$ language plpgsql;
@@ -108,6 +110,8 @@ begin
     else
         compare_rst := 0;
     end if;
+
+    execute 'drop table if exists madlibtestdata.'|| tbl_output;
 
     return compare_rst;
 end;
