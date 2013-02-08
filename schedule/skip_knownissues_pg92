@@ -506,3 +506,9 @@ km_svec_0_0
 km_pp_svec_0_0
 km_random_svec_0_0
 ### END ###
+
+###### MADmark improvement needed: kmeans non-finite test should be successfull #####
+km_nonfinite_2water_treatment_noninfinite_0_0
+km_pp_noninfinite_0_1
+km_random_noninfinite_0_1
+### END ###

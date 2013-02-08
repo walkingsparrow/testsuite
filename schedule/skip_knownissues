@@ -498,3 +498,24 @@ km_svec_0_0
 km_pp_svec_0_0
 km_random_svec_0_0
 ### END ###
+
+###### MADmark improvement needed: kmeans non-finite test should be successfull #####
+km_nonfinite_2water_treatment_noninfinite_0_0
+km_pp_noninfinite_0_1
+km_random_noninfinite_0_1
+### END ###
+
+### HEAD ###
+### JiraId: MPP-12635###
+### Des: ERROR: function cannot execute on segment because it issues a non-SELECT statement ###
+### Type: 1000 ###
+linear_regression_ctas_0_0
+linear_regression_ctas_0_1
+logistic_regression_ctas_0_0
+logistic_regression_ctas_0_1
+multinomial_logistic_regression_ctas_0_0
+multinomial_logistic_regression_ctas_0_1
+
+km_ctas_0_0
+km_pp_ctas_0_0
+km_random_ctas_0_0
