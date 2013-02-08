@@ -1000,7 +1000,7 @@
 
                     <value>madlibtestdata.nb_url</value>
 
-                    <value>madlibtestdata.nb_extra_values_training</value>
+                    <!-- <value>madlibtestdata.nb_extra_values_training</value> -->
                 </list_parameter>
             </method>
             <method>
@@ -1022,7 +1022,7 @@
 
                     <value>3231961</value>
 
-                    <value>9000</value>
+                    <!-- <value>9000</value> -->
                 </list_parameter>
             </method>
             <method>
@@ -1044,7 +1044,7 @@
 
                     <value>madlibtestdata.nb_url</value>
 
-                    <value>madlibtestdata.nb_extra_values_classify</value>
+                    <!-- <value>madlibtestdata.nb_extra_values_classify</value> -->
                 </list_parameter>
                 <tear_down>
               DROP TABLE IF EXISTS madlibtestresult.trained_probs cascade;DROP TABLE IF EXISTS madlibtestresult.trained_priors  cascade;DROP VIEW IF EXISTS madlibtestresult.classified_result  cascade;DROP VIEW IF EXISTS madlibtestresult.classified_probs  cascade;DROP FUNCTION IF EXISTS madlibtestresult.classified_func(INT[], FLOAT8) cascade;
@@ -1078,7 +1078,7 @@
 
                     <value>madlibtestdata.nb_url</value>
 
-                    <value>madlibtestdata.nb_extra_values_training</value>
+                    <!-- <value>madlibtestdata.nb_extra_values_training</value> -->
                 </list_parameter>
             </method>
             <method>
@@ -1100,7 +1100,7 @@
 
                     <value>madlibtestdata.nb_url</value>
 
-                    <value>madlibtestdata.nb_extra_values_classify</value>
+                    <!-- <value>madlibtestdata.nb_extra_values_classify</value> -->
                 </list_parameter>
                 <tear_down>
                  DROP TABLE IF EXISTS madlibtestresult.trained_probs cascade;DROP TABLE IF EXISTS madlibtestresult.trained_priors  cascade;DROP VIEW IF EXISTS madlibtestresult.classified_result  cascade;DROP VIEW IF EXISTS madlibtestresult.classified_probs  cascade;DROP FUNCTION IF EXISTS madlibtestresult.classified_func(INT[], FLOAT8) cascade;

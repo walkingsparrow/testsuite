@@ -240,24 +240,32 @@ CREATE OR REPLACE VIEW testresultreport AS
            THEN 'PASSED'
         ELSE 'FAILED'
         END
-
-     WHEN (tr.itemname like 'nb_precompute_views_0_0%'
+    -- Naive Bayes
+    WHEN (tr.itemname like 'nb_%test_calculate_accuracy%')
+    THEN  CASE  WHEN    tr.issuccessful = true
+                    AND tr.result_info >= trb.result_info 
+                THEN 'PASSED'
+                ELSE 'FAILED'
+          END
+    WHEN (tr.itemname like 'nb_precompute_views_0_0%'
          or tr.itemname like 'nb_precompute_views_0_4%'
          or tr.itemname like 'nb_precompute_function_workaround_0_0%'
          or tr.itemname like 'nb_precompute_function_workaround_0_4%')
-          THEN CASE WHEN tr.issuccessful = false
+          THEN CASE WHEN tr.issuccessful = true
+                    THEN 'PASSED'
+                    WHEN tr.issuccessful = false
                       AND (tr.result_info LIKE '%column "value" contains null values%'
                        OR tr.result_info like '%does not exist%'
                        OR tr.result_info like '%line 19 at % statement%')
-               THEN 'PASSED'
-               ELSE 'FAILED'
+                    THEN 'PASSED'
+                    ELSE 'FAILED'
                END
-      WHEN  (tr.itemname like 'svm_cls_dot_ds_0_7%' OR tr.itemname like 'svm_cls_dot_ds_0_15%' OR tr.itemname like 'svm_cls_polynomial_ds_0_7%'
+    WHEN  (tr.itemname like 'svm_cls_dot_ds_0_7%' OR tr.itemname like 'svm_cls_dot_ds_0_15%' OR tr.itemname like 'svm_cls_polynomial_ds_0_7%'
           OR tr.itemname like 'svm_cls_polynomial_ds_0_15%' OR tr.itemname like 'svm_cls_gaussian_ds_0_7%' OR tr.itemname like 'svm_cls_gaussian_ds_para_0_7%'
           OR tr.itemname like 'svm_reg_dot_ds_0_4%' OR tr.itemname like 'svm_reg_dot_ds_0_18%' OR tr.itemname like 'svm_reg_polynomial_ds_0_4%'
           OR tr.itemname like 'svm_reg_polynomial_ds_0_18%' OR tr.itemname like 'svm_reg_gaussian_ds_0_4%' OR tr.itemname like 'svm_reg_gaussian_ds_para_0_4%')
           AND tr.itemname not like 'svm_%_3'
-          THEN CASE WHEN (tr.itemname not like '%0' AND tr.issuccessful = false) 
+    THEN CASE WHEN (tr.itemname not like '%0' AND tr.issuccessful = false) 
                       OR (tr.itemname like '%0' AND tr.result_info LIKE '%the maximum number of features is 102400%')
                THEN 'PASSED'
                ELSE 'FAILED'

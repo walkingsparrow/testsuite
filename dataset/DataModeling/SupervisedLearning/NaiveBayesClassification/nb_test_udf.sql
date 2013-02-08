@@ -231,11 +231,14 @@ DECLARE
     stmt        TEXT;
     class       INT :=-1;
 BEGIN
-    stmt = 'SELECT ''{'' || array_to_string(' || classify_attr_column || ','','') || ''}'' FROM ' || classify_source || ' ORDER BY ' || classify_key_column || ' LIMIT 1;';
-    RAISE INFO '%', stmt;
-    EXECUTE stmt INTO attr;
 
-    stmt = 'SELECT (' || classified_func_name  || '(''' || attr || ''',' || smoothing_factor || '))[1];';
+    stmt = 'SELECT ''{'' || array_to_string(' || classify_attr_column ||
+              ','','') || ''}'' FROM ' || classify_source || ' ORDER BY ' ||
+            classify_key_column || ' LIMIT 1;'; RAISE INFO '%', stmt; EXECUTE 
+            stmt INTO attr;
+
+    stmt = 'SELECT (' || classified_func_name  || '(''' || attr || ''',' || 
+                   smoothing_factor || '))[1];';
     RAISE INFO '%', stmt;
     EXECUTE stmt INTO class;
 

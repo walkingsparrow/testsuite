@@ -1,0 +1,3 @@
+- cases : case_naive_bayes
+  skip : skip_knownissues
+  platform : GPDB_4.2.3.0

@@ -239,6 +239,36 @@ nb_precompute_function_workaround_0_8
 nb_adhoc_function_workaround_0_8
 ### END ###
 
+### HEAD ###
+### JiraId: MADLIB-xxx ###
+### Type: 2 ###
+### Des: Workaround tests are not the right way to test Naive Bayes###
+nb_precompute_function_workaround_0_0
+nb_precompute_function_workaround_0_1
+nb_precompute_function_workaround_0_2
+nb_precompute_function_workaround_0_3
+nb_precompute_function_workaround_0_4
+nb_precompute_function_workaround_0_5
+nb_precompute_function_workaround_0_6
+nb_precompute_function_workaround_0_7
+nb_precompute_function_workaround_0_8
+nb_precompute_function_workaround_0_9
+nb_precompute_function_workaround_0_10
+nb_precompute_function_workaround_0_11
+
+nb_adhoc_function_workaround_0_0
+nb_adhoc_function_workaround_0_1
+nb_adhoc_function_workaround_0_2
+nb_adhoc_function_workaround_0_3
+nb_adhoc_function_workaround_0_4
+nb_adhoc_function_workaround_0_5
+nb_adhoc_function_workaround_0_6
+nb_adhoc_function_workaround_0_7
+nb_adhoc_function_workaround_0_8
+nb_adhoc_function_workaround_0_9
+nb_adhoc_function_workaround_0_10
+nb_adhoc_function_workaround_0_11
+### END ###
 
 ######################################Support Vector Machines#################################
 
