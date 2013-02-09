@@ -1,4 +1,6 @@
 testspec/metadata/analyticstool.xml
 testspec/metadata/testconfig.xml
-report/*
+dataset/sql/*.sql.gz
+bootstrap/*.sql
+report/*.report
 testcase/*

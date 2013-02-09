@@ -1,0 +1,12 @@
+# TestSuite Name : generalcv_logregr_output_test
+# To compare the output of logistic regression CV with R
+# Start TestSuite ==========
+generalcv_logregr_output_test_0_0
+generalcv_logregr_output_test_0_1
+generalcv_logregr_output_test_0_2
+generalcv_logregr_output_test_0_3
+generalcv_logregr_output_test_0_4
+generalcv_logregr_output_test_0_5
+generalcv_logregr_output_test_0_6
+generalcv_logregr_output_test_0_7
+

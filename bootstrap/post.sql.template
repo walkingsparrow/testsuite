@@ -240,3 +240,26 @@ SET evaluation_function =
  WHERE kmeans.runid = ts.runid AND kmeans.testitemname=ts.itemname)
 WHERE itemname in (select testitemname from kmeans_rewrite_km_random_default_fndist_aggcentroid_maxiter_min);
 
+UPDATE testitemresult AS ts
+SET evaluation_function =
+(SELECT ridge_pre_score
+ FROM ridge_regression_ridge_precision AS ridge
+ WHERE ridge.runid = ts.runid AND ridge.testitemname=ts.itemname)
+WHERE itemname in (select testitemname from  ridge_regression_ridge_precision);
+
+UPDATE testitemresult AS ts
+SET evaluation_function =
+(SELECT cv_consistent
+FROM general_cv_generalcv_linregr AS cv
+WHERE cv.runid = ts.runid AND cv.testitemname = ts.itemname)
+WHERE itemname in (select testitemname from general_cv_generalcv_linregr);
+
+UPDATE testitemresult AS ts
+SET evaluation_function =
+(SELECT cv_consistent
+FROM general_cv_generalcv_logregr AS cv
+WHERE cv.runid = ts.runid AND cv.testitemname = ts.itemname)
+WHERE itemname in (select testitemname from general_cv_generalcv_logregr);
+
+
+

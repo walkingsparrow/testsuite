@@ -83,5 +83,5 @@ class TestCaseExecutor:
         except Exception:
             self.version = "WRONG"
        
-        self.dbManager.stop()
+        #self.dbManager.stop()
 

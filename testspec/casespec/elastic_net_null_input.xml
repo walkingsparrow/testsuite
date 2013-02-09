@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<test_suites>
+  <test_type>feature</test_type>
+  <multi_test_suites>
+
+    <algorithm>elastic_net</algorithm>
+    <methods>
+      <method>
+        <name>elastic_net_train</name>
+        <parameter>
+          <name>benchmark</name>
+          <value>TemplateExecutor</value>
+        </parameter>
+      </method>
+    </methods>
+
+    <test_suite>
+      <name>test_elastic_net_null_input</name>
+      <comments>
+        To test the case where we have null inputs
+      </comments>
+      <execute_rate>1</execute_rate>
+      <method>
+        <name>elastic_net_train</name>
+
+        <!-- parameters -->
+        <parameter>
+          <name>tbl_source</name>
+          <value>madlibtestdata.elastic_net_test</value>
+        </parameter>
+
+        <parameter>
+          <name>col_ind_var</name>
+          <value>val</value>
+        </parameter>
+
+        <list_parameter>
+          <name>col_dep_var</name>
+          <value>dep</value>
+          <value>NULL</value>
+        </list_parameter>
+
+        <parameter>
+          <name>tbl_result</name>
+          <value>madlibtestdata.elastic_result</value>
+        </parameter>
+
+        <parameter>
+          <name>lambda_value</name>
+          <value>0.1</value>
+        </parameter>
+
+        <parameter>
+          <name>alpha</name>
+          <value>0.2</value>
+        </parameter>
+
+        <parameter>
+          <name>normalization</name>
+          <value>False</value>
+        </parameter>
+
+        <parameter>
+          <name>regress_family</name>
+          <value>gaussian</value>
+        </parameter>
+
+        <parameter>
+          <name>optimizer</name>
+          <value>igd</value>
+        </parameter>
+
+        <parameter>
+          <name>optimizer_params</name>
+          <value>
+              '{tolerance=0.00001, num_iterations=1000, stepsize=0.01}'
+          </value>
+        </parameter>
+        
+      </method>
+    </test_suite>
+
+          <test_suite>
+                <name>en_lambda1_random</name>
+                <comments>test lambda boundaries</comments>
+                <!-- It indicate max execution times-->
+                <execute_rate>1</execute_rate>
+                <method>
+                    <name>elastic_net_train</name>
+                    <list_parameter>
+                        <name>lambda</name>
+                        <value>-10.0</value>
+                        <value>-0.1</value>
+                        <value>0.0</value>
+                        <value>1.0</value>
+                        <value>10.0</value>
+                        <value>720000.0</value>
+                    </list_parameter>
+                    <parameters>
+                        <parameter>
+                            <name>tbl_source</name>
+                            <value>'cvtest'</value>
+                        </parameter>
+                        <parameter>
+                            <name>col_ind_var</name>
+                            <value>'val'</value>
+                        </parameter>
+                        <parameter>
+                            <name>col_dep_var</name>
+                            <value>'dep'</value>
+                        </parameter>
+                        <parameter>
+                            <name>tbl_result</name>
+                            <value>'en_result'</value>
+                        </parameter>
+                        <parameter>
+                            <name>alpha</name>
+                            <value>0.0</value>
+                        </parameter>
+                        <parameter>
+                            <name>normalization</name>
+                            <value>true</value>
+                        </parameter>
+                         <parameter>
+                            <name>regress_family</name>
+                            <value>'Gaussian'</value>
+                        </parameter>
+                        <parameter>
+                            <name>optimizer</name>
+                            <value>'igd'</value>
+                        </parameter>
+                        <parameter>
+                        <name>optimizer_params</name>
+                        <value>'{stepsize=0.01, num_iterations=10, tolerance=1e-6}'</value>
+                        </parameter>
+                    </parameters>
+                    <tear_down>
+                    </tear_down>
+                </method>
+            </test_suite>
+            <test_suite>
+                <name>en_alpha1_random</name>
+                <comments>test alpha boundaries</comments>
+                <!-- It indicate max execution times-->
+                <execute_rate>1</execute_rate>
+                <method>
+                    <name>elastic_net_train</name>
+                    <list_parameter>
+                        <name>alpha</name>
+                        <value>-10.0</value>
+                        <value>-0.1</value>
+                        <value>0.0</value>
+                        <value>1.0</value>
+                        <value>1.1</value>
+                        <value>10.0</value>
+                    </list_parameter>
+                    <parameters>
+                        <parameter>
+                            <name>tbl_source</name>
+                            <value>'cvtest'</value>
+                        </parameter>
+                        <parameter>
+                            <name>col_ind_var</name>
+                            <value>'val'</value>
+                        </parameter>
+                        <parameter>
+                            <name>col_dep_var</name>
+                            <value>'dep'</value>
+                        </parameter>
+                        <parameter>
+                            <name>tbl_result</name>
+                            <value>'en_result'</value>
+                        </parameter>
+                        <parameter>
+                            <name>lambda</name>
+                            <value>0.0</value>
+                        </parameter>
+                        <parameter>
+                            <name>normalization</name>
+                            <value>true</value>
+                        </parameter>
+                         <parameter>
+                            <name>regress_family</name>
+                            <value>'Gaussian'</value>
+                        </parameter>
+                        <parameter>
+                            <name>optimizer</name>
+                            <value>'igd'</value>
+                        </parameter>
+                        <parameter>
+                            <name>optimizer_params</name>
+                            <value>'{stepsize=0.01, num_iterations=10, tolerance=1e-6}'</value>
+                        </parameter>
+
+                    </parameters>
+                    <tear_down>
+                    </tear_down>
+                </method>
+            </test_suite>
+
+  </multi_test_suites>
+</test_suites>

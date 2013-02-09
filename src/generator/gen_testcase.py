@@ -9,6 +9,7 @@ from utility import file_path, test_config, analytics_tool
 from utility.xml_parser import Parser
 from executor.template_executor import ExecutorSpec
 import dataset, multi_testsuite, para_handler 
+import traceback
 
 Path = file_path.Path()
 
@@ -171,6 +172,7 @@ def main():
                 specXml, scheduleFile, caseSQLFile, suiteSqlFile, itemSqlFile)
             generator.GenCases(debug)
         except Exception, exp:
+            print traceback.format_exc()
             print exp
             print 'Error when generating ' +  name + "'s cases !"
 

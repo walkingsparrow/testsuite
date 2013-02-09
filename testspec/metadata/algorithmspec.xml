@@ -1,8 +1,106 @@
 <algorithms>
+    <algorithm>
+        <name>cross_validation</name>
+        <method>
+            <name>cross_validation_general</name>
+            <create>true</create>
+            <template>
+                SELECT {madlib_schema}.cross_validation_general(
+                    {modelling_func},           -- function
+                    {modelling_params},         -- function params
+                    {modelling_params_type},    -- parameter types
+                    {param_explored},           -- which parameter to explore
+                    {explore_values},           -- values that will be explored
+                    {predict_func},             -- prediction function
+                    {predict_params},           -- prediction params
+                    {predict_params_type},      -- prediction param types
+                    {metric_func},              -- error metric function
+                    {metric_params},            -- metric params
+                    {metric_params_type},       -- metric param types
+                    {data_tbl},                 -- input data table
+                    {data_id},                  -- id column
+                                                --   (NULL if not present)
+                    {id_is_random},             -- is id random?
+                    {validation_result},        -- Output table
+                    {data_cols},                 -- Which column to use as id
+                    {fold_num}                  -- How many folds
+                );
+            </template>
+            <input_parameter>
+                <name>modelling_func</name>
+                <type>VARCHAR</type>
+            </input_parameter>
+            <input_parameter>
+                <name>modelling_params</name>
+                <type>VARCHAR[]</type>
+            </input_parameter>
+            <input_parameter>
+                <name>modelling_params_type</name>
+                <type>VARCHAR[]</type>
+            </input_parameter>
+            <input_parameter>
+                <name>param_explored</name>
+                <type>VARCHAR</type>
+            </input_parameter>
+            <input_parameter>
+                <name>explore_values</name>
+                <type>VARCHAR[]</type>
+            </input_parameter>
+            <input_parameter>
+                <name>predict_func</name>
+                <type>VARCHAR</type>
+            </input_parameter>
+            <input_parameter>
+                <name>predict_params</name>
+                <type>VARCHAR[]</type>
+            </input_parameter>
+            <input_parameter>
+                <name>predict_params_type</name>
+                <type>VARCHAR[]</type>
+            </input_parameter>
+            <input_parameter>
+                <name>metric_func</name>
+                <type>VARCHAR</type>
+            </input_parameter>
+            <input_parameter>
+                <name>metric_params</name>
+                <type>VARCHAR[]</type>
+            </input_parameter>
+            <input_parameter>
+                <name>metric_params_type</name>
+                <type>VARCHAR[]</type>
+            </input_parameter>
+            <input_parameter>
+                <name>data_tbl</name>
+                <type>VARCHAR</type>
+            </input_parameter>
+            <input_parameter>
+                <name>data_id</name>
+                <type>VARCHAR</type>
+            </input_parameter>
+            <input_parameter>
+                <name>id_is_random</name>
+                <type>BOOLEAN</type>
+                <quote>false</quote>
+            </input_parameter>
+            <input_parameter>
+                <name>validation_result</name>
+                <type>VARCHAR</type>
+            </input_parameter>
+            <input_parameter>
+                <name>data_cols</name>
+                <type>VARCHAR[]</type>
+            </input_parameter>
+            <input_parameter>
+                <name>fold_num</name>
+                <type>INTEGER</type>
+                <quote>false</quote>
+            </input_parameter>
+        </method>
+    </algorithm>
 
     <algorithm>
         <name>kmeans_rewrite</name>
-
         <method>
             <name>km_pp_seeding_default</name>
             <create>true</create>
@@ -607,7 +705,7 @@
                         , ({madlib_schema}.kmeanspp(
                                   {rel_source}              -- rel_source
                                 , {expr_point}              -- expr_point
-                                , {k}                       -- k 
+                                , {k}                       -- k
                               ) ).centroids::FLOAT8[][]
                       ) AS simple_silhouette;
             </template>
@@ -920,7 +1018,7 @@
                         , ({madlib_schema}.kmeans_random(
                                   {rel_source}              -- rel_source
                                 , {expr_point}              -- expr_point
-                                , {k}                       -- k 
+                                , {k}                       -- k
                               ) ).centroids::FLOAT8[][]
                       ) AS simple_silhouette;
             </template>
@@ -1290,7 +1388,7 @@
                 <type>double precision</type>
                 <default>0.0001</default>
              </input_parameter>
-             
+
              <!--Below is output parameters-->
             <output_parameter>
                 <name>coef</name>
@@ -4207,16 +4305,16 @@
                     ,{training_table_name}           --training_table_name
                     ,{result_rf_table_name}          --result_tree_table_name
                     ,{number_of_trees}                 -- number_of_trees
-                    ,{features_per_node}             -- features_per_node 
+                    ,{features_per_node}             -- features_per_node
                     ,{sampling_percentage}             --sampling_percentage
                     ,{continuous_feature_names}      -- continuous_feature_names
                     ,{feature_col_names}             -- feature_col_names
-                    ,{id_col_name}                    -- id_colname 
+                    ,{id_col_name}                    -- id_colname
                     ,{class_col_name}                 --    class_col_name
-                    ,{how2handle_missing_value}       -- how2handle_missing_value 
+                    ,{how2handle_missing_value}       -- how2handle_missing_value
                     ,{max_tree_depth}                -- max_tree_depth
                     ,{node_prune_threshold}          -- node_prune_threshold
-                    ,{node_split_threshold}          -- node_split_threshold 
+                    ,{node_split_threshold}          -- node_split_threshold
                     ,{verbosity}                        -- verbosity
                 ) AS Q;
             </template>
@@ -4430,12 +4528,12 @@
                     ,{sampling_percentage}             --sampling_percentage
                     ,{continuous_feature_names}      -- continuous_feature_names
                     ,{feature_col_names}             -- feature_col_names
-                    ,{id_col_name}                    -- id_colname 
+                    ,{id_col_name}                    -- id_colname
                     ,{class_col_name}                 --    class_col_name
-                    ,{how2handle_missing_value}       -- how2handle_missing_value 
+                    ,{how2handle_missing_value}       -- how2handle_missing_value
                     ,{max_tree_depth}                -- max_tree_depth
                     ,{node_prune_threshold}          -- node_prune_threshold
-                    ,{node_split_threshold}          -- node_split_threshold 
+                    ,{node_split_threshold}          -- node_split_threshold
                     ,{verbosity}                        -- verbosity
                     ,{subset_number}                    -- subset_number
                 ) AS avg_score;
@@ -4515,50 +4613,50 @@
              </output_parameter>
         </method>
     </algorithm>
-    
+
      <algorithm>
          <name>linear_regression</name>
-         <method>        
+         <method>
             <name>linregr</name>
             <template>
                 SELECT (linregr).* FROM (
                     SELECT {madlib_schema}.linregr(
                     {dependent_varname}         --dependent_varname
                     ,{independent_varname})     --independent_varname
-                    FROM {source_table}         
+                    FROM {source_table}
                 ) AS q;
             </template>
             <input_parameter>
                 <name>source_table</name>
-                <type>text</type> 
+                <type>text</type>
                 <quote>false</quote>
            </input_parameter>
            <input_parameter>
                 <name>dependent_varname</name>
-                <type>text</type>  
+                <type>text</type>
                 <quote>false</quote>
-                <default>y</default>  
+                <default>y</default>
            </input_parameter>
            <input_parameter>
                 <name>independent_varname</name>
-                <type>text</type>  
+                <type>text</type>
                 <quote>false</quote>
-                <default>x</default>  
+                <default>x</default>
            </input_parameter>
-           
-           <!-- Below is used by Random generated Dataset -->       
+
+           <!-- Below is used by Random generated Dataset -->
             <input_parameter>
-                <name>input_ivariables</name> 
+                <name>input_ivariables</name>
                 <type>int</type>
-                <default>NULL</default>            
+                <default>NULL</default>
             </input_parameter>
             <input_parameter>
                 <name>input_rows</name>
                 <type>int</type>
-                <default>NULL</default>                  
+                <default>NULL</default>
             </input_parameter>
-            
-           <!-- Below is output parameter-->       
+
+           <!-- Below is output parameter-->
             <output_parameter>
                 <name>coef</name>
                 <type>double precision[]</type>
@@ -4580,49 +4678,49 @@
                 <type>double precision[]</type>
             </output_parameter>
         </method>
-        
-        <method>        
+
+        <method>
             <name>ctas_linregr</name>
             <template>
                 CREATE TABLE {table_name} AS
                 SELECT {madlib_schema}.linregr(
                     {dependent_varname}         --dependent_varname
                     ,{independent_varname})     --independent_varname
-                    FROM {source_table}         
+                    FROM {source_table}
                 ;
                 INSERT INTO {table_name}
                     SELECT {madlib_schema}.linregr(
                     {dependent_varname}         --dependent_varname
                     ,{independent_varname})     --independent_varname
-                    FROM {source_table}      
+                    FROM {source_table}
                 ;
                 DROP TABLE {table_name};
             </template>
             <input_parameter>
                 <name>table_name</name>
                 <type>text</type>
-                <quote>false</quote>      
+                <quote>false</quote>
             </input_parameter>
             <input_parameter>
                 <name>source_table</name>
-                <type>text</type> 
+                <type>text</type>
                 <quote>false</quote>
            </input_parameter>
            <input_parameter>
                 <name>dependent_varname</name>
-                <type>text</type>  
+                <type>text</type>
                 <quote>false</quote>
-                <default>y</default>  
+                <default>y</default>
            </input_parameter>
            <input_parameter>
                 <name>independent_varname</name>
-                <type>text</type>  
+                <type>text</type>
                 <quote>false</quote>
-                <default>x</default>  
-           </input_parameter> 
+                <default>x</default>
+           </input_parameter>
         </method>
-    
-        <method>        
+
+        <method>
             <name>group_by_linregr</name>
             <template>
                 SELECT {madlib_schema}.linregr(
@@ -4634,18 +4732,18 @@
             <input_parameter>
                 <name>table_name</name>
                 <type>text</type>
-                <quote>false</quote>      
+                <quote>false</quote>
             </input_parameter>
         </method>
     </algorithm>
-    
-    
+
+
     <algorithm>
          <name>logistic_regression</name>
-         <method>        
+         <method>
             <name>logregr</name>
             <template>
-                SELECT * FROM 
+                SELECT * FROM
                     {madlib_schema}.logregr (
                     {source_table}              --source_table
                     , {dependent_varname}       --dependent_varname
@@ -4657,48 +4755,48 @@
             </template>
             <input_parameter>
                 <name>source_table</name>
-                <type>text</type> 
+                <type>text</type>
            </input_parameter>
            <input_parameter>
                 <name>dependent_varname</name>
-                <type>text</type>  
-                <default>y</default>  
+                <type>text</type>
+                <default>y</default>
            </input_parameter>
            <input_parameter>
                 <name>independent_varname</name>
-                <type>text</type>  
-                <default>x</default>  
+                <type>text</type>
+                <default>x</default>
            </input_parameter>
-           
+
            <input_parameter>
                 <name>max_iteration</name>
-                <type>int</type> 
-                <default>20</default>    
+                <type>int</type>
+                <default>20</default>
            </input_parameter>
            <input_parameter>
                 <name>convergence_threshold</name>
-                <type>double precision</type>  
-                <default>0.0001</default>     
+                <type>double precision</type>
+                <default>0.0001</default>
            </input_parameter>
            <input_parameter>
                 <name>optimizer</name>
-                <type>text</type>    
-                <default>irls</default>    
+                <type>text</type>
+                <default>irls</default>
            </input_parameter>
-           
-           <!-- Below is used by Random generated Dataset -->       
+
+           <!-- Below is used by Random generated Dataset -->
             <input_parameter>
-                <name>input_ivariables</name> 
+                <name>input_ivariables</name>
                 <type>int</type>
-                <default>NULL</default>            
+                <default>NULL</default>
             </input_parameter>
             <input_parameter>
                 <name>input_rows</name>
                 <type>int</type>
-                <default>NULL</default>                  
+                <default>NULL</default>
             </input_parameter>
-            
-           <!-- Below is output parameter-->       
+
+           <!-- Below is output parameter-->
             <output_parameter>
                 <name>coef</name>
                 <type>double precision[]</type>
@@ -4723,13 +4821,13 @@
                 <name>odds_ratios</name>
                 <type>double precision[]</type>
             </output_parameter>
-        </method>     
-        
-        <method>        
+        </method>
+
+        <method>
             <name>ctas_logregr</name>
             <template>
                 CREATE TABLE {table_name} AS
-                SELECT * FROM 
+                SELECT * FROM
                     {madlib_schema}.logregr (
                     {source_table}              --source_table
                     , {dependent_varname}       --dependent_varname
@@ -4739,7 +4837,7 @@
                     , {convergence_threshold}   --convergence_threshold
                 );
                 INSERT INTO {table_name}
-                SELECT * FROM 
+                SELECT * FROM
                     {madlib_schema}.logregr (
                     {source_table}              --source_table
                     , {dependent_varname}       --dependent_varname
@@ -4753,45 +4851,45 @@
             <input_parameter>
                 <name>table_name</name>
                 <type>text</type>
-                <quote>false</quote>      
+                <quote>false</quote>
             </input_parameter>
             <input_parameter>
                 <name>source_table</name>
-                <type>text</type> 
+                <type>text</type>
            </input_parameter>
            <input_parameter>
                 <name>dependent_varname</name>
-                <type>text</type>  
-                <default>y</default>  
+                <type>text</type>
+                <default>y</default>
            </input_parameter>
            <input_parameter>
                 <name>independent_varname</name>
-                <type>text</type>  
-                <default>x</default>  
+                <type>text</type>
+                <default>x</default>
            </input_parameter>
-           
+
            <input_parameter>
                 <name>max_iteration</name>
-                <type>int</type> 
-                <default>20</default>    
+                <type>int</type>
+                <default>20</default>
            </input_parameter>
            <input_parameter>
                 <name>convergence_threshold</name>
-                <type>double precision</type>  
-                <default>0.0001</default>     
+                <type>double precision</type>
+                <default>0.0001</default>
            </input_parameter>
            <input_parameter>
                 <name>optimizer</name>
-                <type>text</type>    
-                <default>irls</default>    
+                <type>text</type>
+                <default>irls</default>
            </input_parameter>
-        </method>        
+        </method>
     </algorithm>
-        
+
     <algorithm>
          <name>decision_tree</name>
          <method>
-            <name>c45_train</name>    
+            <name>c45_train</name>
             <create>true</create>
             <template>
                 SELECT training_set_size, tree_nodes, tree_depth FROM {madlib_schema}.c45_train
@@ -4804,7 +4902,7 @@
                     , {id_col_name}                 --id_col_name
                     , {class_col_name}              --class_col_name
                     , {confidence_level}            --confidence_level
-                    , {how2handle_missing_value}    --how2handle_missing_value 
+                    , {how2handle_missing_value}    --how2handle_missing_value
                     , {max_tree_depth}              --max_tree_depth
                     , {node_prune_threshold}            --node_prune_threshold
                     , {node_split_threshold}           --node_split_threshold
@@ -4813,12 +4911,12 @@
             </template>
             <input_parameter>
                 <name>split_criterion_name</name>
-                <type>text</type>              
+                <type>text</type>
             </input_parameter>
             <input_parameter>
                 <name>training_table_name</name>
                 <type>text</type>
-            </input_parameter>           
+            </input_parameter>
             <input_parameter>
                 <name>result_tree_table_name</name>
                 <type>text</type>
@@ -4826,22 +4924,22 @@
             <input_parameter>
                 <name>validation_table_name</name>
                 <type>text</type>
-                <default>NULL</default>  
+                <default>NULL</default>
             </input_parameter>
             <input_parameter>
                 <name>continuous_feature_names</name>
                 <type>text</type>
-                <default>NULL</default> 
+                <default>NULL</default>
             </input_parameter>
             <input_parameter>
                 <name>feature_col_names</name>
                 <type>text</type>
-                <default>NULL</default> 
+                <default>NULL</default>
             </input_parameter>
             <input_parameter>
                 <name>id_col_name</name>
                 <type>text</type>
-                <default>id</default> 
+                <default>id</default>
             </input_parameter>
             <input_parameter>
                 <name>class_col_name</name>
@@ -4856,7 +4954,7 @@
             <input_parameter>
                 <name>how2handle_missing_value</name>
                 <type>text</type>
-                <default>explicit</default>  
+                <default>explicit</default>
             </input_parameter>
             <input_parameter>
                 <name>max_tree_depth</name>
@@ -4878,7 +4976,7 @@
                 <type>int</type>
                 <default>0</default>
             </input_parameter>
-            <!-- Below is output parameter--> 
+            <!-- Below is output parameter-->
             <output_parameter>
                 <name>training_set_size</name>
                 <type>bigint</type>
@@ -4990,8 +5088,8 @@
         </method>
 
 
-        <method>         
-            <name>c45_score</name>            
+        <method>
+            <name>c45_score</name>
             <create>true</create>
             <template>
                 SELECT * FROM {madlib_schema}.c45_score
@@ -5002,24 +5100,24 @@
             </template>
             <input_parameter>
                 <name>dt_table_name</name>
-                <type>text</type>              
+                <type>text</type>
             </input_parameter>
             <input_parameter>
                 <name>scoring_table_name</name>
                 <type>text</type>
-            </input_parameter>           
+            </input_parameter>
             <input_parameter>
                 <name>verbosity</name>
                 <type>int</type>
-                <default>0</default>  
+                <default>0</default>
             </input_parameter>
             <!-- result -->
             <output_parameter>
                 <name>score</name>
                 <type>float</type>
             </output_parameter>
-        </method>   
-        <method>         
+        </method>
+        <method>
             <name>c45_classify</name>
             <template>
                 SELECT input_set_size FROM {madlib_schema}.c45_classify
@@ -5031,28 +5129,28 @@
             </template>
             <input_parameter>
                 <name>dt_table_name</name>
-                <type>text</type>              
+                <type>text</type>
             </input_parameter>
             <input_parameter>
                 <name>classification_table_name</name>
-                <type>text</type>   
+                <type>text</type>
             </input_parameter>
             <input_parameter>
                 <name>result_table_name</name>
-                <type>text</type>              
+                <type>text</type>
              </input_parameter>
             <input_parameter>
                 <name>verbosity</name>
                 <type>int</type>
-                <default>0</default> 
+                <default>0</default>
             </input_parameter>
             <output_parameter>
                 <name>input_set_size</name>
                 <type>bigint</type>
             </output_parameter>
         </method>
-        <method>         
-            <name>c45_display</name>            
+        <method>
+            <name>c45_display</name>
             <template>
                 SELECT * FROM {madlib_schema}.c45_display
                     ({result_tree_table_name}   --result_tree_table_name
@@ -5060,14 +5158,14 @@
             </template>
             <input_parameter>
                 <name>result_tree_table_name</name>
-                <type>text</type>              
+                <type>text</type>
             </input_parameter>
             <!-- result-->
             <output_parameter>
                 <name>tree</name>
-                <type>text</type>   
+                <type>text</type>
             </output_parameter>
-        </method> 
+        </method>
         <method>
             <name>c45_clean</name>
             <template>
@@ -5077,15 +5175,15 @@
             </template>
             <input_parameter>
                 <name>dt_table_name</name>
-                <type>text</type>              
+                <type>text</type>
             </input_parameter>
             <!-- result-->
             <output_parameter>
                 <name>is_clean</name>
-                <type>boolean</type>    
+                <type>boolean</type>
             </output_parameter>
-        </method>  
-        
+        </method>
+
     </algorithm>
 
      <algorithm>
@@ -5094,7 +5192,7 @@
             <name>t_test_one</name>
             <template>
                 SELECT ({madlib_schema}.t_test_one({value})).* FROM (
-                    SELECT {value} 
+                    SELECT {value}
                     FROM madlibtestdata.{table_name} --table_name
 		    ORDER BY {id}
                     LIMIT {count} --values count
@@ -5131,15 +5229,15 @@
             </output_parameter>
             <output_parameter>
                 <name>df</name>
-                <type>bigint</type>    
+                <type>bigint</type>
             </output_parameter>
             <output_parameter>
                 <name>p_value_one_sided</name>
-                <type>float8</type>    
+                <type>float8</type>
             </output_parameter>
             <output_parameter>
                 <name>p_value_two_sided</name>
-                <type>float8</type>    
+                <type>float8</type>
             </output_parameter>
          </method>
 
@@ -5190,15 +5288,15 @@
             </output_parameter>
             <output_parameter>
                 <name>df</name>
-                <type>float8</type>    
+                <type>float8</type>
             </output_parameter>
             <output_parameter>
                 <name>p_value_one_sided</name>
-                <type>float8</type>    
+                <type>float8</type>
             </output_parameter>
             <output_parameter>
                 <name>p_value_two_sided</name>
-                <type>float8</type>    
+                <type>float8</type>
             </output_parameter>
          </method>
 
@@ -5248,15 +5346,15 @@
             </output_parameter>
             <output_parameter>
                 <name>df</name>
-                <type>float8</type>    
+                <type>float8</type>
             </output_parameter>
             <output_parameter>
                 <name>p_value_one_sided</name>
-                <type>float8</type>    
+                <type>float8</type>
             </output_parameter>
             <output_parameter>
                 <name>p_value_two_sided</name>
-                <type>float8</type>    
+                <type>float8</type>
             </output_parameter>
          </method>
 
@@ -5307,19 +5405,19 @@
             </output_parameter>
             <output_parameter>
                 <name>df1</name>
-                <type>bigint</type>    
+                <type>bigint</type>
             </output_parameter>
             <output_parameter>
                 <name>df2</name>
-                <type>bigint</type>    
+                <type>bigint</type>
             </output_parameter>
             <output_parameter>
                 <name>p_value_one_sided</name>
-                <type>float8</type>    
+                <type>float8</type>
             </output_parameter>
             <output_parameter>
                 <name>p_value_two_sided</name>
-                <type>float8</type>    
+                <type>float8</type>
             </output_parameter>
          </method>
 
@@ -5376,27 +5474,27 @@
             </output_parameter>
             <output_parameter>
                 <name>df</name>
-                <type>bigint</type>    
+                <type>bigint</type>
             </output_parameter>
             <output_parameter>
                 <name>p_value</name>
-                <type>float8</type>    
+                <type>float8</type>
             </output_parameter>
             <output_parameter>
                 <name>phi</name>
-                <type>float8</type>    
+                <type>float8</type>
             </output_parameter>
             <output_parameter>
                 <name>contingency_coef</name>
-                <type>float8</type>    
+                <type>float8</type>
             </output_parameter>
          </method>
 
          <method>
             <name>ks_test</name>
             <template>
-                SELECT ({madlib_schema}.ks_test({first}, {value}, 
-			(SELECT count({value}) FROM (SELECT * FROM madlibtestdata.{table_name} ORDER BY {id} LIMIT {count})t1 WHERE {first}), 
+                SELECT ({madlib_schema}.ks_test({first}, {value},
+			(SELECT count({value}) FROM (SELECT * FROM madlibtestdata.{table_name} ORDER BY {id} LIMIT {count})t1 WHERE {first}),
 			(SELECT count({value}) FROM (SELECT * FROM madlibtestdata.{table_name} ORDER BY {id} LIMIT {count})t2 WHERE NOT {first})
 			ORDER BY {value})).* FROM (
                     		SELECT {first}, {value}
@@ -5446,7 +5544,7 @@
             </output_parameter>
             <output_parameter>
                 <name>p_value</name>
-                <type>float8</type>    
+                <type>float8</type>
             </output_parameter>
          </method>
 
@@ -5501,11 +5599,11 @@
             </output_parameter>
             <output_parameter>
                 <name>p_value_one_sided</name>
-                <type>float8</type>    
+                <type>float8</type>
             </output_parameter>
             <output_parameter>
                 <name>p_value_two_sided</name>
-                <type>float8</type>    
+                <type>float8</type>
             </output_parameter>
          </method>
 
@@ -5524,7 +5622,7 @@
                 <type>text</type>
         	<default>value</default>
                 <quote>false</quote>
-           </input_parameter> 
+           </input_parameter>
             <input_parameter>
                 <name>precision</name>
                 <type>float8</type>
@@ -5567,11 +5665,11 @@
             </output_parameter>
             <output_parameter>
                 <name>p_value_one_sided</name>
-                <type>float8</type>    
+                <type>float8</type>
             </output_parameter>
             <output_parameter>
                 <name>p_value_two_sided</name>
-                <type>float8</type>    
+                <type>float8</type>
             </output_parameter>
          </method>
 
@@ -5713,7 +5811,7 @@
             </output_parameter>
             <output_parameter>
                 <name>p_value</name>
-                <type>float8</type>    
+                <type>float8</type>
             </output_parameter>
          </method>
 
@@ -6140,15 +6238,15 @@
             </input_parameter>
         </method>
     </algorithm>
- 
+
     <algorithm>
     <name>svm_regression</name>
-         <method>        
+         <method>
             <name>svm_regression</name>
             <template>
                    SELECT {madlib_schema}.svm_regression
                         ( {input_table}     --input_table
-                        , {model_table}    --model_table 
+                        , {model_table}    --model_table
                         , {parallel}       --parallel
                         , {kernel_func}    --kernel_func
                         , {verbose}        --verbose
@@ -6159,19 +6257,19 @@
             </template>
             <input_parameter>
                 <name>input_table</name>
-                <type>text</type>              
+                <type>text</type>
            </input_parameter>
            <input_parameter>
                 <name>model_table</name>
-                <type>text</type>   
-            </input_parameter>           
+                <type>text</type>
+            </input_parameter>
             <input_parameter>
                 <name>parallel</name>
-                <type>boolean</type>  
+                <type>boolean</type>
             </input_parameter>
             <input_parameter>
                 <name>kernel_func</name>
-                <type>text</type>   
+                <type>text</type>
             </input_parameter>
             <input_parameter>
                 <name>verbose</name>
@@ -6180,74 +6278,41 @@
             </input_parameter>
             <input_parameter>
                 <name>eta</name>
-                <type>float8</type>   
+                <type>float8</type>
                 <default>0.1</default>
-            </input_parameter>        
+            </input_parameter>
             <input_parameter>
                 <name>nu</name>
-                <type>float8</type>   
+                <type>float8</type>
                 <default>0.005</default>
             </input_parameter>
             <input_parameter>
                 <name>slambda</name>
-                <type>float8</type>   
+                <type>float8</type>
                 <default>0.05</default>
             </input_parameter>
          </method>
-   <method>        
+   <method>
             <name>svm_reg_predict_score</name>
             <create>true</create>
             <template>
                    SELECT madlibtestdata.svm_reg_predict_score
-                        ( {model_table}     --model_table 
+                        ( {model_table}     --model_table
                         , {input_table}     --input_table
                         , {parallel}        --parallel
                    ) AS score;
             </template>
             <input_parameter>
                 <name>model_table</name>
-                <type>text</type>   
-            </input_parameter> 
-            <input_parameter>
-                <name>input_table</name>
-                <type>text</type>              
-           </input_parameter>
-           <input_parameter>
-                <name>parallel</name>
-                <type>boolean</type>  
-            </input_parameter>
-            <output_parameter>
-                <name>score</name>
-                <type>float8</type>
-            </output_parameter>
-         </method>
-       
-       <method>        
-            <name>svm_reg_predict_batch_score</name>
-            <create>true</create>
-            <template>
-                   SELECT madlibtestdata.svm_reg_predict_batch_score
-                        ( {model_table}     --model_table 
-                        , {output_table}  --output_table
-                        , {input_table}     --input_table
-                        , {parallel}        --parallel
-                   ) AS score;
-            </template>
-            <input_parameter>
-                <name>model_table</name>
-                <type>text</type>   
-            </input_parameter> 
-          <input_parameter>
-                <name>output_table</name>
-                <type>text</type>  
+                <type>text</type>
             </input_parameter>
             <input_parameter>
                 <name>input_table</name>
-                <type>text</type>              
+                <type>text</type>
            </input_parameter>
            <input_parameter>
                 <name>parallel</name>
-                <type>boolean</type>  
+                <type>boolean</type>
             </input_parameter>
             <output_parameter>
                 <name>score</name>
@@ -6255,7 +6320,40 @@
             </output_parameter>
          </method>
 
-         <method>        
+       <method>
+            <name>svm_reg_predict_batch_score</name>
+            <create>true</create>
+            <template>
+                   SELECT madlibtestdata.svm_reg_predict_batch_score
+                        ( {model_table}     --model_table
+                        , {output_table}  --output_table
+                        , {input_table}     --input_table
+                        , {parallel}        --parallel
+                   ) AS score;
+            </template>
+            <input_parameter>
+                <name>model_table</name>
+                <type>text</type>
+            </input_parameter>
+          <input_parameter>
+                <name>output_table</name>
+                <type>text</type>
+            </input_parameter>
+            <input_parameter>
+                <name>input_table</name>
+                <type>text</type>
+           </input_parameter>
+           <input_parameter>
+                <name>parallel</name>
+                <type>boolean</type>
+            </input_parameter>
+            <output_parameter>
+                <name>score</name>
+                <type>float8</type>
+            </output_parameter>
+         </method>
+
+         <method>
             <name>svm_drop_model</name>
             <template>
                    SELECT {madlib_schema}.svm_drop_model
@@ -6264,38 +6362,38 @@
             </template>
             <input_parameter>
                 <name>model_table</name>
-                <type>text</type>              
+                <type>text</type>
            </input_parameter>
          </method>
    </algorithm>
 
 
-   <algorithm>  
+   <algorithm>
    <name>svm_classification</name>
-         <method>        
+         <method>
             <name>lsvm_classification</name>
             <template>
                    SELECT {madlib_schema}.lsvm_classification
                         ( {input_table}     --input_table
-                        , {model_table}    --model_table 
+                        , {model_table}    --model_table
                         , {parallel}       --parallel
                         , {verbose}        --verbose
                         , {eta}            --eta
                         , {reg}            --reg
-                        
+
                    ) AS q;
             </template>
             <input_parameter>
                 <name>input_table</name>
-                <type>text</type>              
+                <type>text</type>
            </input_parameter>
            <input_parameter>
                 <name>model_table</name>
-                <type>text</type>   
-            </input_parameter>           
+                <type>text</type>
+            </input_parameter>
             <input_parameter>
                 <name>parallel</name>
-                <type>boolean</type>  
+                <type>boolean</type>
             </input_parameter>
             <input_parameter>
                 <name>verbose</name>
@@ -6304,22 +6402,22 @@
             </input_parameter>
             <input_parameter>
                 <name>eta</name>
-                <type>float8</type>   
+                <type>float8</type>
                 <default>0.1</default>
-            </input_parameter>        
+            </input_parameter>
             <input_parameter>
                 <name>reg</name>
-                <type>float8</type>   
+                <type>float8</type>
                 <default>0.001</default>
             </input_parameter>
          </method>
-         
-          <method>        
+
+          <method>
             <name>svm_classification</name>
             <template>
                    SELECT {madlib_schema}.svm_classification
                         ( {input_table}     --input_table
-                        , {model_table}    --model_table 
+                        , {model_table}    --model_table
                         , {parallel}       --parallel
                         , {kernel_func}    --kernel_func
                         , {verbose}        --verbose
@@ -6329,19 +6427,19 @@
             </template>
             <input_parameter>
                 <name>input_table</name>
-                <type>text</type>              
+                <type>text</type>
            </input_parameter>
            <input_parameter>
                 <name>model_table</name>
-                <type>text</type>   
-            </input_parameter>           
+                <type>text</type>
+            </input_parameter>
             <input_parameter>
                 <name>parallel</name>
-                <type>boolean</type>  
+                <type>boolean</type>
             </input_parameter>
             <input_parameter>
                 <name>kernel_func</name>
-                <type>text</type>   
+                <type>text</type>
             </input_parameter>
             <input_parameter>
                 <name>verbose</name>
@@ -6350,12 +6448,12 @@
             </input_parameter>
             <input_parameter>
                 <name>eta</name>
-                <type>float8</type>   
+                <type>float8</type>
                 <default>0.01</default>
-            </input_parameter>        
+            </input_parameter>
             <input_parameter>
                 <name>nu</name>
-                <type>float8</type>   
+                <type>float8</type>
                 <default>0.005</default>
             </input_parameter>
          </method>
@@ -6397,7 +6495,7 @@
             <create>true</create>
             <template>
                    SELECT madlibtestdata.svm_cls_predict_batch_score
-                        ( {model_table}     --model_table 
+                        ( {model_table}     --model_table
                         , {output_table}  --output_table
                         , {input_table}     --input_table
                         , {parallel}        --parallel
@@ -6406,15 +6504,15 @@
             </template>
             <input_parameter>
                 <name>model_table</name>
-                <type>text</type>   
-            </input_parameter> 
+                <type>text</type>
+            </input_parameter>
           <input_parameter>
                 <name>output_table</name>
-                <type>text</type>  
+                <type>text</type>
             </input_parameter>
             <input_parameter>
                 <name>input_table</name>
-                <type>text</type>              
+                <type>text</type>
            </input_parameter>
            <input_parameter>
                 <name>parallel</name>
@@ -6429,7 +6527,7 @@
                 <type>float8</type>
             </output_parameter>
          </method>
-        <method>        
+        <method>
             <name>svm_drop_model</name>
             <template>
                    SELECT {madlib_schema}.svm_drop_model
@@ -6438,19 +6536,19 @@
             </template>
             <input_parameter>
                 <name>model_table</name>
-                <type>text</type>              
+                <type>text</type>
            </input_parameter>
          </method>
 
      </algorithm>
-   <algorithm>  
+   <algorithm>
    <name>svm_novelty_detection</name>
-          <method>        
+          <method>
             <name>svm_novelty_detection</name>
             <template>
                    SELECT {madlib_schema}.svm_novelty_detection
                         ( {input_table}     --input_table
-                        , {model_table}    --model_table 
+                        , {model_table}    --model_table
                         , {parallel}       --parallel
                         , {kernel_func}    --kernel_func
                         , {verbose}        --verbose
@@ -6460,19 +6558,19 @@
             </template>
             <input_parameter>
                 <name>input_table</name>
-                <type>text</type>              
+                <type>text</type>
            </input_parameter>
            <input_parameter>
                 <name>model_table</name>
-                <type>text</type>   
-            </input_parameter>           
+                <type>text</type>
+            </input_parameter>
             <input_parameter>
                 <name>parallel</name>
-                <type>boolean</type>  
+                <type>boolean</type>
             </input_parameter>
             <input_parameter>
                 <name>kernel_func</name>
-                <type>text</type>   
+                <type>text</type>
             </input_parameter>
             <input_parameter>
                 <name>verbose</name>
@@ -6481,50 +6579,50 @@
             </input_parameter>
             <input_parameter>
                 <name>eta</name>
-                <type>float8</type>   
+                <type>float8</type>
                 <default>0.01</default>
-            </input_parameter>        
+            </input_parameter>
             <input_parameter>
                 <name>nu</name>
-                <type>float8</type>   
+                <type>float8</type>
                 <default>0.005</default>
             </input_parameter>
          </method>
 
- <method>        
+ <method>
             <name>svm_nd_predict_score</name>
             <create>true</create>
             <template>
                    SELECT madlibtestdata.svm_nd_predict_score
-                        ( {model_table}     --model_table 
+                        ( {model_table}     --model_table
                         , {input_table}     --input_table
                         , {parallel}        --parallel
                    ) AS score;
             </template>
             <input_parameter>
                 <name>model_table</name>
-                <type>text</type>   
-            </input_parameter> 
+                <type>text</type>
+            </input_parameter>
             <input_parameter>
                 <name>input_table</name>
-                <type>text</type>              
+                <type>text</type>
            </input_parameter>
            <input_parameter>
                 <name>parallel</name>
-                <type>boolean</type>  
+                <type>boolean</type>
             </input_parameter>
             <output_parameter>
                 <name>score</name>
                 <type>float8</type>
             </output_parameter>
          </method>
- 
-         <method>        
+
+         <method>
             <name>svm_nd_predict_batch_score</name>
             <create>true</create>
             <template>
                    SELECT madlibtestdata.svm_nd_predict_batch_score
-                        ( {model_table}     --model_table 
+                        ( {model_table}     --model_table
                         , {output_table}  --output_table
                         , {input_table}     --input_table
                         , {parallel}        --parallel
@@ -6532,28 +6630,28 @@
             </template>
             <input_parameter>
                 <name>model_table</name>
-                <type>text</type>   
-            </input_parameter> 
+                <type>text</type>
+            </input_parameter>
           <input_parameter>
                 <name>output_table</name>
-                <type>text</type>  
+                <type>text</type>
             </input_parameter>
             <input_parameter>
                 <name>input_table</name>
-                <type>text</type>              
+                <type>text</type>
            </input_parameter>
            <input_parameter>
                 <name>parallel</name>
-                <type>boolean</type>  
+                <type>boolean</type>
             </input_parameter>
             <output_parameter>
                 <name>score</name>
                 <type>float8</type>
             </output_parameter>
          </method>
-                 
-         
-         <method>        
+
+
+         <method>
             <name>svm_drop_model</name>
             <template>
                    SELECT {madlib_schema}.svm_drop_model
@@ -6562,13 +6660,284 @@
             </template>
             <input_parameter>
                 <name>model_table</name>
-                <type>text</type>              
+                <type>text</type>
            </input_parameter>
          </method>
 
-      </algorithm>               
+      </algorithm>
 
+      <algorithm>
+        <name>elastic_net</name>
+        <method>
+          <name>elastic_net_train</name>
 
+          <template>
+            SELECT {madlib_schema}.elastic_net_train(
+                {tbl_source},      -- input table
+                {col_ind_var},     -- independent variable column
+	        {col_dep_var},     -- dependent variable column
+	        {tbl_result},      -- output table
+	        {lambda_value},    -- regulation parameter
+	        {alpha},           -- elastic net parameter
+	        {normalization},   -- whether to normalize independent variables
+	        {regress_family},  -- response family
+	        {optimizer},       -- optimization method
+	        {optimizer_params} -- parameters that are needed by optimizer
+            );
+          </template>
 
+          <input_parameter>
+            <name>tbl_source</name>
+            <type>VARCHAR</type>
+          </input_parameter>
 
+          <input_parameter>
+            <name>col_ind_var</name>
+            <type>VARCHAR</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>col_dep_var</name>
+            <type>VARCHAR</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>tbl_result</name>
+            <type>VARCHAR</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>lambda_value</name>
+            <type>DOUBLE PRECISION</type>
+            <quote>false</quote>
+          </input_parameter>
+
+          <input_parameter>
+            <name>alpha</name>
+            <type>DOUBLE PRECISION</type>
+            <quote>false</quote>
+          </input_parameter>
+
+          <input_parameter>
+            <name>normalization</name>
+            <type>BOOLEAN</type>
+            <quote>false</quote>
+          </input_parameter>
+
+          <input_parameter>
+            <name>regress_family</name>
+            <type>VARCHAR</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>optimizer</name>
+            <type>VARCHAR</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>optimizer_params</name>
+            <type>VARCHAR[]</type>
+          </input_parameter>
+
+        </method>
+      </algorithm>
+
+      <algorithm>
+        <name>ridge_regression</name>
+        <method>
+            <name>ridge_newton_train</name>
+            <create>true</create>
+            <template>
+            SELECT {madlib_schema}.ridge_newton_train(
+            {tbl_source},  -- input table
+            {col_ind_var},  -- independent variable name
+            {col_dep_var}, -- dependent variable name
+            {tbl_output}, -- output table
+            {lambda_value}, -- regularization parameter
+            {normalization} -- whether to normalize independent variables
+            );
+          </template>
+
+          <input_parameter>
+            <name>tbl_source</name>
+            <type>VARCHAR</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>col_ind_var</name>
+            <type>VARCHAR</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>col_dep_var</name>
+            <type>VARCHAR</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>tbl_output</name>
+            <type>VARCHAR</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>lambda_value</name>
+            <type>DOUBLE PRECISION</type>
+            <quote>false</quote>
+          </input_parameter>
+
+          <input_parameter>
+            <name>normalization</name>
+            <type>BOOLEAN</type>
+            <quote>false</quote>
+          </input_parameter>
+
+        </method>
+
+        <method>
+          <name>ridge_precision</name>
+          <create>true</create>
+          <template>
+            select * from madlibtestdata.ridge_precision(
+            {tbl_source}, -- data table
+            {col_ind_var}, -- independent variable
+            {col_dep_var}, -- dependent variable
+            {lambda_value}, -- regularization parameter
+            {normalization}, -- whether to normalize
+            {tbl_r_result} -- results from R
+            ) as ridge_pre_score;
+          </template>
+
+          <input_parameter>
+            <name>tbl_source</name>
+            <type>varchar</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>col_ind_var</name>
+            <type>varchar</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>col_dep_var</name>
+            <type>varchar</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>lambda_value</name>
+            <type>double precision</type>
+            <quote>false</quote>
+          </input_parameter>
+
+          <input_parameter>
+            <name>normalization</name>
+            <type>boolean</type>
+            <quote>false</quote>
+          </input_parameter>
+
+          <input_parameter>
+            <name>tbl_r_result</name>
+            <type>varchar</type>
+          </input_parameter>
+
+          <output_parameter>
+            <name>ridge_pre_score</name>
+            <type>double precision</type>
+          </output_parameter>
+        </method>
+
+      </algorithm>
+
+      <algorithm>
+        <name>general_cv</name>
+
+        <method>
+          <name>generalcv_linregr</name>
+          <create>true</create>
+          <template>
+            SELECT * FROM madlibtestdata.generalcv_linregr(
+            {dataset_name}, -- data set name
+            {col_ind_var}, -- independent variable
+            {col_dep_var}, -- dependent variable
+            {fold}, -- fold number
+            {tbl_r_rst} -- R result table
+            ) AS cv_consistent;
+          </template>
+
+          <input_parameter>
+            <name>dataset_name</name>
+            <type>varchar</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>col_ind_var</name>
+            <type>varchar</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>col_dep_var</name>
+            <type>varchar</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>fold</name>
+            <type>integer</type>
+            <quote>false</quote>
+          </input_parameter>
+
+          <input_parameter>
+            <name>tbl_r_rst</name>
+            <type>varchar</type>
+          </input_parameter>
+
+          <output_parameter>
+            <name>cv_consistent</name>
+            <type>double precision</type>
+          </output_parameter>
+        </method>
+
+        <method>
+          <name>generalcv_logregr</name>
+          <create>true</create>
+          <template>
+            SELECT * FROM madlibtestdata.generalcv_logregr(
+            {dataset_name}, -- data set name
+            {col_ind_var}, -- independent variable
+            {col_dep_var}, -- dependent variable
+            {fold}, -- fold number
+            {tbl_r_rst} -- R result table
+            ) AS cv_consistent;
+          </template>
+
+          <input_parameter>
+            <name>dataset_name</name>
+            <type>varchar</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>col_ind_var</name>
+            <type>varchar</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>col_dep_var</name>
+            <type>varchar</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>fold</name>
+            <type>integer</type>
+            <quote>false</quote>
+          </input_parameter>
+
+          <input_parameter>
+            <name>tbl_r_rst</name>
+            <type>varchar</type>
+          </input_parameter>
+
+          <output_parameter>
+            <name>cv_consistent</name>
+            <type>double precision</type>
+          </output_parameter>
+        </method>
+
+      </algorithm>
 </algorithms>

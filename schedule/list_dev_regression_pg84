@@ -107,3 +107,10 @@ case_linear
 case_logistic_dev_pg
 case_dt_pgdev
 case_rf_pgdev
+
+case_generalcv_linregr
+case_generalcv_logregr
+case_generic_cv_input
+
+# case_ridge_regression
+# case_elastic_null_values

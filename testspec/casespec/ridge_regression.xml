@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<test_suites>
+  <test_type>feature</test_type>
+  <multi_test_suites>
+
+    <algorithm>ridge_regression</algorithm>
+    <methods>
+      <method>
+        <name>ridge_precision</name>
+        <parameter>
+          <name>benchmark</name>
+          <value>TemplateExecutor</value>
+        </parameter>
+      </method>
+    </methods>
+
+    <test_suite>
+      <name>ridge_regression_output_test</name>
+      <comments>
+        To compare the output of Ridge regression with R
+      </comments>
+      <execute_rate>1</execute_rate>
+
+      <method>
+        <name>ridge_precision</name>
+        <!-- parameters -->
+        <list_parameter>
+          <name>tbl_source</name>
+          <value>lin_concrete_oi</value>
+          <value>lin_concrete_wi</value>
+          <value>lin_auto_mpg_oi</value>
+          <value>lin_auto_mpg_wi</value>
+          <value>lin_communities_unnormalized_oi</value>
+          <value>lin_communities_unnormalized_wi</value>
+          <value>lin_communities_oi</value>
+          <value>lin_communities_wi</value>
+          <value>lin_flare_oi</value>
+          <value>lin_flare_wi</value>
+          <value>lin_forestfires_oi</value>
+          <value>lin_forestfires_wi</value>
+          <value>lin_housing_oi</value>
+          <value>lin_housing_wi</value>
+          <value>lin_imports_85_oi</value>
+          <value>lin_imports_85_wi</value>
+          <value>lin_machine_oi</value>
+          <value>lin_machine_wi</value>
+          <value>lin_o_ring_erosion_only_oi</value>
+          <value>lin_o_ring_erosion_only_wi</value>
+          <value>lin_o_ring_erosion_or_blowby_oi</value>
+          <value>lin_o_ring_erosion_or_blowby_wi</value>
+          <value>lin_parkinsons_updrs_oi</value>
+          <value>lin_parkinsons_updrs_wi</value>
+          <value>lin_servo_oi</value>
+          <value>lin_servo_wi</value>
+          <value>lin_slump_oi</value>
+          <value>lin_slump_wi</value>
+          <value>lin_winequality_red_oi</value>
+          <value>lin_winequality_red_wi</value>
+          <value>lin_winequality_white_oi</value>
+          <value>lin_winequality_white_wi</value>
+        </list_parameter>
+
+        <parameter>
+          <name>col_ind_var</name>
+          <value>x</value>
+        </parameter>
+
+        <parameter>
+          <name>col_dep_var</name>
+          <value>y</value>
+        </parameter>
+
+        <list_parameter>
+          <name>lambda_value</name>
+          <value>0</value>
+          <value>0.1</value>
+          <value>0.6</value>
+          <value>1</value>
+        </list_parameter>
+
+        <list_parameter>
+          <name>normalization</name>
+          <value>True</value>
+          <value>False</value>
+        </list_parameter>
+
+        <parameter>
+          <name>tbl_r_result</name>
+          <value>madlibtestdata.evaluation_ridge_regression</value>
+        </parameter>
+      </method>
+    </test_suite>
+  </multi_test_suites>
+</test_suites>
