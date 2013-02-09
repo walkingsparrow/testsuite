@@ -1,23 +1,33 @@
 ############################### Comments #######################################
 #    Each jira should begin with the tag "HEAD" and the label "END" indicates the end of a jira.
-#    Every jira should conform with below format: 
+#    Every jira should conform with below format:
 #    Get rid of the double quotes when using this demo
 #    ## "HEAD" ###
 #    ## JiraId: XXX ###     (Note: must)
-#    ## Type    : 0 ###       (Note: optonal The value should be 0(fix version is current release and need to run), 
+#    ## Type    : 0 ###       (Note: optonal The value should be 0(fix version is current release and need to run),
 #                                                            1(fix version is current release and no need to run),
-#                                                            2(fix version is master) 
-#    ## Des     : XXXX   ###   (Note: optional) 
+#                                                            2(fix version is master)
+#    ## Des     : XXXX   ###   (Note: optional)
 #    CaseName
-#    ## "END" ### 
+#    ## "END" ###
 ####################################################################
 
-###### Kmeans Clustering ######
+################## Kmeans Clustering #####################
+
 ### HEAD ###
 ### JiraId: MADLIB-704 ######
 ### Des: Need error handling improvement for invalid k in kmeanspp_seeding ###
 ### Type: 2 ###
 km_pp_seeding_negative_initialcentroids_0_0_km_pp_seeding_default_fndist_initialcentroids_0
+### END ###
+
+### HEAD ###
+### JiraId: MADLIB-XXX ###
+### Des: MADmark improvement needed: kmeans non-finite test should be successfull ###
+### Type: 999 ###
+km_nonfinite_2water_treatment_noninfinite_0_0
+km_pp_noninfinite_0_1
+km_random_noninfinite_0_1
 ### END ###
 
 #################Association Rules########################
@@ -463,7 +473,7 @@ svm_nd_gaussian_ds_0_7
 ###### Multinomial Logistic Regression ######
 ### HEAD ###
 ### JiraId: MADLIB-667 ###
-### Des: Memory allocation failed in Multinomial Logistic Regression ### 
+### Des: Memory allocation failed in Multinomial Logistic Regression ###
 ### Type: 2 ###
 multinomial_logistic_regression_baseline_0_4
 ### END ###
@@ -488,7 +498,7 @@ multinomial_logistic_regression_optimizer_0_5
 
 ### HEAD ###
 ### JiraId: MADLIB-671 ###
-### Des: Performance of Multinomial Logistic Regression on large datasets need to be improved ### 
+### Des: Performance of Multinomial Logistic Regression on large datasets need to be improved ###
 ### Type: 2 ###
 multinomial_logistic_regression_baseline_0_2
 ### END ###
@@ -496,7 +506,7 @@ multinomial_logistic_regression_baseline_0_2
 
 ### HEAD ###
 ### JiraId: MADLIB-674 ###
-### Des: Could not use utf8 character as column name ### 
+### Des: Could not use utf8 character as column name ###
 ### Type: 2 ###
 multinomial_logistic_regression_utf8_character_0_2
 ### END ###
@@ -505,7 +515,7 @@ multinomial_logistic_regression_utf8_character_0_2
 
 ### HEAD ###
 ### JiraId: MADLIB-625 ###
-### Des: QA backlog ### 
+### Des: QA backlog ###
 ### Type: 999 ###
 ######## PG error message is without source code file name while GP has ########
 non_central_f_quantile_feature_test_df1_0_0
@@ -527,12 +537,6 @@ km_random_aggcentroid_userdefined_0_0
 km_svec_0_0
 km_pp_svec_0_0
 km_random_svec_0_0
-### END ###
-
-###### MADmark improvement needed: kmeans non-finite test should be successfull #####
-km_nonfinite_2water_treatment_noninfinite_0_0
-km_pp_noninfinite_0_1
-km_random_noninfinite_0_1
 ### END ###
 
 ### HEAD ###
