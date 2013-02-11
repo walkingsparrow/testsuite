@@ -51,16 +51,16 @@ nb_adhoc_function_0_12
 # TestSuite Name : nb_precompute_function_workaround
 # It is to verify precomputed class priors and feature probabilities using function as storage
 # Start TestSuite ==========
-nb_precompute_function_workaround_0_1
-nb_precompute_function_workaround_0_4
-nb_precompute_function_workaround_0_10
-nb_precompute_function_workaround_0_12
+# nb_precompute_function_workaround_0_1
+# nb_precompute_function_workaround_0_4
+# nb_precompute_function_workaround_0_10
+# nb_precompute_function_workaround_0_12
 
 # TestSuite Name : nb_adhoc_function_workaround
 # It is to verify ad hoc class priors and feature probabilities using function as storage
 # Start TestSuite ==========
-nb_adhoc_function_workaround_0_1
-nb_adhoc_function_workaround_0_4
-nb_adhoc_function_workaround_0_10
-nb_adhoc_function_workaround_0_12
+# nb_adhoc_function_workaround_0_1
+# nb_adhoc_function_workaround_0_4
+# nb_adhoc_function_workaround_0_10
+# nb_adhoc_function_workaround_0_12
 
