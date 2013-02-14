@@ -117,5 +117,9 @@ case_generalcv_linregr
 case_generalcv_logregr
 case_generic_cv_input
 
+case_linear
+case_linregr_hetero
+case_linregr_grouping
+
 # case_ridge_regression
 # case_elastic_null_values
