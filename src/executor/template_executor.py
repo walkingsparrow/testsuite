@@ -225,8 +225,8 @@ class InputParameter(Parser):
             return "''" #empty string
         else:
             # return "'%s'::%s" % (value, self.type)
-            value = value.replace("ARRAY[","{")
-            value = value.replace("]","}")
+            #value = value.replace("ARRAY[","{")
+            #value = value.replace("]","}")
             return "$_valString$%s$_valString$::%s" % (value, self.type)
 
 class Executor:

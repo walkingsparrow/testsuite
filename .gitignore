@@ -1,6 +1,9 @@
 testspec/metadata/analyticstool.xml
 testspec/metadata/testconfig.xml
-dataset/sql/*.sql.gz
-bootstrap/*.sql
-report/*.report
 testcase/*
+dataset/sql/*
+dataset/download/*
+*.pyc
+bootstrap/*.sql
+report/*report*
+

@@ -81,7 +81,6 @@ class TestCaseExecutor:
             temp_list = output.split(',')
             self.version = temp_list[2]
         except Exception:
-            self.version = "WRONG"
-       
-        #self.dbManager.stop()
+            self.version = "WRONG"      
+        self.dbManager.stop()
 

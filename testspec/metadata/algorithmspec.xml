@@ -4617,126 +4617,229 @@
      <algorithm>
          <name>linear_regression</name>
          <method>
-            <name>linregr</name>
+            <name>linregr_train_group_hetero</name>
+            <create>true</create>
             <template>
-                SELECT (linregr).* FROM (
-                    SELECT {madlib_schema}.linregr(
-                    {dependent_varname}         --dependent_varname
-                    ,{independent_varname})     --independent_varname
-                    FROM {source_table}
-                ) AS q;
+                SELECT {madlib_schema}.linregr_train(
+                        {source_table}         -- input table name
+                        ,{out_table}            -- output table name
+                        ,{dependent_varname}    -- dependent_varname
+                        ,{independent_varname}  -- independent_varname
+                        ,{group_cols}              -- grouping column names
+                        ,{heteroskedasticity_option} -- heteroskedasticity
+                );
             </template>
             <input_parameter>
                 <name>source_table</name>
                 <type>text</type>
-                <quote>false</quote>
+                <!-- <quote>false</quote> -->
+           </input_parameter>
+           <input_parameter>
+                <name>out_table</name>
+                <type>text</type>
+                <!-- <quote>false</quote> -->
            </input_parameter>
            <input_parameter>
                 <name>dependent_varname</name>
                 <type>text</type>
-                <quote>false</quote>
+                <!-- <quote>false</quote> -->
                 <default>y</default>
            </input_parameter>
            <input_parameter>
                 <name>independent_varname</name>
                 <type>text</type>
-                <quote>false</quote>
+                <!-- <quote>false</quote> -->
                 <default>x</default>
            </input_parameter>
-
-           <!-- Below is used by Random generated Dataset -->
-            <input_parameter>
-                <name>input_ivariables</name>
-                <type>int</type>
+           <input_parameter>
+                <name>group_cols</name>
+                <type>varchar[]</type>
+                <!-- <quote>false</quote> -->
                 <default>NULL</default>
-            </input_parameter>
-            <input_parameter>
-                <name>input_rows</name>
-                <type>int</type>
-                <default>NULL</default>
-            </input_parameter>
-
-           <!-- Below is output parameter-->
-            <output_parameter>
-                <name>coef</name>
-                <type>double precision[]</type>
-            </output_parameter>
-            <output_parameter>
-                <name>r2</name>
-                <type>double precision</type>
-            </output_parameter>
-            <output_parameter>
-                <name>std_err</name>
-                <type>double precision[]</type>
-            </output_parameter>
-            <output_parameter>
-                <name>t_stats</name>
-                <type>double precision[]</type>
-            </output_parameter>
-            <output_parameter>
-                <name>p_values</name>
-                <type>double precision[]</type>
-            </output_parameter>
+           </input_parameter>
+           <input_parameter>
+                <name>heteroskedasticity_option</name>
+                <type>boolean</type>
+                <quote>false</quote>
+           </input_parameter>
         </method>
 
         <method>
-            <name>ctas_linregr</name>
+          <!-- evaluate function for general hetero case -->
+          <name>linregr_eval_hetero</name>
+          <create>true</create>
+          <template>
+            select madlibtestdata.linregr_eval_hetero(
+            {source_name}, -- input dataset name
+            {dependent_varname}, -- dependent variable name
+            {independent_varname}, -- independent variable name
+            {heteroskedasticity_option}, -- whether to compute hetero...
+            {eval_r_table}   -- R result evaluation table
+            ) as report;
+          </template>
+
+          <input_parameter>
+            <name>source_name</name>
+            <type>text</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>dependent_varname</name>
+            <type>text</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>independent_varname</name>
+            <type>text</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>heteroskedasticity_option</name>
+            <type>boolean</type>
+            <quote>false</quote>
+          </input_parameter>
+
+          <input_parameter>
+            <name>eval_r_table</name>
+            <type>text</type>
+          </input_parameter>
+
+          <output_parameter>
+            <name>report</name>
+            <type>double precision</type>
+          </output_parameter>
+
+        </method>
+
+            <method>
+          <!-- evaluate function for general hetero case -->
+          <name>linregr_eval_grouping</name>
+          <create>true</create>
+          <template>
+            select madlibtestdata.linregr_eval_grouping(
+            {source_name}, -- input dataset name
+            {dependent_varname}, -- dependent variable name
+            {independent_varname}, -- independent variable name
+            {grouping_vars},   -- variables to group
+            {hetero_option}, -- whether to compute hetero...
+            {eval_r_table}   -- R result evaluation table
+            ) as report;
+          </template>
+
+          <input_parameter>
+            <name>source_name</name>
+            <type>text</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>dependent_varname</name>
+            <type>text</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>independent_varname</name>
+            <type>text</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>grouping_vars</name>
+            <type>text[]</type>
+          </input_parameter>
+
+          <input_parameter>
+            <name>hetero_option</name>
+            <type>boolean</type>
+            <quote>false</quote>
+          </input_parameter>
+
+          <input_parameter>
+            <name>eval_r_table</name>
+            <type>text</type>
+          </input_parameter>
+
+          <output_parameter>
+            <name>report</name>
+            <type>double precision</type>
+          </output_parameter>
+
+        </method>
+
+        <method>
+            <name>linregr_train_group</name>
+            <create>true</create>
             <template>
-                CREATE TABLE {table_name} AS
-                SELECT {madlib_schema}.linregr(
-                    {dependent_varname}         --dependent_varname
-                    ,{independent_varname})     --independent_varname
-                    FROM {source_table}
-                ;
-                INSERT INTO {table_name}
-                    SELECT {madlib_schema}.linregr(
-                    {dependent_varname}         --dependent_varname
-                    ,{independent_varname})     --independent_varname
-                    FROM {source_table}
-                ;
-                DROP TABLE {table_name};
+                SELECT {madlib_schema}.linregr_train(
+                        {source_table}         -- input table name
+                        ,{out_table}            -- output table name
+                        ,{dependent_varname}    -- dependent_varname
+                        ,{independent_varname}  -- independent_varname
+                        ,{group_cols}              -- grouping column names
+                );
             </template>
-            <input_parameter>
-                <name>table_name</name>
-                <type>text</type>
-                <quote>false</quote>
-            </input_parameter>
             <input_parameter>
                 <name>source_table</name>
                 <type>text</type>
-                <quote>false</quote>
+                <!-- <quote>false</quote> -->
+           </input_parameter>
+           <input_parameter>
+                <name>out_table</name>
+                <type>text</type>
+                <!-- <quote>false</quote> -->
            </input_parameter>
            <input_parameter>
                 <name>dependent_varname</name>
                 <type>text</type>
-                <quote>false</quote>
+                <!-- <quote>false</quote> -->
                 <default>y</default>
            </input_parameter>
            <input_parameter>
                 <name>independent_varname</name>
                 <type>text</type>
-                <quote>false</quote>
+                <!-- <quote>false</quote> -->
                 <default>x</default>
            </input_parameter>
+           <input_parameter>
+                <name>group_cols</name>
+                <type>varchar[]</type>
+                <!-- <quote>false</quote> -->
+                <default>NULL</default>
+           </input_parameter>
         </method>
-
         <method>
-            <name>group_by_linregr</name>
+            <name>linregr_train</name>
+            <create>true</create>
             <template>
-                SELECT {madlib_schema}.linregr(
-                    y, x), id
-                    FROM {table_name}
-                    group by id
-                    order by id;
+                SELECT {madlib_schema}.linregr_train(
+                        {source_table}         -- input table name
+                        ,{out_table}            -- output table name
+                        ,{dependent_varname}    -- dependent_varname
+                        ,{independent_varname}  -- independent_varname
+                );
             </template>
             <input_parameter>
-                <name>table_name</name>
+                <name>source_table</name>
                 <type>text</type>
-                <quote>false</quote>
-            </input_parameter>
+                <!-- <quote>false</quote> -->
+           </input_parameter>
+           <input_parameter>
+                <name>out_table</name>
+                <type>text</type>
+                <!-- <quote>false</quote> -->
+           </input_parameter>
+           <input_parameter>
+                <name>dependent_varname</name>
+                <type>text</type>
+                <!-- <quote>false</quote> -->
+                <default>y</default>
+           </input_parameter>
+           <input_parameter>
+                <name>independent_varname</name>
+                <type>text</type>
+                <!-- <quote>false</quote> -->
+                <default>x</default>
+           </input_parameter>
         </method>
     </algorithm>
-
 
     <algorithm>
          <name>logistic_regression</name>
@@ -6665,7 +6768,6 @@
          </method>
 
       </algorithm>
-
       <algorithm>
         <name>elastic_net</name>
         <method>
@@ -6815,7 +6917,6 @@
             <name>col_ind_var</name>
             <type>varchar</type>
           </input_parameter>
-
           <input_parameter>
             <name>col_dep_var</name>
             <type>varchar</type>

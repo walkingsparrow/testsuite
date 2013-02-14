@@ -261,5 +261,20 @@ FROM general_cv_generalcv_logregr AS cv
 WHERE cv.runid = ts.runid AND cv.testitemname = ts.itemname)
 WHERE itemname in (select testitemname from general_cv_generalcv_logregr);
 
+update testitemresult as ts
+set evaluation_function = (
+    select report
+    from linear_regression_linregr_eval_hetero as hetero
+    where hetero.runid = ts.runid and hetero.testitemname = ts.itemname)
+where itemname in (
+    select testitemname from linear_regression_linregr_eval_hetero
+);
 
-
+update testitemresult as ts
+set evaluation_function = (
+    select report
+    from linear_regression_linregr_eval_grouping as gr
+    where gr.runid = ts.runid and gr.testitemname = ts.itemname)
+where itemname in (
+    select testitemname from linear_regression_linregr_eval_grouping
+);

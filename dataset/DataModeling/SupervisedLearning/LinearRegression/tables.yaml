@@ -17,8 +17,8 @@ tables :
       args :
           data : "http://archive.ics.uci.edu/ml/machine-learning-databases/00211/CommViolPredUnnormalizedData.txt"
           desc : "./desc/lin_communities_unnormalized.desc"
-    - id : lin_communities_unnormalized_wi 
-      args : 
+    - id : lin_communities_unnormalized_wi
+      args :
           data : "http://archive.ics.uci.edu/ml/machine-learning-databases/00211/CommViolPredUnnormalizedData.txt"
           desc : "./desc/lin_communities_unnormalized.desc"
     - id : lin_communities_wi
@@ -34,16 +34,16 @@ tables :
           data : "http://www.bliasoft.com/Documents/DataConcrete.txt"
           desc : "./desc/lin_concrete.desc"
     - id : lin_flare_oi
-      cmd : "./conv_flare.sh <data1> <data2> <desc> <sql> <table>" 
+      cmd : "./conv_flare.sh <data1> <data2> <desc> <sql> <table>"
       args :
           data1 : "http://archive.ics.uci.edu/ml/machine-learning-databases/solar-flare/flare.data1"
           data2 : "http://archive.ics.uci.edu/ml/machine-learning-databases/solar-flare/flare.data2"
           desc : "./desc/lin_flare.desc"
     - id : lin_flare_wi
-      cmd : "./conv_flare.sh <data1> <data2> <desc> <sql> <table>"   
+      cmd : "./conv_flare.sh <data1> <data2> <desc> <sql> <table>"
       args :
-          data1 : "http://archive.ics.uci.edu/ml/machine-learning-databases/solar-flare/flare.data1" 
-          data2 : "http://archive.ics.uci.edu/ml/machine-learning-databases/solar-flare/flare.data2" 
+          data1 : "http://archive.ics.uci.edu/ml/machine-learning-databases/solar-flare/flare.data1"
+          data2 : "http://archive.ics.uci.edu/ml/machine-learning-databases/solar-flare/flare.data2"
           desc : "./desc/lin_flare.desc"
     - id : lin_forestfires_oi
       args :
@@ -71,7 +71,7 @@ tables :
           desc : "./desc/lin_imports_85.desc"
     - id : lin_machine_oi
       args :
-          data : "http://archive.ics.uci.edu/ml/machine-learning-databases/cpu-performance/machine.data" 
+          data : "http://archive.ics.uci.edu/ml/machine-learning-databases/cpu-performance/machine.data"
           desc : "./desc/lin_machine.desc"
     - id : lin_machine_wi
       args :
@@ -133,4 +133,34 @@ tables :
       args :
           data : "http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv"
           desc : "./desc/lin_winequality_white.desc"
+    - id : lin_ornstein_oi
+      args :
+          data : "http://dsfs.FSF"
+          desc : "sdsdsd"
+    - id : lin_ornstein_wi
+      args :
+          data : "http://sfs.asfas"
+          desc : "ksfhsk"
+    - id : lin_ornstein
+      args :
+          data : "http://sfs.asfas"
+          desc : "ksfhsk"
+    - id : evaluation_lin_hsd_dummy
+      args :
+          dat : "http://sds.sdfsf"
+          desc : "kjkjl"
+    - id : evaluation_lin_hsd
+      args :
+          dat : "http://kjlj.sds"
+          desc : "kjljo"
+    - id : evaluation_lin_grouping_dummy
+      args :
+          dat : "http://kjlj.sds"
+          desc : "kjljo"
+    - id : evaluation_lin_grouping
+      args :
+          dat : "http://kjlj.sds"
+          desc : "kjljo"
+
+
 

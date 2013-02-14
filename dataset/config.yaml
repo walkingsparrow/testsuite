@@ -1,18 +1,18 @@
 DataModeling :
     SupervisedLearning :
         Convex :
-        DecisionTree : 
-        LinearRegression : 
-        LogisticRegression : 
-        MultinomialLogisticRegression : 
-        NaiveBayesClassification : 
-        RandomForest : 
-        SupportVectorMachines : 
-        GeneralCV : 
-    UnsupervisedLearning : 
-        kMeansClustering : 
-        AssociationRules : 
-        ParallelLatentDirichletAllocation : 
+        DecisionTree :
+        LinearRegression :
+        LogisticRegression :
+        MultinomialLogisticRegression :
+        NaiveBayesClassification :
+        RandomForest :
+        SupportVectorMachines :
+        GeneralCV :
+    UnsupervisedLearning :
+        kMeansClustering :
+        AssociationRules :
+        ParallelLatentDirichletAllocation :
 InferentialStatistics :
-    HypothesisTests : 
+    HypothesisTests :
 Common :

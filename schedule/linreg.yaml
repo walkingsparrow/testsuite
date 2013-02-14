@@ -1,0 +1,8 @@
+- cases : case_linear
+  platform : GPDB_4.2.3.0
+
+- cases : case_linregr_hetero
+  platform : GPDB_4.2.3.0
+
+- cases : case_linregr_grouping
+  platform : GPDB_4.2.3.0

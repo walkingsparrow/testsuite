@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <test_suites>
     <test_type>feature</test_type>
-    <multi_test_suites>        
+    <multi_test_suites>
         <algorithm>naive_bayes</algorithm>
         <methods>
-            <method>         
+            <method>
                 <name>argmax</name>
                 <parameter>
                     <name>benchmark</name>
-                    <value>TemplateExecutor</value>          
-                </parameter>  
+                    <value>TemplateExecutor</value>
+                </parameter>
             </method>
             <method>
                 <name>test_create_nb_prepared_data_tables</name>
@@ -81,22 +81,22 @@
                     <value>TemplateExecutor</value>
                 </parameter>
             </method>
-        </methods> 
+        </methods>
 
         <test_suite>
             <name>nb_argmax</name>
-            <comments>     
+            <comments>
                 It is to verify argmax with different datasets
             </comments>
-            <!-- It indicate max execution times--> 
-            <execute_rate>1</execute_rate>            
+            <!-- It indicate max execution times-->
+            <execute_rate>1</execute_rate>
             <method>
                 <name>argmax</name>
                 <list_parameter>
                     <name>value_column</name>
                     <value>attributes[1]</value>
                     <value>attributes[2]</value>
-                </list_parameter> 
+                </list_parameter>
                 <list_parameter>
                     <name>source_table</name>
                     <value>madlibtestdata.nb_recordlink</value>

@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<test_suites>
+  <test_type>feature</test_type>
+  <multi_test_suites>
+    
+    <algorithm>linear_regression</algorithm>
+    <methods>
+      <method>
+        <name>linregr_eval_grouping</name>
+        <parameter>
+          <name>benchmark</name>
+          <value>TemplateExecutor</value>
+        </parameter>
+      </method>
+    </methods>
+
+    <test_suite>
+      <name>linregr_grouping_output_test</name>
+      <comments>
+        linear regression grouping output test
+      </comments>
+      <execute_rate>1</execute_rate>
+
+      <method>
+        <name>linregr_eval_grouping</name>
+
+        <parameter>
+          <name>source_name</name>
+          <value>lin_ornstein</value>
+        </parameter>
+        
+        <parameter>
+          <name>dependent_varname</name>
+          <value>interlocks</value>
+        </parameter>
+
+        <parameter>
+          <name>independent_varname</name>
+          <value>'array[1, assets, sector]'</value>
+        </parameter>
+
+        <parameter>
+          <name>grouping_vars</name>
+          <value>{nation}</value>
+        </parameter>
+
+        <list_parameter>
+          <name>hetero_option</name>
+          <value>True</value>
+          <value>False</value>
+        </list_parameter>
+
+        <parameter>
+          <name>eval_r_table</name>
+          <value>madlibtestdata.evaluation_lin_grouping</value>
+        </parameter>
+
+      </method>
+    </test_suite>
+    
+  </multi_test_suites>
+</test_suites>

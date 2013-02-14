@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""This is the entry script of this project. 
+"""This is the entry script of this project.
 
 Most functions start with 'python run.py [-i][-g][-s]'"""
 import glob, os
@@ -16,7 +16,7 @@ Path = file_path.Path()
 
 def main():
     """Change the options, del -c -S -t -r. Modify -s. i.e. python run.py -s map.yaml"""
-    use = """usage: ./run.py --loaddata --gencase --init 
+    use = """usage: ./run.py --loaddata --gencase --init
                 --schedule map_file
                 --genreport run_id
         --init or -i for short, to clean up and init logger database
@@ -55,7 +55,7 @@ def main():
         run_sql.runSQL("update %s.testitemseq set runid = runid + 1;"%schema, psqlArgs = psql_args)
         ret = run_sql.runSQL("select max(runid) from %s.testitemseq;"%schema, psqlArgs = psql_args)
         run_id = ret.splitlines()[2].strip()
-        
+
         for plan in plans:
             if len(plan) > 4:
                 sys.exit('ERROR:-s arg file has some grammer error, too many lines.')
@@ -71,13 +71,13 @@ def main():
                 isUnique = True
             else:
                 isUnique = False
-            
+
             version = run_case.runCases(filename, plan['skip'], isList, isUnique, plan['platform'], analyticsTools, testConfiger, run_id)
             if plan['skip']:
                 run_sql.runSQL(Path.BootstrapDir + 'skipsqlfile.sql', psqlArgs = psql_args, isFile = True)
                    
             run_sql.runSQL(Path.BootstrapDir + 'post.sql', psqlArgs = psql_args, onErrorStop = False, isFile = True)
-            
+
             gen_report.generate_report(psql_args, schema, run_id, plan['platform'], Path.ReportDir)
 
     #load data set to all databases to test

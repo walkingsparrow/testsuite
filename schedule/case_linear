@@ -1,6 +1,6 @@
-# TestSuit Name : linear_regression_functionalities
+# TestSuite Name : linear_regression_functionalities
 # It is to test basic functionalities of linear regression.
-# Start TestSuit ==========
+# Start TestSuite ==========
 linear_regression_functionalities_0_0
 linear_regression_functionalities_0_1
 linear_regression_functionalities_0_2
@@ -40,9 +40,9 @@ linear_regression_functionalities_0_35
 linear_regression_functionalities_0_36
 linear_regression_functionalities_0_37
 
-# TestSuit Name : linear_regression_corner_scenarios
+# TestSuite Name : linear_regression_corner_scenarios
 # It is to test the corner scenarios of linear regression.
-# Start TestSuit ==========
+# Start TestSuite ==========
 linear_regression_corner_scenarios_0_0
 linear_regression_corner_scenarios_0_1
 linear_regression_corner_scenarios_0_2
@@ -50,29 +50,67 @@ linear_regression_corner_scenarios_0_3
 linear_regression_corner_scenarios_0_4
 linear_regression_corner_scenarios_0_5
 
-# TestSuit Name : linear_regression_negative_dependent_varname
-# It is to test the negative scenarios of linear regression.
-# Start TestSuit ==========
+# TestSuite Name : linear_regression_negative_input_table
+# It is to test the invalid entries for input table name.
+# Start TestSuite ==========
+linear_regression_negative_input_table_0_0
+linear_regression_negative_input_table_0_1
+linear_regression_negative_input_table_0_2
+linear_regression_negative_input_table_0_3
+
+# TestSuite Name : linear_regression_negative_output_table
+# It is to test the invalid entries for output table name.
+# Start TestSuite ==========
+linear_regression_negative_output_table_0_0
+linear_regression_negative_output_table_0_1
+linear_regression_negative_output_table_0_2
+linear_regression_negative_output_table_0_3
+linear_regression_negative_output_table_0_4
+linear_regression_negative_output_table_0_5
+
+# TestSuite Name : linear_regression_negative_dependent_varname
+# It is to test the invalid inputs of dependent variable.
+# Start TestSuite ==========
 linear_regression_negative_dependent_varname_0_0
 linear_regression_negative_dependent_varname_0_1
 linear_regression_negative_dependent_varname_0_2
+linear_regression_negative_dependent_varname_0_3
+linear_regression_negative_dependent_varname_0_4
+linear_regression_negative_dependent_varname_0_5
 
-# TestSuit Name : linear_regression_negative_independent_varname
-# It is to test the negative scenarios of linear regression.
-# Start TestSuit ==========
+# TestSuite Name : linear_regression_negative_independent_varname
+# It is to test the invalid values of independent variable of linear regression
+# Start TestSuite ==========
 linear_regression_negative_independent_varname_0_0
 linear_regression_negative_independent_varname_0_1
 linear_regression_negative_independent_varname_0_2
+linear_regression_negative_independent_varname_0_3
+linear_regression_negative_independent_varname_0_4
+linear_regression_negative_independent_varname_0_5
+linear_regression_negative_independent_varname_0_6
+linear_regression_negative_independent_varname_0_7
+linear_regression_negative_independent_varname_0_8
 
-# TestSuit Name : linear_regression_ctas
-# It is to test basic functionalities of linear regression with create table as.
-# Start TestSuit ==========
-linear_regression_ctas_0_0
-linear_regression_ctas_0_1
-
-# TestSuit Name : linear_regression_group_by
+# TestSuite Name : linear_regression_group_by
 # It is to test basic functionalities of linear regression with group by.
-# Start TestSuit ==========
+# Start TestSuite ==========
 linear_regression_group_by_0_0
 linear_regression_group_by_0_1
+linear_regression_group_by_0_2
+linear_regression_group_by_0_3
+linear_regression_group_by_0_4
+
+# TestSuite Name : linear_regression_negative_heteroscedasticity
+# It is to test the invalid inputs of heteroskedasticity boolean.
+# Start TestSuite ==========
+linear_regression_negative_heteroscedasticity_0_0
+linear_regression_negative_heteroscedasticity_0_1
+linear_regression_negative_heteroscedasticity_0_2
+linear_regression_negative_heteroscedasticity_0_3
+linear_regression_negative_heteroscedasticity_0_4
+linear_regression_negative_heteroscedasticity_0_5
+linear_regression_negative_heteroscedasticity_0_6
+linear_regression_negative_heteroscedasticity_0_7
+linear_regression_negative_heteroscedasticity_0_8
+linear_regression_negative_heteroscedasticity_0_9
 
