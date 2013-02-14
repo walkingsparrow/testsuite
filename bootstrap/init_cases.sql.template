@@ -223,7 +223,10 @@ CREATE OR REPLACE VIEW testresultreport AS
 
 
         WHEN tr.itemname like 'plda%negative%'
-        THEN CASE WHEN tr.issuccessful = false AND (
+        THEN CASE
+              WHEN tr.issuccessful = true
+              THEN 'PASSED'
+              WHEN tr.issuccessful = false AND (
                                                    tr.result_info LIKE '%column "contents" is of type integer[] but expression is of type text[]%'
                         OR tr.result_info like '%column "contents" does not exist%'
                         OR tr.result_info like '%column "dict" does not exist%'
@@ -255,7 +258,7 @@ CREATE OR REPLACE VIEW testresultreport AS
     -- Naive Bayes
     WHEN (tr.itemname like 'nb_%test_calculate_accuracy%')
     THEN  CASE  WHEN    tr.issuccessful = true
-                    AND tr.result_info >= trb.result_info 
+                    AND tr.result_info >= trb.result_info
                 THEN 'PASSED'
                 ELSE 'FAILED'
           END
