@@ -7,7 +7,7 @@ create or replace function madlibtestdata.generalcv_linregr (
     tbl_r_rst       varchar     -- R's result
 ) returns double precision as $$
 declare
-    tbl_output      varchar := madlib.__cv_unique_string();
+    tbl_output      varchar := madlib.__unique_string();
     cv_error        double precision;
     cv_error_std    double precision;
     r_error         double precision;
@@ -68,7 +68,7 @@ create or replace function madlibtestdata.generalcv_logregr (
     tbl_r_rst       varchar     -- R's result
 ) returns double precision as $$
 declare
-    tbl_output      varchar := madlib.__cv_unique_string();
+    tbl_output      varchar := madlib.__unique_string();
     cv_error        double precision;
     cv_error_std    double precision;
     r_error         double precision;

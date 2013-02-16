@@ -9,7 +9,7 @@ create or replace function madlibtestdata.ridge_precision (
 ) returns double precision as $$
 declare
     rst double precision;
-    tbl_output varchar := madlib.__cv_unique_string();
+    tbl_output varchar := madlib.__unique_string();
 begin
     execute 'select madlib.ridge_newton_train(
         $_valString$madlibtestdata.'|| tbl_source ||'$_valString$,
