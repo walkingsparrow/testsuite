@@ -118,65 +118,37 @@ CREATE OR REPLACE VIEW testresultreport AS
 
     WHEN tr.itemname like 'linear_regression%'
     THEN
-        CASE WHEN tr.issuccessful = trb.issuccessful
-        THEN 'PASSED'
-        ELSE 'FAILED'
+        CASE  WHEN tr.issuccessful = trb.issuccessful
+              THEN 'PASSED'
+              ELSE 'FAILED'
         END
 
     WHEN tr.itemname like 'linregr_hetero_output_test%linregr_eval_hetero%'
-    THEN CASE WHEN tr.issuccessful and tr.evaluation_function = 1
+    THEN CASE WHEN    tr.issuccessful 
+                and   tr.evaluation_function = 1
               THEN 'PASSED'
               ELSE 'FAILED'
-    END
+         END
+    
+    WHEN tr.itemname in ('linregr_grouping_output_test_0_0_linregr_eval_grouping_0',
+        'linregr_grouping_output_test_0_1_linregr_eval_grouping_0') 
+    THEN CASE WHEN  tr.issuccessful 
+                and tr.evaluation_function = 1
+              THEN 'PASSED'
+              ELSE 'FAILED'
+           END
 
-    WHEN tr.itemname in (
-        'linregr_grouping_output_test_0_0_linregr_eval_grouping_0',
-        'linregr_grouping_output_test_0_1_linregr_eval_grouping_0'
-    ) THEN CASE WHEN tr.issuccessful and tr.evaluation_function = 1
-    THEN 'PASSED'
-    ELSE 'FAILED'
-    END
+    WHEN      tr.itemname like 'km_%negative%' 
+    THEN  CASE WHEN tr.issuccessful = trb.issuccessful
+            THEN 'PASSED'
+            ELSE 'FAILED'
+          END
 
-    WHEN tr.itemname in (
-        'km_pp_seeding_negative_relsource_0_0_km_pp_seeding_default_fndist_initialcentroids_0',
-        'km_random_seeding_negative_relsource_0_0_km_random_seeding_default_initialcentroids_0',
-        'km_pp_seeding_negative_relsource_0_1_km_pp_seeding_default_fndist_initialcentroids_0',
-        'km_random_seeding_negative_relsource_0_1_km_random_seeding_default_initialcentroids_0',
-        'km_pp_seeding_negative_exprpoint_0_0_km_pp_seeding_default_fndist_initialcentroids_0',
-        'km_random_seeding_negative_exprpoint_0_0_km_random_seeding_default_initialcentroids_0',
-        'km_pp_seeding_negative_exprpoint_0_1_km_pp_seeding_default_fndist_initialcentroids_0',
-        'km_random_seeding_negative_exprpoint_0_1_km_random_seeding_default_initialcentroids_0',
-        'km_pp_seeding_negative_fndist_0_0_km_pp_seeding_default_fndist_initialcentroids_0',
-        'km_pp_seeding_negative_fndist_0_1_km_pp_seeding_default_fndist_initialcentroids_0',
-        'km_pp_seeding_negative_fndist_0_2_km_pp_seeding_default_fndist_initialcentroids_0',
-        'km_pp_seeding_negative_fndist_0_3_km_pp_seeding_default_fndist_initialcentroids_0',
-        'km_pp_seeding_negative_initialcentroids_0_1_km_pp_seeding_default_fndist_initialcentroids_0',
-        'km_random_seeding_negative_initialcentroids_0_1_km_random_seeding_default_initialcentroids_0',
-        'km_random_seeding_negative_initialcentroids_0_0_km_random_seeding_default_initialcentroids_0',
-        'km_negative_nonfinite_0_0_km_default_fndist_aggcentroid_maxiter_minfrac_0',
-        'km_negative_nonfinite_0_1_km_default_fndist_aggcentroid_maxiter_minfrac_0',
-        'km_pp_negative_noninfinite_0_0_km_pp_default_fndist_aggcentroid_maxiter_minfrac_0',
-        'km_pp_negative_noninfinite_0_1_km_pp_default_fndist_aggcentroid_maxiter_minfrac_0',
-        'km_random_negative_noninfinite_0_0_km_random_default_fndist_aggcentroid_maxiter_minfrac_0',
-        'km_random_negative_noninfinite_0_1_km_random_default_fndist_aggcentroid_maxiter_minfrac_0',
-        'km_negative_maxiter_0_0_km_default_fndist_aggcentroid_maxiter_minfrac_0',
-        'km_pp_negative_maxiter_0_0_km_pp_default_fndist_aggcentroid_maxiter_minfrac_0',
-        'km_random_negative_maxiter_0_0_km_random_default_fndist_aggcentroid_maxiter_minfrac_0',
-        'km_negative_minfrac_0_0_km_default_fndist_aggcentroid_maxiter_minfrac_0',
-        'km_negative_minfrac_0_1_km_default_fndist_aggcentroid_maxiter_minfrac_0',
-        'km_pp_negative_minfrac_0_0_km_pp_default_fndist_aggcentroid_maxiter_minfrac_0',
-        'km_pp_negative_minfrac_0_1_km_pp_default_fndist_aggcentroid_maxiter_minfrac_0',
-        'km_random_negative_minfrac_0_0_km_random_default_fndist_aggcentroid_maxiter_minfrac_0',
-        'km_random_negative_minfrac_0_1_km_random_default_fndist_aggcentroid_maxiter_minfrac_0',
-        'km_pp_seeding_negative_k_0_0_km_pp_seeding_default_fndist_initialcentroids_0',
-        'km_pp_seeding_negative_k_0_1_km_pp_seeding_default_fndist_initialcentroids_0',
-        'km_random_seeding_negative_k_0_0_km_random_seeding_default_initialcentroids_0',
-        'km_random_seeding_negative_k_0_1_km_random_seeding_default_initialcentroids_0',
-        'km_nonfinite_2water_treatment_noninfinite_0_0_km_default_fndist_aggcentroid_maxiter_minfrac_0',
+    WHEN tr.itemname in ('km_nonfinite_2water_treatment_noninfinite_0_0_km_default_fndist_aggcentroid_maxiter_minfrac_0',
         'km_pp_noninfinite_0_1_km_pp_default_fndist_aggcentroid_maxiter_minfrac_0',
         'km_random_noninfinite_0_1_km_random_default_fndist_aggcentroid_maxiter_minfrac_0')
         THEN CASE WHEN tr.issuccessful = false and
-              ( tr.result_info like '%relation "madlibtestdata.non_existing_table" does not exist%'
+              (   tr.result_info like '%relation "madlibtestdata.non_existing_table" does not exist%'
                or tr.result_info like '%Point coordinates (pid) are not a valid type%'
                or tr.result_info like '%schema "non_existing_schema" does not exist%'
                or tr.result_info like '%function "madlib.non_existing_squared_dist_func(DOUBLE PRECISION[], DOUBLE PRECISION[])" does not exist%'
@@ -189,20 +161,13 @@ CREATE OR REPLACE VIEW testresultreport AS
                or tr.result_info like '%Number of centroids is greater than number of points%'
                or tr.result_info like '%Number of iterations must be a non-negative integer%'
                or tr.result_info like '%Convergence threshold is not a valid value (must be a fraction between 0 and 1)%'
-               or tr.result_info like '%Number of clusters k must be a positive integer%')
-         THEN 'PASSED'
-         ELSE 'FAILED'
-         END
-
-        WHEN tr.itemname in ('km_pp_seeding_negative_k_0_2_km_pp_seeding_default_fndist_initialcentroids_0', 'km_random_seeding_negative_k_0_2_km_random_seeding_default_initialcentroids_0')
-        THEN
-             CASE WHEN tr.issuccessful = trb.issuccessful and tr.evaluation_function = trb.evaluation_function
-                  THEN 'PASSED'
-                  ELSE 'FAILED'
-                  END
-
-        WHEN tr.itemname in (
-          'km_maxnumiterations_0_0_km_default_fndist_aggcentroid_maxiter_0',
+               or tr.result_info like '%Number of clusters k must be a positive integer%'
+               or tr.result_info like 'function madlib.kmeans%does not exist'
+              )
+            THEN 'PASSED'
+            ELSE 'FAILED'
+            END
+     WHEN tr.itemname in ('km_maxnumiterations_0_0_km_default_fndist_aggcentroid_maxiter_0',
           'km_maxnumiterations_0_1_km_default_fndist_aggcentroid_maxiter_0',
           'km_maxnumiterations_0_2_km_default_fndist_aggcentroid_maxiter_0',
           'km_minfracreassigned_0_0_km_default_fndist_aggcentroid_maxiter_minfrac_0',
@@ -219,31 +184,34 @@ CREATE OR REPLACE VIEW testresultreport AS
           'km_random_maxnumiterations_0_2_km_random_default_fndist_aggcentroid_maxiter_0',
           'km_random_minfracreassigned_0_0_km_random_default_fndist_aggcentroid_maxiter_minfrac_0',
           'km_random_minfracreassigned_0_1_km_random_default_fndist_aggcentroid_maxiter_minfrac_0',
-          'km_random_minfracreassigned_0_2_km_random_default_fndist_aggcentroid_maxiter_minfrac_0' )
+          'km_random_minfracreassigned_0_2_km_random_default_fndist_aggcentroid_maxiter_minfrac_0' 
+        )
         THEN
-             CASE WHEN tr.issuccessful = trb.issuccessful and tr.evaluation_function >= 0.0
+             CASE WHEN  tr.issuccessful = trb.issuccessful 
                   THEN 'PASSED'
                   ELSE 'FAILED'
                   END
 
         WHEN tr.itemname like 'km_%' and tr.itemname not like '%negative%'
-        THEN CASE WHEN tr.issuccessful = false
+        THEN CASE
+                  WHEN tr.issuccessful = false
                   THEN
                        CASE WHEN tr.itemname = 'km_default_4watertreatment_0_0_km_default_0'
                              and tr.result_info like '%At least one initial centroid has non-finite values%'
                             THEN 'PASSED'
                             ELSE 'FAILED'
                             END
-                  WHEN trb.evaluation_function IS NOT NULL
+                  WHEN  trb.evaluation_function IS NOT NULL
+                    AND tr.evaluation_function IS NOT NULL
                     THEN
                       CASE WHEN tr.evaluation_function IS NULL
                       THEN 'FAILED'
                       WHEN tr.evaluation_function='NaN' and trb.evaluation_function='NaN'
                       THEN 'PASSED'
                       WHEN (trb.evaluation_function - tr.evaluation_function) > 0.3
-                      THEN 'FAILED : silhouette decreased: baseline is:'::text  || ((trb.evaluation_function)::decimal(6,5))::text  || ' and actual value is '::text || ((tr.evaluation_function)::decimal(6,5))::text
+                      THEN 'FAILED'
                       WHEN (tr.evaluation_function - trb.evaluation_function) > 0.3
-                      THEN 'PASSED: silhouette increased: baseline is:'::text  || ((trb.evaluation_function)::decimal(6,5))::text  || ' and actual value is '::text || ((tr.evaluation_function)::decimal(6,5))::text
+                      THEN 'FAILED'
                       ELSE 'PASSED'
                       END
                   WHEN tr.result_info = trb.result_info
@@ -251,13 +219,13 @@ CREATE OR REPLACE VIEW testresultreport AS
                   ELSE 'FAILED'
                END
 
-
         WHEN tr.itemname like 'plda%negative%'
         THEN CASE
               WHEN tr.issuccessful = true
               THEN 'PASSED'
-              WHEN tr.issuccessful = false AND (
-                                                   tr.result_info LIKE '%column "contents" is of type integer[] but expression is of type text[]%'
+              WHEN tr.issuccessful = false 
+                AND (
+                           tr.result_info LIKE '%column "contents" is of type integer[] but expression is of type text[]%'
                         OR tr.result_info like '%column "contents" does not exist%'
                         OR tr.result_info like '%column "dict" does not exist%'
                         OR tr.result_info like '%relation "madlibtestdata.plda_invalid_column_gcounts_datatype_model" does not exist%'

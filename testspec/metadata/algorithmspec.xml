@@ -204,6 +204,7 @@
                 <name>initial_centroids</name>
                 <type>FLOAT8[][]</type>
                 <default>NULL</default>
+                <quote>false</quote>
              </input_parameter>
              <!-- Output parameters -->
             <output_parameter>
@@ -272,6 +273,7 @@
                 <name>initial_centroids</name>
                 <type>FLOAT8[][]</type>
                 <default>NULL</default>
+                <quote>false</quote>
              </input_parameter>
              <!-- Output parameters -->
             <output_parameter>
@@ -306,6 +308,7 @@
              <input_parameter>
                 <name>initial_centroids</name>
                 <type>FLOAT8[][]</type>
+                <quote>false</quote>
              </input_parameter>
              <!-- Output parameters -->
             <output_parameter>
@@ -342,6 +345,7 @@
              <input_parameter>
                 <name>initial_centroids</name>
                 <type>FLOAT8[][]</type>
+                <quote>false</quote>
              </input_parameter>
              <input_parameter>
                 <name>fn_dist_kmeans</name>
@@ -389,6 +393,7 @@
              <input_parameter>
                 <name>initial_centroids</name>
                 <type>FLOAT8[][]</type>
+                <quote>false</quote>
              </input_parameter>
              <input_parameter>
                 <name>fn_dist_kmeans</name>
@@ -442,6 +447,7 @@
              <input_parameter>
                 <name>initial_centroids</name>
                 <type>FLOAT8[][]</type>
+                <quote>false</quote>
              </input_parameter>
              <input_parameter>
                 <name>fn_dist_kmeans</name>
@@ -501,6 +507,7 @@
              <input_parameter>
                 <name>initial_centroids</name>
                 <type>FLOAT8[][]</type>
+                <quote>false</quote>
              </input_parameter>
              <input_parameter>
                 <name>fn_dist_kmeans</name>
@@ -662,6 +669,7 @@
              <input_parameter>
                 <name>initial_centroids</name>
                 <type>FLOAT8[][]</type>
+                <quote>false</quote>
              </input_parameter>
              <input_parameter>
                 <name>fn_dist_kmeans</name>

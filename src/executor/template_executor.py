@@ -23,6 +23,8 @@ the input and output parameters willbe stored in result database.
 </algorithm> 
 """
 import sys, os
+import re
+
 sys.path.append('../src/')
 
 from utility import run_sql, file_path, db_out, argparse
@@ -217,7 +219,14 @@ class InputParameter(Parser):
 
         #NULL value for any type
         if value == 'NULL':
-            return value    
+            return value
+            
+        if re.search(r"ARRAY\[.*\]", value.upper()):
+            value = value.upper().replace("NAN", "'NAN'::double precision")
+            value = value.replace("INFINITY", "'INFINITY'::double precision")
+            if self.type.lower() != "text" and self.type.lower() != "varchar":
+                return value + "::" + self.type
+            
         #is the invoke need quote and dose the value support quote itself?
         if disable_quote and not self.quote:    
             return value    
