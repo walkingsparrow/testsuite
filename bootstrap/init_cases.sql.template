@@ -57,6 +57,8 @@ CREATE OR REPLACE VIEW testresultreport AS
     WHEN tr.issuccessful IS NULL
     THEN 'SKIPPED'
 
+    -- the below implies that if a test is not present in trb then it will be
+    --   marked as skipped
     WHEN trb.itemname IS NULL
     THEN 'NEW CASES'
 
@@ -123,22 +125,45 @@ CREATE OR REPLACE VIEW testresultreport AS
               ELSE 'FAILED'
         END
 
+    WHEN tr.itemname like 'logregr_output%eval_logregr_train%'
+    THEN CASE WHEN tr.issuccessful and tr.evaluation_function = 100
+    THEN 'PASSED'
+    ELSE 'FAILED'
+    END
+
+    WHEN tr.itemname like 'logistic_regression'
+    THEN
+      CASE  WHEN tr.itemname like 'logistic_regression_negative%'
+            THEN CASE WHEN tr.issuccessful = false
+                  THEN 'PASSED'
+                  ELSE 'FAILED'
+                END
+            WHEN tr.itemname like 'logistic_regression_baseline%'
+              OR tr.itemname like 'logistic_regression_convergence_threshold%'
+              OR tr.itemname like 'logistic_regression_corner_scenarios%'
+            THEN CASE WHEN tr.result_info like '%Logregr error%'
+                        OR tr.result_info like '%column%does not exist%'
+                      THEN 'PASSED'
+                      ELSE 'FAILED'
+                 END
+      END
+
     WHEN tr.itemname like 'linregr_hetero_output_test%linregr_eval_hetero%'
-    THEN CASE WHEN    tr.issuccessful 
+    THEN CASE WHEN    tr.issuccessful
                 and   tr.evaluation_function = 1
               THEN 'PASSED'
               ELSE 'FAILED'
          END
-    
+
     WHEN tr.itemname in ('linregr_grouping_output_test_0_0_linregr_eval_grouping_0',
-        'linregr_grouping_output_test_0_1_linregr_eval_grouping_0') 
-    THEN CASE WHEN  tr.issuccessful 
+        'linregr_grouping_output_test_0_1_linregr_eval_grouping_0')
+    THEN CASE WHEN  tr.issuccessful
                 and tr.evaluation_function = 1
               THEN 'PASSED'
               ELSE 'FAILED'
            END
 
-    WHEN      tr.itemname like 'km_%negative%' 
+    WHEN      tr.itemname like 'km_%negative%'
     THEN  CASE WHEN tr.issuccessful = trb.issuccessful
             THEN 'PASSED'
             ELSE 'FAILED'
@@ -184,10 +209,10 @@ CREATE OR REPLACE VIEW testresultreport AS
           'km_random_maxnumiterations_0_2_km_random_default_fndist_aggcentroid_maxiter_0',
           'km_random_minfracreassigned_0_0_km_random_default_fndist_aggcentroid_maxiter_minfrac_0',
           'km_random_minfracreassigned_0_1_km_random_default_fndist_aggcentroid_maxiter_minfrac_0',
-          'km_random_minfracreassigned_0_2_km_random_default_fndist_aggcentroid_maxiter_minfrac_0' 
+          'km_random_minfracreassigned_0_2_km_random_default_fndist_aggcentroid_maxiter_minfrac_0'
         )
         THEN
-             CASE WHEN  tr.issuccessful = trb.issuccessful 
+             CASE WHEN  tr.issuccessful = trb.issuccessful
                   THEN 'PASSED'
                   ELSE 'FAILED'
                   END
@@ -223,7 +248,7 @@ CREATE OR REPLACE VIEW testresultreport AS
         THEN CASE
               WHEN tr.issuccessful = true
               THEN 'PASSED'
-              WHEN tr.issuccessful = false 
+              WHEN tr.issuccessful = false
                 AND (
                            tr.result_info LIKE '%column "contents" is of type integer[] but expression is of type text[]%'
                         OR tr.result_info like '%column "contents" does not exist%'
@@ -301,12 +326,13 @@ CREATE OR REPLACE VIEW testresultreport AS
       WHEN  (trb.itemname like 'svm%'  ) and trb.evaluation_function IS NOT NULL AND (tr.evaluation_function / trb.evaluation_function) < 0.0000001
       THEN 'FAILED : Evaluation function of support vecotr machines decreased: baseline is '::text  || (trb.evaluation_function)::text  || ' and runtime is '::text  || (tr.evaluation_function)::text
 
-      WHEN  (trb.issuccessful = tr.issuccessful AND (trb.itemname like 'kmeans_%' or trb.itemname like 'multinomial_%'
-                                      or trb.itemname like 'logistic_%'  or trb.itemname like 'linear_%'
-                                      or trb.itemname like '%_c45_display%' or trb.itemname like 'svm_%0'
-                                      or (trb.itemname like 'rf%' and trb.itemname not like '%negative%' and (trb.itemname like '%_rf_train%' or trb.itemname like '%_rf_display%'))
-                                                                                                 )
-                      )
+      WHEN  (trb.issuccessful = tr.issuccessful
+        AND (trb.itemname like 'kmeans_%' or trb.itemname like 'multinomial_%'
+          or trb.itemname like 'logistic_%'  or trb.itemname like 'linear_%'
+          or trb.itemname like '%_c45_display%' or trb.itemname like 'svm_%0'
+          or (trb.itemname like 'rf%' and trb.itemname not like '%negative%' and (trb.itemname like '%_rf_train%' or trb.itemname like '%_rf_display%'))
+          )
+        )
       THEN  'PASSED'
 
 

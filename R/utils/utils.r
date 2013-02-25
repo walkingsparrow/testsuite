@@ -4,7 +4,10 @@ output.vec <- function(vec, type = "double precision[]", ending = ",", con)
     l <- length(vec)
     cat("    '{", file = con)
     for (k in 1:l) {
-        cat(vec[k], file = con)
+        if (is.null(vec[k]) || is.infinite(vec[k]) || is.na(vec[k]))
+            cat("Null", file = con)
+        else
+            cat(vec[k], file = con)
         if (k != l)
             cat(", ", file = con)
         else
@@ -16,7 +19,11 @@ output.vec <- function(vec, type = "double precision[]", ending = ",", con)
 
 output.one <- function(one, type = "double precision", ending = ",", con)
 {
-    cat(paste("    '", one, "'::", type, ending, sep = ""), file = con)
+    if (is.null(one) || is.infinite(one) || is.na(one)) {
+        cat(paste("    Null::", type, ending, sep = ""), file = con)
+    } else {
+        cat(paste("    '", one, "'::", type, ending, sep = ""), file = con)
+    }
 }
 
 ## ------------------------------------------------------------------------

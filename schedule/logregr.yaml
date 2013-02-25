@@ -1,0 +1,4 @@
+- cases : case_logistic_regression
+  platform : GPDB_4.2.3.0
+  skip : skip_knownissues
+  unique: true

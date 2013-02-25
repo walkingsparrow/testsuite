@@ -29,7 +29,6 @@
           <name>dataset_name</name>
           <value>lin_concrete_wi</value>
           <value>lin_auto_mpg_wi</value>
-          <value>lin_communities_unnormalized_wi</value>
           <value>lin_communities_wi</value>
           <value>lin_flare_wi</value>
           <value>lin_forestfires_wi</value>

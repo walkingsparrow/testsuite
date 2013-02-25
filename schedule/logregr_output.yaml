@@ -1,0 +1,2 @@
+- cases : case_logregr_output
+  platform : GPDB_4.2.3.0

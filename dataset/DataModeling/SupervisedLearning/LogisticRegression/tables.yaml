@@ -17,4 +17,7 @@ tables :
       args :
           data : "http://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wpbc.data"
           desc : "./desc/log_wpbc.desc"
-
+    - id : evaluation_logregr_train
+      args :
+          data : "http://sahdl.asfasf.com"
+          desc : "./desfdkl/sfsf"

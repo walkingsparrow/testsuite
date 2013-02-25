@@ -44,10 +44,10 @@ begin
             where fold = '|| fold ||' and dataset = $_valString$'|| dataset_name ||'$_valString$'
             into r_error;
 
-    if r_error >= cv_error - cv_error_std and r_error <= cv_error + cv_error_std then
-        compare_rst := 1;
+    if r_error >= cv_error - 1.28*cv_error_std and r_error <= cv_error + 1.28*cv_error_std then
+        compare_rst := 100;
     else
-        compare_rst := 0;
+        compare_rst := -100;
     end if;
 
     execute 'drop table if exists madlibtestdata.'|| tbl_output;
@@ -76,8 +76,8 @@ declare
 begin
     execute '
         select madlib.cross_validation_general(
-            $_valString$madlib.cv_logregr_train$_valString$,
-            $_valString${%data%, '|| col_ind_var ||', '|| col_dep_var ||', %model%, 100, cg, 1e-8}$_valString$::varchar[],
+            $_valString$madlib.logregr_train$_valString$,
+            $_valString${%data%,  %model%, '|| col_dep_var ||', '|| col_ind_var ||', 100, cg, 1e-8}$_valString$::varchar[],
             $_valString${varchar, varchar, varchar, varchar, integer, varchar, double precision}$_valString$::varchar[],
             NULL::varchar,
             NULL,
@@ -105,10 +105,10 @@ begin
             where fold = '|| fold ||' and dataset = $_valString$'|| dataset_name ||'$_valString$'
             into r_error;
 
-    if r_error >= cv_error - cv_error_std and r_error <= cv_error + cv_error_std then
-        compare_rst := 1;
+    if r_error >= cv_error - 1.28*cv_error_std and r_error <= cv_error + 1.28*cv_error_std then
+        compare_rst := 100;
     else
-        compare_rst := 0;
+        compare_rst := -100;
     end if;
 
     execute 'drop table if exists madlibtestdata.'|| tbl_output;

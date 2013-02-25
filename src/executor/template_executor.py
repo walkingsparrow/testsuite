@@ -2,25 +2,25 @@
 """This file is to parse algorithmspec.xml.
 
 There are multiply method for one algorithm.For each method, the template is the
-invoking sql of madlib. The input parameters is specified in test case spec, 
-and the output parameters are captured from the output of invoking sql. Both 
+invoking sql of madlib. The input parameters is specified in test case spec,
+and the output parameters are captured from the output of invoking sql. Both
 the input and output parameters willbe stored in result database.
 
 <?xml version='1.0' encoding='UTF-8'?>
 <algorithms>
     <algorithm>
          <name>kmeans</name>
-         <method>        
+         <method>
             <name>canopy</name>
             <template>
                 ...
             </template>
             <input_parameter>
-                ....         
+                ....
             </input_parameter>
         </method>
     </algorithms>
-</algorithm> 
+</algorithm>
 """
 import sys, os
 import re
@@ -40,7 +40,7 @@ class ExecutorSpec(Parser):
         algorithms          =   Parser.getNodeTag(self, self.xmlDoc, "algorithms")
         algorithm_list      =   Parser.getNodeList(self, algorithms, "algorithm")
         self.algorithm_map  =   {}
-        self.algorithms     =   [AlgorithmTemplate(algorithm, db_schema) 
+        self.algorithms     =   [AlgorithmTemplate(algorithm, db_schema)
                                  for algorithm in algorithm_list]
         for algorithm in self.algorithms:
             self.algorithm_map[algorithm.name] = algorithm
@@ -56,15 +56,15 @@ class ExecutorSpec(Parser):
         return self.algorithm_map[algorithm]
 
     def writeCreateSQL(self, file):
-        """Write the sql file to create the algorithm result table, which will 
+        """Write the sql file to create the algorithm result table, which will
         be stored after successfully invocation
-    
+
         param file: file name to be wrote
         """
 
         f = open(file, "w")
         for algorithm, template in self.algorithm_map.items():
-            [ f.write(method.generateCreateSQL(algorithm)) 
+            [ f.write(method.generateCreateSQL(algorithm))
                 for method in template.methods ]
 
 class AlgorithmTemplate(Parser):
@@ -99,9 +99,9 @@ class MethodTemplate(Parser):
         self.create         =   Parser.getNodeVal(self, self.top_node, "create")
         self.template       =   Parser.getNodeVal(self, self.top_node, "template")
         input_para_nodes    =   Parser.getNodeList(self, self.top_node, "input_parameter")
-        self.input_paras    =   [InputParameter(input_para_node) 
+        self.input_paras    =   [InputParameter(input_para_node)
                                     for input_para_node in input_para_nodes]
-        self.output_paras   =   [InputParameter(output_para_node) for output_para_node 
+        self.output_paras   =   [InputParameter(output_para_node) for output_para_node
                                     in Parser.getNodeList(self, self.top_node, "output_parameter")]
 
 
@@ -124,7 +124,7 @@ class MethodTemplate(Parser):
 
     def parseParaValues(self, name_value_map, disable_quote):
         """Return the name value map with quote if need
-    
+
         name_value_map: the input map of name to value, but the name
             may be out of scope of this method that should be filtered
         disable_quote: if the quote of the value is disable
@@ -148,7 +148,7 @@ class MethodTemplate(Parser):
         which will be stored after successfully invocation
 
 
-    
+
         param algorithm: algorithm name
         return sql statement
         """
@@ -210,26 +210,29 @@ class InputParameter(Parser):
     """
     def getValue(self, value, disable_quote):
         """Return the value of this parameter.
-    
+
         params:
             value: text value
             disable_quote: is quote disable?
         return value
         """
-
         #NULL value for any type
         if value == 'NULL':
-            return value
-            
+            if any(self.type.lower() == i for i in
+                        ['text', 'varchar', 'character varying']):
+                return value + "::text"
+            else:
+                return value
+
         if re.search(r"ARRAY\[.*\]", value.upper()):
             value = value.upper().replace("NAN", "'NAN'::double precision")
             value = value.replace("INFINITY", "'INFINITY'::double precision")
             if self.type.lower() != "text" and self.type.lower() != "varchar":
                 return value + "::" + self.type
-            
+
         #is the invoke need quote and dose the value support quote itself?
-        if disable_quote and not self.quote:    
-            return value    
+        if disable_quote and not self.quote:
+            return value
         if self.type == 'text' and value == 'EMPTY':
             return "''" #empty string
         else:
@@ -250,15 +253,15 @@ class Executor:
 
     def parseArgument(self):
         """Parse method specified options.There are two kinds of options.
-    
-        1) general options such as madlib_schema, algorithm, method, 
+
+        1) general options such as madlib_schema, algorithm, method,
             target_base_name(test item name) and so on.
         2) specific options that come from algorithm, method above
         """
 
         #1) general options
         parser = argparse.ArgumentParser(description="MADLib Executor")
-        parser.add_argument("--p"               , type=str, required = False, 
+        parser.add_argument("--p"               , type=str, required = False,
                             default = 'greenplum')
         parser.add_argument("--madlib_schema"   , type=str, required = False
                             , default = 'madlib')

@@ -8,17 +8,17 @@ sys.path.append("../")
 from utility import file_path, test_config, analytics_tool
 from utility.xml_parser import Parser
 from executor.template_executor import ExecutorSpec
-import dataset, multi_testsuite, para_handler 
+import dataset, multi_testsuite, para_handler
 import traceback
 
 Path = file_path.Path()
 
 class Generator (Parser):
     """Test case gnerator."""
-    def __init__(self, configer, analyticsTools, datasets, specXml, 
+    def __init__(self, configer, analyticsTools, datasets, specXml,
                  caseScheduleFileHd, caseSQLFileHd, tsSqlFileHd, tiSqlFileHd):
         """
-        params: 
+        params:
             configer: configer class from test_config
             analyticsTools: all alalyticsTool info map
             datasets: dataset class to parse dataset xml
@@ -26,7 +26,7 @@ class Generator (Parser):
             caseScheduleFileHd: test case schedule file descriptor
             caseSQLFileHd: test case sql out file descriptor
             tsSqlFileHd: sql file of inserting test suite, as tsSqlF in __init__'s para
-            tiSqlFileHd: sql file of inserting test case, as tiSqlF in __init__'s para        
+            tiSqlFileHd: sql file of inserting test case, as tiSqlF in __init__'s para
         """
         Parser.__init__(self, specXml)
         self.configer           =   configer
@@ -41,8 +41,8 @@ class Generator (Parser):
     def GenCases(self, debug = False):
         """Generate cases for each test case xml spec file
 
-        Parse the root tag <test_suites>. 
-        <test_type> has two options: feature and performance. For performance test, 
+        Parse the root tag <test_suites>.
+        <test_type> has two options: feature and performance. For performance test,
         each test case should be wraped by gpstart and gpstop
         output:
             1) one case schedule file which include gpstart/gpstop and test case file name,
@@ -85,7 +85,7 @@ class Generator (Parser):
     def __preParas(self, mtdNodeList):
         """Get prepared parameters.
 
-        params: 
+        params:
             mtdNodeList: method node list.
         return:
             preParameters Hash tablb, the table format.

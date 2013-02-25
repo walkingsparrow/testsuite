@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<test_suites>
+  <test_type>feature</test_type>
+  <multi_test_suites>
+    <algorithm>logistic_regression</algorithm>
+    <methods>
+      <method>
+        <name>eval_logregr_train</name>
+        <parameter>
+          <name>benchmark</name>
+          <value>TemplateExecutor</value>
+        </parameter>
+      </method>
+    </methods>
+
+    <test_suite>
+      <name>logregr_output</name>
+      <comments>Compare MADlib logregr result with R result</comments>
+      <execute_rate>1</execute_rate>
+      <method>
+        <name>eval_logregr_train</name>
+
+        <list_parameter>
+          <name>dataset_name</name>
+          <value>log_breast_cancer_wisconsin</value>
+          <value>log_ticdata2000</value>
+          <value>log_wpbc</value>
+        </list_parameter>
+
+        <parameter>
+          <name>tbl_r</name>
+          <value>madlibtestdata.evaluation_logregr_train</value>
+        </parameter>
+
+        <parameter>
+          <name>dep_val</name>
+          <value>y</value>
+        </parameter>
+
+        <parameter>
+          <name>ind_val</name>
+          <value>x</value>
+        </parameter>
+
+        <parameter>
+          <name>grouping_cols</name>
+          <value>Null</value>
+        </parameter>
+        
+        <parameter>
+          <name>max_iter</name>
+          <value>1000</value>
+        </parameter>
+        
+        <list_parameter>
+          <name>optimizer</name>
+          <value>irls</value>
+          <value>newton</value>
+          <value>cg</value>
+          <value>igd</value>
+        </list_parameter>
+
+        <parameter>
+          <name>tolerance</name>
+          <value>1e-8</value>
+        </parameter>
+        
+      </method>
+    </test_suite>
+
+  </multi_test_suites>
+</test_suites>

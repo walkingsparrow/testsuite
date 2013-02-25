@@ -6,4 +6,6 @@ dataset/download/*
 *.pyc
 bootstrap/*.sql
 report/*report*
+R/data
+.Rhistory
 

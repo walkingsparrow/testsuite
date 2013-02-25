@@ -1,0 +1,16 @@
+# TestSuite Name : logregr_output
+# Compare MADlib logregr result with R result
+# Start TestSuite ==========
+logregr_output_0_0
+logregr_output_0_1
+logregr_output_0_2
+logregr_output_0_3
+#logregr_output_0_4
+#logregr_output_0_5
+logregr_output_0_6
+logregr_output_0_7
+logregr_output_0_8
+logregr_output_0_9
+#logregr_output_0_10
+#logregr_output_0_11
+

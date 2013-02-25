@@ -278,3 +278,13 @@ set evaluation_function = (
 where itemname in (
     select testitemname from linear_regression_linregr_eval_grouping
 );
+
+update testitemresult as ts
+set evaluation_function = (
+    select report
+    from logistic_regression_eval_logregr_train as gr
+    where gr.runid = ts.runid and gr.testitemname = ts.itemname)
+where itemname in (
+    select testitemname from logistic_regression_eval_logregr_train
+);
+
