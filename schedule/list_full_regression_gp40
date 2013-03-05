@@ -13,7 +13,9 @@ case_plda_feature
 case_plda_corner_negative
 
 case_linear
-case_logistic
+case_logistic_regression
+case_logregr_output
+
 
 case_bernoulli_cdf
 case_bernoulli_pmf

@@ -14,7 +14,10 @@ case_plda_corner_negative
 
 case_assoc_rules_ft
 case_linear
-case_logistic
+case_logistic_regression
+case_logregr_output
+
+
 case_dt_ft_gainratio
 case_dt_ft_gini
 case_dt_ft_infogain

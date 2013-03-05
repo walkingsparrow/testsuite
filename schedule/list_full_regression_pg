@@ -16,7 +16,9 @@ case_ht_corner
 case_ht_negative
 
 case_linear
-case_logistic_full_pg
+case_logistic_regression
+case_logregr_output
+
 case_dt_pgfull
 case_rf_pgfull
 
