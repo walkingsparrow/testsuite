@@ -213,11 +213,11 @@ class InputParameter(Parser):
 
         params:
             value: text value
-            disable_quote: is quote disable?
+            disable_quote: is quote disabled?
         return value
         """
         #NULL value for any type
-        if value == 'NULL':
+        if str(value).upper() == 'NULL':
             if any(self.type.lower() == i for i in
                         ['text', 'varchar', 'character varying']):
                 return value + "::text"
@@ -225,12 +225,11 @@ class InputParameter(Parser):
                 return value
 
         if re.search(r"ARRAY\[.*\]", value.upper()):
-            value = value.upper().replace("NAN", "'NAN'::double precision")
-            value = value.replace("INFINITY", "'INFINITY'::double precision")
+            value = re.sub('(?i)'+re.escape('NAN'), "'NAN'::double precision", value)
+            value = re.sub('(?i)'+re.escape('Infinity'), "'Infinity'::double precision", value)
             if self.type.lower() != "text" and self.type.lower() != "varchar":
                 return value + "::" + self.type
-
-        #is the invoke need quote and dose the value support quote itself?
+        #does the invoke need quote and does the value support quote itself?
         if disable_quote and not self.quote:
             return value
         if self.type == 'text' and value == 'EMPTY':

@@ -134,18 +134,24 @@ CREATE OR REPLACE VIEW testresultreport AS
     WHEN tr.itemname like 'logistic_regression'
     THEN
       CASE  WHEN tr.itemname like 'logistic_regression_negative%'
-            THEN CASE WHEN tr.issuccessful = false
-                  THEN 'PASSED'
+            THEN CASE WHEN NOT tr.issuccessful
+                  THEN CASE WHEN tr.result_info like '%Logregr error%'
+                              OR tr.result_info like '%column%does not exist%'
+                            THEN 'PASSED'
+                            ELSE 'FAILED'
+                        END
                   ELSE 'FAILED'
                 END
-            WHEN tr.itemname like 'logistic_regression_baseline%'
-              OR tr.itemname like 'logistic_regression_convergence_threshold%'
-              OR tr.itemname like 'logistic_regression_corner_scenarios%'
-            THEN CASE WHEN tr.result_info like '%Logregr error%'
-                        OR tr.result_info like '%column%does not exist%'
-                      THEN 'PASSED'
-                      ELSE 'FAILED'
-                 END
+            ELSE
+              CASE WHEN tr.issuccessful
+                   THEN 'PASSED'
+                   ELSE CASE WHEN tr.result_info like '%Logregr error%'
+                              OR tr.result_info like '%column%does not exist%'
+                              OR tr.result_info like '%Over- or underflow in Newton step%'
+                        THEN 'PASSED'
+                        ELSE 'FAILED'
+                        END
+              END
       END
 
     WHEN tr.itemname like 'linregr_hetero_output_test%linregr_eval_hetero%'

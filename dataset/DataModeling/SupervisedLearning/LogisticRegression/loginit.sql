@@ -152,6 +152,7 @@ create or replace function madlibtestdata.grouping_cols_equal (
 ) returns boolean as $$
     if grp_1 is None:
         return True
+    import re
     elm1 = []
     for m in re.finditer(r"(\"(\\\"|[^\"])*\"|[^\",\s]+)", grp_1):
         elm1.append(m.group(1))
@@ -180,14 +181,22 @@ create or replace function madlibtestdata.grouping_values_equal (
     if grp_r is None:
         return True
     import re
+    if type(grp_mad) == type('s'):
+        elm0 = []
+        for m in re.finditer(r"([^,\{\}\"]+)", grp_mad):
+            elm0.append(m.group(1).strip())
+        grp_mad1 = elm0
+    else:
+        grp_mad1 = grp_mad
+    
     elm = []
     for m in re.finditer(r"(\"(\\\"|[^\"])*\"|[^\",\s]+)", grp_r):
         elm.append(m.group(1))
-    if len(elm) != len(grp_mad):
+    if len(elm) != len(grp_mad1):
         return False
     for i in range(len(elm)):
         g1 = elm[i].strip(" \"")
-        g2 = grp_mad[i].strip(" \"")
+        g2 = grp_mad1[i].strip(" \"")
         if g1 != g2:
             return False
     return True
@@ -309,26 +318,57 @@ begin
             from
                 (
                 select
-                    avg(madlib.logregr_accuracy(coef, '|| ind_val ||', '|| dep_val ||')) as ac,
+                    avg(madlibtestdata.logregr_accuracy(coef, '|| ind_val ||', 
+                            '|| dep_val ||')) as ac,
                     array['|| grouping_cols_cast ||'] as grouping_vals
-                from '|| tbl_madlib ||', madlibtestdata.'|| dataset_name ||'
+                from '|| tbl_madlib ||' join madlibtestdata.'|| dataset_name ||' 
+                using ('|| grouping_cols ||')
                 group by '|| grouping_cols ||'
                 ) m,
                 (
                 select
-                    avg(madlib.logregr_accuracy(coef, '|| ind_val ||', '|| dep_val ||')) as ac,
+                    avg(madlibtestdata.logregr_accuracy(coef, '|| ind_val ||', 
+                            '|| dep_val ||')) as ac,
                     grouping_vals
-                from '|| tbl_r ||', madlibtestdata.'|| dataset_name ||'
+                from '|| tbl_r ||' r, madlibtestdata.'|| dataset_name ||' s
                 where
                     dataset = '''|| dataset_name ||''' and
-                    madlibtestdata.grouping_cols_equal(grouping_cols, '|| grouping_cols ||')
+                    madlibtestdata.grouping_cols_equal(grouping_cols, '''|| 
+                        grouping_cols ||''') and
+                    madlibtestdata.grouping_values_equal(array['|| 
+                                    grouping_cols_cast ||'], r.grouping_vals)
                 group by grouping_vals
                 ) r
             where
-                madlibtestdata.grouping_values_equal(m.grouping_vals, r.grouping_vals)
+                madlibtestdata.grouping_values_equal(m.grouping_vals, 
+                        r.grouping_vals)
         ' into diff;
     end if;
    return diff;
+end;
+$$ language plpgsql;
+
+------------------------------------------------------------------------
+
+create or replace function madlibtestdata.logregr_accuracy (
+    coef        double precision[],
+    ind_val     double precision[],
+    dep_val     boolean
+) returns integer as $$
+declare
+    dot         double precision := 0;
+    i           integer;
+    dim         integer;
+begin
+    dim := array_upper(coef, 1);
+    for i in 1..dim loop
+        dot := dot + coef[i] * ind_val[i];
+    end loop;
+    if (dot > 0) = dep_val then
+        return 1;
+    else
+        return 0;
+    end if;
 end;
 $$ language plpgsql;
 

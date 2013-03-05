@@ -27,13 +27,6 @@
                     <value>madlibtestdata.log_wdbc</value>
                     <value>madlibtestdata.log_wpbc</value>
                 </list_parameter>
-                <list_parameter>
-                    <name>optimizer</name>
-                    <value>irls</value>
-                    <value>newton</value>
-                    <value>cg</value>
-                    <value>igd</value>
-                </list_parameter>
                 <parameters>
                     <parameter>
                         <name>out_table</name>
@@ -47,103 +40,7 @@
                         <name>independent_varname</name>
                         <value>x</value>
                     </parameter>
-                    <parameter>
-                        <name>max_iteration</name>
-                        <value>20</value>
-                    </parameter>
-                    <parameter>
-                        <name>convergence_threshold</name>
-                        <value>0.0</value>
-                    </parameter>
-                </parameters>
-                <tear_down>
-                    DROP TABLE IF EXISTS logregr_out;
-                </tear_down>
-            </method>
-        </test_suite>
-
-        <test_suite>
-            <name>logistic_regression_convergence_threshold</name>
-            <comments>It is to test convergence threshold of logistic regression.</comments>
-            <!-- It indicate max execution times-->
-            <execute_rate>1</execute_rate>
-            <method>
-                <name>logregr</name>
-                <list_parameter>
-                    <name>source_table</name>
-                    <value>madlibtestdata.log_breast_cancer_wisconsin</value><value>madlibtestdata.log_ticdata2000</value><value>madlibtestdata.log_wdbc</value><value>madlibtestdata.log_wpbc</value>
-                </list_parameter>
-                <list_parameter>
-                    <name>convergence_threshold</name>
-                    <value>1</value><value>0.01</value><value>0.001</value><value>0.0001</value><value>0.00001</value><value>0.000001</value>
-                </list_parameter>
-                <parameters>
-                    <parameter>
-                        <name>out_table</name>
-                        <value>logregr_out</value>
-                    </parameter>
-                    <parameter>
-                        <name>dependent_varname</name>
-                        <value>y</value>
-                    </parameter>
-                    <parameter>
-                        <name>independent_varname</name>
-                        <value>x</value>
-                    </parameter>
-                    <parameter>
-                        <name>max_iteration</name>
-                        <!-- The default maximum iteration number -->
-                        <value>2000</value>
-                    </parameter>
-                    <parameter>
-                        <name>optimizer</name>
-                        <!-- The default optimizer -->
-                        <value>irls</value>
-                    </parameter>
-                </parameters>
-                <tear_down>
-                    DROP TABLE IF EXISTS logregr_out;
-                </tear_down>
-            </method>
-        </test_suite>
-
-        <test_suite>
-            <name>logistic_regression_corner_scenarios</name>
-            <comments>It is to test corner scenarios of logistic regression.</comments>
-            <!-- It indicate max execution times-->
-            <execute_rate>1</execute_rate>
-            <method>
-                <name>logregr</name>
-                <list_parameter>
-                    <name>source_table</name>
-                    <value>madlibtestdata.log_noobservation</value><value>madlibtestdata.log_singleobservation</value><value>madlibtestdata.log_redundantobservations</value>
-                </list_parameter>
-                <parameters>
-                     <parameter>
-                        <name>out_table</name>
-                        <value>logregr_out</value>
-                    </parameter>
-                    <parameter>
-                        <name>dependent_varname</name>
-                        <value>y</value>
-                    </parameter>
-                    <parameter>
-                        <name>independent_varname</name>
-                        <value>x</value>
-                    </parameter>
-                    <parameter>
-                        <name>max_iteration</name>
-                        <value>20</value>
-                    </parameter>
-                    <parameter>
-                        <name>optimizer</name>
-                        <value>irls</value>
-                    </parameter>
-                    <parameter>
-                        <name>convergence_threshold</name>
-                        <value>0.0001</value>
-                    </parameter>
-                </parameters>
+                   </parameters>
                 <tear_down>
                     DROP TABLE IF EXISTS logregr_out;
                 </tear_down>
@@ -152,9 +49,10 @@
                 <name>logregr_grouping</name>
                 <list_parameter>
                     <name>source_table</name>
-                    <value>madlibtestdata.log_noobservation</value>
-                    <value>madlibtestdata.log_singleobservation</value>
-                    <value>madlibtestdata.log_redundantobservations</value>
+                    <value>madlibtestdata.log_breast_cancer_wisconsin</value>
+                    <value>madlibtestdata.log_ticdata2000</value>
+                    <value>madlibtestdata.log_wdbc</value>
+                    <value>madlibtestdata.log_wpbc</value>
                 </list_parameter>
                 <parameters>
                     <parameter>
@@ -198,9 +96,10 @@
             <!-- It indicate max execution times-->
             <execute_rate>1</execute_rate>
             <method>
-                <name>logregr</name>
+                <name>logregr_grouping</name>
                 <list_parameter>
                     <name>source_table</name>
+                    <value>madlibtestdata.log_noobservation</value>
                     <value>non_existing_source_table</value>
                     <value>EMPTY</value>
                     <value>NULL</value>
@@ -217,6 +116,10 @@
                     <parameter>
                         <name>independent_varname</name>
                         <value>x</value>
+                    </parameter>
+                    <parameter>
+                        <name>grouping_cols</name>
+                        <value>NULL</value>
                     </parameter>
                     <parameter>
                         <name>max_iteration</name>
@@ -239,6 +142,7 @@
                 <name>logregr_grouping</name>
                 <list_parameter>
                     <name>source_table</name>
+                    <value>madlibtestdata.log_noobservation</value>
                     <value>non_existing_source_table</value>
                     <value>EMPTY</value>
                     <value>NULL</value>
@@ -284,44 +188,6 @@
             <comments>It is to test negative scenarios of logistic regression.</comments>
             <!-- It indicate max execution times-->
             <execute_rate>1</execute_rate>
-            <method>
-                <name>logregr</name>
-                <list_parameter>
-                    <name>dependent_varname</name>
-                    <value>non_existing_dependent_varname</value>
-                    <value>EMPTY</value>
-                    <value>NULL</value>
-                </list_parameter>
-                <parameters>
-                    <parameter>
-                        <name>out_table</name>
-                        <value>logregr_out</value>
-                    </parameter>
-                    <parameter>
-                        <name>source_table</name>
-                        <value>madlibtestdata.log_breast_cancer_wisconsin</value>
-                    </parameter>
-                    <parameter>
-                        <name>independent_varname</name>
-                        <value>x</value>
-                    </parameter>
-                    <parameter>
-                        <name>max_iteration</name>
-                        <value>20</value>
-                    </parameter>
-                    <parameter>
-                        <name>optimizer</name>
-                        <value>irls</value>
-                    </parameter>
-                    <parameter>
-                        <name>convergence_threshold</name>
-                        <value>0.0001</value>
-                    </parameter>
-                </parameters>
-                <tear_down>
-                    DROP TABLE IF EXISTS logregr_out;
-                </tear_down>
-            </method>
             <method>
                 <name>logregr_grouping</name>
                 <list_parameter>
@@ -372,42 +238,6 @@
             <!-- It indicate max execution times-->
             <execute_rate>1</execute_rate>
             <method>
-                <name>logregr</name>
-                <list_parameter>
-                    <name>independent_varname</name>
-                    <value>non_existing_independent_varname</value><value>EMPTY</value><value>NULL</value>
-                </list_parameter>
-                <parameters>
-                    <parameter>
-                        <name>out_table</name>
-                        <value>logregr_out</value>
-                    </parameter>
-                    <parameter>
-                        <name>source_table</name>
-                        <value>madlibtestdata.log_breast_cancer_wisconsin</value>
-                    </parameter>
-                    <parameter>
-                        <name>dependent_varname</name>
-                        <value>y</value>
-                    </parameter>
-                    <parameter>
-                        <name>max_iteration</name>
-                        <value>20</value>
-                    </parameter>
-                    <parameter>
-                        <name>optimizer</name>
-                        <value>irls</value>
-                    </parameter>
-                    <parameter>
-                        <name>convergence_threshold</name>
-                        <value>0.0001</value>
-                    </parameter>
-                </parameters>
-                <tear_down>
-                    DROP TABLE IF EXISTS logregr_out;
-                </tear_down>
-            </method>
-            <method>
                 <name>logregr_grouping</name>
                 <list_parameter>
                     <name>independent_varname</name>
@@ -419,12 +249,17 @@
                         <value>logregr_out</value>
                     </parameter>
                     <parameter>
+
                         <name>source_table</name>
                         <value>madlibtestdata.log_breast_cancer_wisconsin</value>
                     </parameter>
                     <parameter>
                         <name>dependent_varname</name>
                         <value>y</value>
+                    </parameter>
+                     <parameter>
+                        <name>independent_varname</name>
+                        <value>x</value>
                     </parameter>
                     <parameter>
                         <name>grouping_cols</name>
@@ -457,9 +292,9 @@
                 <name>logregr_grouping</name>
                 <list_parameter>
                     <name>grouping_cols</name>
-                    <value>non_existing_group</value>
+                    <value>invalid_cols</value>
                     <value>EMPTY</value>
-                    <value>NULL</value>
+                    <value>'NULL'</value>
                 </list_parameter>
                 <parameters>
                     <parameter>
@@ -468,25 +303,25 @@
                     </parameter>
                     <parameter>
                         <name>source_table</name>
-                        <value>madlibtestdata.log_breast_cancer_wisconsin</value>
+                        <value>madlibtestdata.lin_ornstein</value>
                     </parameter>
                     <parameter>
                         <name>dependent_varname</name>
-                        <value>y</value>
+                        <value>'interlocks > 10'</value>
                     </parameter>
-                     <parameter>
+                    <parameter>
                         <name>independent_varname</name>
-                        <value>x</value>
+                        <value>'ARRAY[1, assets, sector]'</value>
+                    </parameter>
+                    <parameter>
+                        <name>optimizer</name>
+                        <value>igd</value>
                     </parameter>
                     <parameter>
                         <name>max_iteration</name>
                         <value>20</value>
                     </parameter>
                     <parameter>
-                        <name>optimizer</name>
-                        <value>irls</value>
-                    </parameter>
-                    <parameter>
                         <name>convergence_threshold</name>
                         <value>0.0001</value>
                     </parameter>
@@ -495,50 +330,13 @@
                     DROP TABLE IF EXISTS logregr_out;
                 </tear_down>
             </method>
-        </test_suite>
 
+        </test_suite>
         <test_suite>
             <name>logistic_regression_negative_max_iteration</name>
             <comments>It is to test negative scenarios of logistic regression.</comments>
             <!-- It indicate max execution times-->
             <execute_rate>1</execute_rate>
-            <method>
-                <name>logregr</name>
-                <list_parameter>
-                    <name>max_iteration</name>
-                    <value>-1</value>
-                    <value>0</value>
-                </list_parameter>
-                <parameters>
-                    <parameter>
-                        <name>out_table</name>
-                        <value>logregr_out</value>
-                    </parameter>
-                    <parameter>
-                        <name>source_table</name>
-                        <value>madlibtestdata.log_breast_cancer_wisconsin</value>
-                    </parameter>
-                    <parameter>
-                        <name>dependent_varname</name>
-                        <value>y</value>
-                    </parameter>
-                    <parameter>
-                        <name>independent_varname</name>
-                        <value>x</value>
-                    </parameter>
-                    <parameter>
-                        <name>optimizer</name>
-                        <value>irls</value>
-                    </parameter>
-                    <parameter>
-                        <name>convergence_threshold</name>
-                        <value>0.0001</value>
-                    </parameter>
-                </parameters>
-                <tear_down>
-                    DROP TABLE IF EXISTS logregr_out;
-                </tear_down>
-            </method>
             <method>
                 <name>logregr_grouping</name>
                 <list_parameter>
@@ -580,50 +378,12 @@
                     DROP TABLE IF EXISTS logregr_out;
                 </tear_down>
             </method>
-
         </test_suite>
-
         <test_suite>
             <name>logistic_regression_negative_optimizer</name>
             <comments>It is to test negative scenarios of logistic regression.</comments>
             <!-- It indicate max execution times-->
             <execute_rate>1</execute_rate>
-            <method>
-                <name>logregr</name>
-                <list_parameter>
-                    <name>optimizer</name>
-                    <value>invalid_optimizer</value><value>EMPTY</value><value>NULL</value>
-                </list_parameter>
-                <parameters>
-                    <parameter>
-                        <name>out_table</name>
-                        <value>logregr_out</value>
-                    </parameter>
-                    <parameter>
-                        <name>source_table</name>
-                        <value>madlibtestdata.log_breast_cancer_wisconsin</value>
-                    </parameter>
-                    <parameter>
-                        <name>dependent_varname</name>
-                        <value>y</value>
-                    </parameter>
-                    <parameter>
-                        <name>independent_varname</name>
-                        <value>x</value>
-                    </parameter>
-                    <parameter>
-                        <name>max_iteration</name>
-                        <value>20</value>
-                    </parameter>
-                    <parameter>
-                        <name>convergence_threshold</name>
-                        <value>0.0001</value>
-                    </parameter>
-                </parameters>
-                <tear_down>
-                    DROP TABLE IF EXISTS logregr_out;
-                </tear_down>
-            </method>
             <method>
                 <name>logregr_grouping</name>
                 <list_parameter>
@@ -637,17 +397,17 @@
                         <name>out_table</name>
                         <value>logregr_out</value>
                     </parameter>
-                    <parameter>
+                   <parameter>
                         <name>source_table</name>
-                        <value>madlibtestdata.log_breast_cancer_wisconsin</value>
+                        <value>madlibtestdata.lin_ornstein</value>
                     </parameter>
                     <parameter>
                         <name>dependent_varname</name>
-                        <value>y</value>
+                        <value>'interlocks > 10'</value>
                     </parameter>
                     <parameter>
                         <name>independent_varname</name>
-                        <value>x</value>
+                        <value>'ARRAY[1, assets, sector]'</value>
                     </parameter>
                     <parameter>
                         <name>grouping_cols</name>
@@ -674,44 +434,7 @@
             <!-- It indicate max execution times-->
             <execute_rate>1</execute_rate>
             <method>
-                <name>logregr</name>
-                <list_parameter>
-                    <name>convergence_threshold</name>
-                    <value>-1</value>
-                    <value>-0.0001</value>
-                </list_parameter>
-                <parameters>
-                    <parameter>
-                        <name>out_table</name>
-                        <value>logregr_out</value>
-                    </parameter>
-                    <parameter>
-                        <name>source_table</name>
-                        <value>madlibtestdata.log_breast_cancer_wisconsin</value>
-                    </parameter>
-                    <parameter>
-                        <name>dependent_varname</name>
-                        <value>y</value>
-                    </parameter>
-                    <parameter>
-                        <name>independent_varname</name>
-                        <value>x</value>
-                    </parameter>
-                    <parameter>
-                        <name>max_iteration</name>
-                        <value>20</value>
-                    </parameter>
-                    <parameter>
-                        <name>optimizer</name>
-                        <value>irls</value>
-                    </parameter>
-                </parameters>
-                <tear_down>
-                    DROP TABLE IF EXISTS logregr_out;
-                </tear_down>
-            </method>
-            <method>
-                <name>logregr</name>
+                <name>logregr_grouping</name>
                 <list_parameter>
                     <name>convergence_threshold</name>
                     <value>-1</value>

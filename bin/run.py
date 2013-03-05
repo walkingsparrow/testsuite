@@ -72,13 +72,18 @@ def main():
             else:
                 isUnique = False
 
-            version = run_case.runCases(filename, plan['skip'], isList, isUnique, plan['platform'], analyticsTools, testConfiger, run_id)
+            version = run_case.runCases(filename, plan['skip'], isList,
+                                        isUnique, plan['platform'],
+                                        analyticsTools, testConfiger, run_id)
             if plan['skip']:
-                run_sql.runSQL(Path.BootstrapDir + 'skipsqlfile.sql', psqlArgs = psql_args, isFile = True)
-                   
-            run_sql.runSQL(Path.BootstrapDir + 'post.sql', psqlArgs = psql_args, onErrorStop = False, isFile = True)
+                run_sql.runSQL(Path.BootstrapDir + 'skipsqlfile.sql',
+                                psqlArgs = psql_args, isFile = True)
 
-            gen_report.generate_report(psql_args, schema, run_id, plan['platform'], Path.ReportDir)
+            run_sql.runSQL(Path.BootstrapDir + 'post.sql', psqlArgs = psql_args,
+                                onErrorStop = False, isFile = True)
+
+            gen_report.generate_report(psql_args, schema, run_id,
+                                        plan['platform'], Path.ReportDir)
 
     #load data set to all databases to test
     if options.forceload:
@@ -86,28 +91,38 @@ def main():
         loading_manager.do(options.module, False, True, True)
 
     if options.initbenchmark:
-        #initialization
+        print "------------ Initializing database ------------"
         run_sql.runSQL(Path.BootstrapDir + 'init.sql', psqlArgs = psql_args, isFile = True)
-        run_sql.runSQL(Path.BootstrapDir + 'init_cases.sql', psqlArgs = psql_args, isFile = True)
-        run_sql.runSQL(Path.BootstrapDir + 'resultbaseline.sql', psqlArgs = psql_args, isFile = True)
-        #generate new cases
+        run_sql.runSQL(Path.BootstrapDir + 'init_cases.sql',
+                        psqlArgs = psql_args, isFile = True)
+        run_sql.runSQL(Path.BootstrapDir + 'resultbaseline.sql',
+                        psqlArgs = psql_args, isFile = True)
+        print "------------ Generating new test cases ------------"
         os.system('cd ../src/generator/ && python ./gen_testcase.py')
-        run_sql.runSQL(Path.BootstrapDir + 'analyticstool.sql', psqlArgs = psql_args, isFile = True)
-        #initialize algorithm result table
-        run_sql.runSQL(Path.BootstrapDir + 'algorithmspec.sql', psqlArgs = psql_args, isFile = True)
+        run_sql.runSQL(Path.BootstrapDir + 'analyticstool.sql',
+                        psqlArgs = psql_args, isFile = True)
+        print "------------ Initializing algorithm result table ------------"
+        run_sql.runSQL(Path.BootstrapDir + 'algorithmspec.sql',
+                        psqlArgs = psql_args, onErrorStop = False, isFile = True)
         for sqlfile in glob.glob('../testcase/*.sql'):
-            run_sql.runSQL(sqlfile, psqlArgs = psql_args, onErrorStop = False, isFile = True)
+            run_sql.runSQL(sqlfile, psqlArgs = psql_args,
+                        onErrorStop = False, isFile = True)
     if options.gencase:
         #initialization
-        run_sql.runSQL(Path.BootstrapDir + 'init_cases.sql', psqlArgs = psql_args, isFile = True)
-        run_sql.runSQL(Path.BootstrapDir + 'resultbaseline.sql', psqlArgs = psql_args, isFile = True)
+        run_sql.runSQL(Path.BootstrapDir + 'init_cases.sql',
+                        psqlArgs = psql_args, isFile = True)
+        run_sql.runSQL(Path.BootstrapDir + 'resultbaseline.sql',
+                        psqlArgs = psql_args, isFile = True)
         #generate new cases
         if options.debug:
             os.system('cd ../src/generator/ && python ./gen_testcase.py debug')
         else:
             os.system('cd ../src/generator/ && python ./gen_testcase.py')
-        run_sql.runSQL(Path.BootstrapDir + 'analyticstool.sql', psqlArgs = psql_args, isFile = True)
-        run_sql.runSQL(Path.BootstrapDir + 'algorithmspec.sql', psqlArgs = psql_args, onErrorStop = False,  isFile = True)
+        run_sql.runSQL(Path.BootstrapDir + 'analyticstool.sql',
+                        psqlArgs = psql_args, isFile = True)
+        #initialize algorithm result table
+        run_sql.runSQL(Path.BootstrapDir + 'algorithmspec.sql',
+                        psqlArgs = psql_args, onErrorStop = False,  isFile = True)
         for sqlfile in glob.glob('../testcase/*.sql'):
             run_sql.runSQL(sqlfile, psqlArgs = psql_args, onErrorStop = False, isFile = True)
 

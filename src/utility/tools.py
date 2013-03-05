@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os,yaml, glob, re
+import os,yaml, glob, re, sys
 
 def parserMap(mapfile):
     """Parse the map file and return a list that contains plans."""

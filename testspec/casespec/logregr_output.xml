@@ -68,5 +68,57 @@
       </method>
     </test_suite>
 
+    <test_suite>
+      <name>logregr_output_group</name>
+      <comments>Compare MADlib logregr result with R result</comments>
+      <execute_rate>1</execute_rate>
+      <method>
+        <name>eval_logregr_train</name>
+
+        <list_parameter>
+          <name>dataset_name</name>
+          <value>log_ornstein</value>
+        </list_parameter>
+
+        <parameter>
+          <name>tbl_r</name>
+          <value>madlibtestdata.evaluation_logregr_train</value>
+        </parameter>
+
+        <parameter>
+          <name>dep_val</name>
+          <value>interlocks</value>
+        </parameter>
+
+        <parameter>
+          <name>ind_val</name>
+          <value>'ARRAY[1, assets, sector]'</value>
+        </parameter>
+
+        <parameter>
+          <name>grouping_cols</name>
+          <value>nation</value>
+        </parameter>
+        
+        <parameter>
+          <name>max_iter</name>
+          <value>1000</value>
+        </parameter>
+        
+        <list_parameter>
+          <name>optimizer</name>
+          <value>irls</value>
+          <value>newton</value>
+          <value>cg</value>
+          <value>igd</value>
+        </list_parameter>
+
+        <parameter>
+          <name>tolerance</name>
+          <value>1e-8</value>
+        </parameter>
+        
+      </method>
+    </test_suite>
   </multi_test_suites>
 </test_suites>
