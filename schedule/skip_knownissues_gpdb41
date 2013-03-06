@@ -13,11 +13,21 @@
 ####################################################################
 
 ###### Kmeans Clustering ######
+
 ### HEAD ###
 ### JiraId: MADLIB-704 ######
 ### Des: Need error handling improvement for invalid k in kmeanspp_seeding ###
 ### Type: 2 ###
 km_pp_seeding_negative_initialcentroids_0_0_km_pp_seeding_default_fndist_initialcentroids_0
+### END ###
+
+### HEAD ###
+### JiraId: MADLIB-XXX ###
+### Des: MADmark improvement needed: kmeans non-finite test should be successfull ###
+### Type: 999 ###
+km_nonfinite_2water_treatment_noninfinite_0_0
+km_pp_noninfinite_0_1
+km_random_noninfinite_0_1
 ### END ###
 
 #################Association Rules########################
