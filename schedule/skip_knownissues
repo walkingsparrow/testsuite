@@ -12,6 +12,15 @@
 #    ## "END" ###
 ####################################################################
 
+################## Cross Validation #####################
+
+### HEAD ###
+### JiraId: MADLIB-XXX ###
+### Des: MADmark improvement needed: different error messages for different versions of GPDB ###
+### Type: 999 ###
+cv_null_model_linregr_0_1
+### END ###
+
 ################## Kmeans Clustering #####################
 
 ### HEAD ###

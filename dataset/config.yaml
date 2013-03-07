@@ -1,9 +1,9 @@
 DataModeling :
     SupervisedLearning :
-        Convex : 
+        Convex :  
         DecisionTree : 
         LinearRegression : 
-        LogisticRegression :
+        LogisticRegression : 
         MultinomialLogisticRegression : 
         NaiveBayesClassification : 
         RandomForest : 

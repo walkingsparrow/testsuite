@@ -77,8 +77,8 @@ begin
     execute '
         select madlib.cross_validation_general(
             $_valString$madlib.logregr_train$_valString$,
-            $_valString${%data%,  %model%, '|| col_dep_var ||', '|| col_ind_var ||', 100, cg, 1e-8}$_valString$::varchar[],
-            $_valString${varchar, varchar, varchar, varchar, integer, varchar, double precision}$_valString$::varchar[],
+            $_valString${%data%,  %model%, '|| col_dep_var ||', '|| col_ind_var ||', NULL, 100, cg, 1e-8}$_valString$::varchar[],
+            $_valString${varchar, varchar, varchar, varchar, varchar, integer, varchar, double precision}$_valString$::varchar[],
             NULL::varchar,
             NULL,
             --
